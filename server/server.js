@@ -34,7 +34,7 @@ const socketManager = require("./server-socket");
 // Server configuration below
 const mongoConnectionURL = "mongodb+srv://admin:bukabuka@cluster0.dxmnj.mongodb.net/Cluster0?retryWrites=true&w=majority";
 
-const databaseName = "FILL ME IN";
+const databaseName = "TagYourself";
 
 // connect to mongodb
 mongoose

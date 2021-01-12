@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Profile from "./pages/Profile.js";
+import Board from "./pages/Board.js";
 
 import "../utilities.css";
 
@@ -54,6 +56,8 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          <Profile path="/profile/:userId" />
+          <Board path="/board/:boardId" />
           <NotFound default />
         </Router>
       </>
