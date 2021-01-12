@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Router, useNavigate } from "@reach/router";
+import { Router } from "@reach/router";
+import { navigate } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Home from "./pages/Home.js";
@@ -38,6 +39,7 @@ class App extends Component {
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
+      navigate(`/home/${user._id}`)
     });
   };
 
@@ -56,7 +58,12 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
-          <Home path="/home/:userId" />
+          <Home 
+            path="/home/:userId"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
           <Board path="/board/:boardId" />
           <NotFound default />
         </Router>
