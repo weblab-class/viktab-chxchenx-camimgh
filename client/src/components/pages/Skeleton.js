@@ -20,9 +20,14 @@ class Skeleton extends Component {
   render() {
     return (
       <div className="Skeleton-container">
-        <h1>
-          Please login to continue
-        </h1>
+        <div className="text-container">
+          <h1 className="textCenter">
+            welcome to singularity.
+          </h1>
+          <div className="blurb">
+            description text here.
+          </div>
+        </div>
         <>
         {this.props.userId ? (
           <GoogleLogout

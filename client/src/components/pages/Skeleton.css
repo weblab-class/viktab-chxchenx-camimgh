@@ -1,5 +1,28 @@
+body {
+  background-color: var(--light-purple);
+}
+
 .Skeleton-container {
-    background-color: var(--light-purple);
-    height:100vh;
+    height: 100vh;
+    text-align: center;
   }
 
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 30vh;
+  font-family: Lora;
+  font-style: italic;
+  letter-spacing: 5px;
+}
+
+.blurb {
+  padding-bottom: 5vh;
+  width: 50vh;
+  margin: auto;
+  font-family: Poppins;
+  font-style: normal;
+  letter-spacing: normal;
+}
