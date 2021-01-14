@@ -21,7 +21,7 @@ class Skeleton extends Component {
     return (
       <div className="Skeleton-container">
         <div className="text-container">
-          <img className="logo" src="https://i.imgur.com/KmIZcTM.png" />
+          <img className="logo" src="logo.png" />
           <h1 className="textCenter">
             welcome to singularity.
           </h1>
