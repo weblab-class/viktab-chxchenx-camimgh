@@ -8,11 +8,18 @@ class Column extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    get(`/api/column`, { columnid: this.props.columnId }).then((column) => this.setState({ column: column }));
+  }
+
   render() {
     return (
-      <div >
-          Hi this is a column lol
-      </div>
+      <>
+      {this.state.column ? 
+        this.state.column.tasks.map((task) => {
+          <Task taskId={task} />
+      }): <div> Loading... </div>}
+      </>
     );
   }
 }

@@ -11,8 +11,9 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const Task = require("./models/task");
 const Board = require("./models/board");
+const Column = require("./models/column");
+const Task = require("./models/task");
 
 // import authentication library
 const auth = require("./auth");
@@ -51,6 +52,24 @@ router.get("/userTasks", (req, res) => {
     res.send(tasks);
   });
 });
+
+router.get("/board", (req, res) => {
+  Board.findById(req.query.boardid).then((board) => {
+    res.send(board);
+  });
+});
+
+router.get("/column", (req, res) => {
+  Column.findById(req.query.columnid).then((column) => {
+    res.send(column);
+  });
+});
+
+// router.get("/columns", (req, res) => {
+//   Task.findByUser(req.query.userid).then((tasks) => {
+//     res.send(tasks);
+//   });
+// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
