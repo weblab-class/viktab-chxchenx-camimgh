@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
+import TasksBlock from "../modules/TasksBlock.js";
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class Home extends Component {
 
   render() {
     const userName = this.state.user ? this.state.user.name : "user.name";
-    // TODO make a tasksList like the storiesList in catbook
     return (
       <>
       <Navbar 
@@ -27,9 +27,7 @@ class Home extends Component {
         userId={this.userId}
         title={userName}
       />
-      <div >
-          And your tasks will go here (when we get to that)
-      </div>
+      <TasksBlock userId={this.userId} />
       </>
     );
   }

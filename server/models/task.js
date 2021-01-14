@@ -9,5 +9,7 @@ const TaskSchema = new mongoose.Schema({
   color: { type: String, default: "purple" }
 });
 
+TaskSchema.static('findByUser', function(assignee) { return this.find({ assignees: assignee }); });
+
 // compile model from schema
 module.exports = mongoose.model("task", TaskSchema);
