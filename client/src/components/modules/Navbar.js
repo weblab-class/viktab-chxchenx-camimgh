@@ -34,7 +34,7 @@ class Navbar extends Component {
 					Insert logo here
 				</span>
 				<span>
-					Insert title here
+					{this.props.title}
 				</span>
 				<span>
 					Insert profile pic here
