@@ -21,11 +21,12 @@ class Skeleton extends Component {
     return (
       <div className="Skeleton-container">
         <div className="text-container">
+          <img className="logo" src="https://i.imgur.com/KmIZcTM.png" />
           <h1 className="textCenter">
             welcome to singularity.
           </h1>
           <div className="blurb">
-            description text here.
+            singularity is an easy-to-use collaborative event organizing platform. plan with your friends and grow your solar system!
           </div>
         </div>
         <>

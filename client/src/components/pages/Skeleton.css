@@ -1,5 +1,8 @@
 body {
   background-color: var(--light-purple);
+  background-image: url('https://i.imgur.com/awbdrL4.jpg');
+  background-size: cover;
+  color: white;
 }
 
 .Skeleton-container {
@@ -25,4 +28,17 @@ body {
   font-family: Poppins;
   font-style: normal;
   letter-spacing: normal;
+}
+
+.logo {
+  height: 80px;
+  width: 50px;
+  margin: auto;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+.logo:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
