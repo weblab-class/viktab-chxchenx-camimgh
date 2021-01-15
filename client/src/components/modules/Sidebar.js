@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 
 import BoardCard from "./BoardCard.js";
+import NewBoard from "./NewBoard.js";
 import "./Sidebar.css";
 
 class Sidebar extends Component {
