@@ -13,7 +13,9 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    get(`/api/board`, { boardid: this.props.boardId }).then((board) => this.setState({ board: board }));
+    get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
+      this.setState({ board: board });
+    });
   }
 
   render() {

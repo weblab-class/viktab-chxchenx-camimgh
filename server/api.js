@@ -62,7 +62,8 @@ router.get("/board", (req, res) => {
 router.post("/board", (req, res) => {
   const newBoard = new Board({
     name: req.body.name,
-    users: [req.body.user]
+    users: [req.body.user],
+    columns: req.body.columns
   });
   newBoard.save().then((board) => res.send(board));
 });
@@ -73,11 +74,14 @@ router.get("/column", (req, res) => {
   });
 });
 
-// router.get("/columns", (req, res) => {
-//   Task.findByUser(req.query.userid).then((tasks) => {
-//     res.send(tasks);
-//   });
-// });
+router.post("/column", (req, res) => {
+  const newColumn = new Column({
+    name: req.body.name,
+  });
+  newColumn.save().then((column) => {
+    res.send(column);
+  });
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

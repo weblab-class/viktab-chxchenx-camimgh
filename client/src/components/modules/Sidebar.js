@@ -22,7 +22,6 @@ class Sidebar extends Component {
 
   render() {
 		const visibility = this.props.sidebarVisibility ? "Sidebar-show" : "Sidebar-hide";
-		console.log(this.props.user);
 
     return (
 			<>
