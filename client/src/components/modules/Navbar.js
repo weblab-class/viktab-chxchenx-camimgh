@@ -6,7 +6,7 @@ const GOOGLE_CLIENT_ID = "446929003533-4jh7789n5u1mg5iccv6mde8mhidunqkv.apps.goo
 class Navbar extends Component {
   constructor(props) {
     super(props);
-  }
+	}
 
   render() {
     return (
@@ -36,7 +36,7 @@ class Navbar extends Component {
 				<span>
 					{this.props.title}
 				</span>
-				<span>
+				<span onClick={this.props.handleClickProfile}>
 					Insert profile pic here
 				</span>
       </nav>

@@ -1,0 +1,23 @@
+.Sidebar-show {
+	background-color: black;
+
+	position: fixed;
+	width: 20vw;
+	height: 100vh;
+
+	left: 80vw;
+	top: 0;
+	z-index: 10;
+}
+
+.Sidebar-hide {
+	background-color: black;
+	
+	position: fixed;
+	width: 20vw;
+	height: 100vh;
+
+	left: 100vw;
+	top: 0;
+	z-index: 10;
+}
