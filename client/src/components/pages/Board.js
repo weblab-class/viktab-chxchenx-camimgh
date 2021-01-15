@@ -19,6 +19,9 @@ class Board extends Component {
   }
 
   render() {
+    const columns = this.state.board ? this.state.board.columns.map((column) => {
+      return (<Column columnId={column}/>)
+    }) : (<div> We could not find this board in the database :( </div>);
     return (
         <>
         <Navbar 
@@ -27,10 +30,7 @@ class Board extends Component {
           userId={this.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
-        {this.state.board ? 
-        	this.state.board.columns.map((column) => {
-						<Column columnId={column} />
-        }): <div> We could not find this board in the database :( </div>}
+        {columns}
         </>
     );
   }

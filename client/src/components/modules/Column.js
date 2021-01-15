@@ -6,6 +6,9 @@ import Task from "./Task.js";
 class Column extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      column: undefined
+    };
   }
 
   componentDidMount() {
@@ -14,12 +17,15 @@ class Column extends Component {
 
   render() {
     return (
-      <>
+      <div>
+      <h1>
+        {this.state.column ? this.state.column.name : "column.name"}
+      </h1>
       {this.state.column ? 
         this.state.column.tasks.map((task) => {
           <Task taskId={task} />
       }): <div> Loading... </div>}
-      </>
+      </div>
     );
   }
 }
