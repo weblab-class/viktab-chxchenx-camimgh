@@ -59,6 +59,14 @@ router.get("/board", (req, res) => {
   });
 });
 
+router.post("/board", (req, res) => {
+  const newBoard = new Board({
+    name: req.body.name,
+    users: [req.body.user]
+  });
+  newBoard.save().then((board) => res.send(board));
+});
+
 router.get("/column", (req, res) => {
   Column.findById(req.query.columnid).then((column) => {
     res.send(column);

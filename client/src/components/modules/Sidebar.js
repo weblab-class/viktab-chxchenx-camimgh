@@ -9,22 +9,37 @@ import "./Sidebar.css";
 class Sidebar extends Component {
   constructor(props) {
 		super(props);
+		this.state = {
+			showCreate: false
+		}
 	}
+
+	clickedCreateBoard = () => {
+    this.setState({
+      showCreate: true
+    });
+  }
 
   render() {
 		const visibility = this.props.sidebarVisibility ? "Sidebar-show" : "Sidebar-hide";
 		console.log(this.props.user);
 
     return (
-      <div className={visibility}>
+			<>
+			<div className={visibility}>
 				{this.props.user ? 
 				this.props.user.boards.map((boardid) => {
 					<BoardCard boardid={boardid} />
 				}) : <div> Could not find user :( </div>}
-				<div>
+				<div onClick={this.clickedCreateBoard}>
 						Create a new board
 				</div>
       </div>
+			< NewBoard 
+				show={this.state.showCreate}
+				user={this.props.user}
+				/>
+			</>
     );
   }
 }

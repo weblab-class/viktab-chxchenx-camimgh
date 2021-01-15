@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const BoardSchema = new mongoose.Schema({
   name: String,
-  inviteLink: String,
-  users: { type: [String], default: [] },
+  users: [String],
+  inviteLink: { type: String, default: "" },
   columns: { type: [String], default: [] },
   event: { type: String, default: undefined },
   tasks: { type: [String], default: [] },

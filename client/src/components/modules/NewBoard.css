@@ -1,0 +1,7 @@
+.NewBoard-containerVisible {
+    visibility: visible;
+}
+
+.NewBoard-containerHidden {
+    visibility: hidden;
+}
