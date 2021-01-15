@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { navigate } from "@reach/router";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -13,8 +14,11 @@ class Skeleton extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    // remember -- api calls go here!
+  componentDidUpdate() {
+    // Redirect to home page if logged in
+    if (this.props.userId) {
+      navigate(`/home/${this.props.userId}`);
+    } 
   }
 
   render() {
