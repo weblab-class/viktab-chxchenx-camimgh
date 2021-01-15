@@ -35,6 +35,7 @@ class Home extends Component {
         userId={this.state.user ? this.state.user._id : undefined}
         title={userName}
         handleClickProfile={this.clickedShowBoard}
+        handleClickHome={this.props.handleClickHome}
       />
       <TasksBlock userId={this.userId} />
       <Sidebar 

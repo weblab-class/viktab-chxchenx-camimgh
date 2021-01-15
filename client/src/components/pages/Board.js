@@ -29,6 +29,7 @@ class Board extends Component {
           handleLogout={this.props.handleLogout}
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
+          handleClickHome={this.props.handleClickHome}
         />
         {columns}
         </>

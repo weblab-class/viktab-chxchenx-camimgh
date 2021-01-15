@@ -32,7 +32,7 @@ class Navbar extends Component {
 				className="NavBar-link NavBar-login"
 				/>
 			)}
-			<span className="NavBar-text">
+			<span className="NavBar-link" onClick={this.props.handleClickHome}>
 				Home
 			</span>
 		</div>

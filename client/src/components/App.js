@@ -39,7 +39,7 @@ class App extends Component {
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
-      navigate(`/home/${user._id}`)
+      navigate(`/home/${user._id}`);
     });
   };
 
@@ -48,6 +48,10 @@ class App extends Component {
     post("/api/logout");
     navigate("/")
   };
+
+  handleClickHome = () => {
+    navigate(`/home/${this.state.userId}`);
+  }
 
   render() {
     return (
@@ -63,12 +67,14 @@ class App extends Component {
             path="/home/:userId"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
+            handleClickHome={this.handleClickHome}
             userId={this.state.userId}
           />
           <Board 
             path="/board/:boardId"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
+            handleClickHome={this.handleClickHome}
             userId={this.state.userId}
           />
           <NotFound default />
