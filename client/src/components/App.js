@@ -46,6 +46,7 @@ class App extends Component {
   handleLogout = () => {
     this.setState({ userId: undefined });
     post("/api/logout");
+    navigate("/")
   };
 
   render() {
@@ -64,7 +65,12 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
-          <Board path="/board/:boardId" />
+          <Board 
+            path="/board/:boardId"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
           <NotFound default />
         </Router>
       </>

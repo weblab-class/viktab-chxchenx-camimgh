@@ -47,7 +47,7 @@ class Navbar extends Component {
 				)}
 		</div>
 		<span className="NavBar-link" onClick={this.props.handleClickProfile}>
-			Insert profile pic here
+			Toggle Boards
 		</span>
       </nav>
     );

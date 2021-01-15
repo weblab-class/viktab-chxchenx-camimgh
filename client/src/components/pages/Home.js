@@ -30,9 +30,9 @@ class Home extends Component {
     return (
       <>
       <Navbar 
-        handleLogin={this.handleLogin}
-        handleLogout={this.handleLogout}
-        user={this.state.user}
+        handleLogin={this.props.handleLogin}
+        handleLogout={this.props.handleLogout}
+        userId={this.state.user ? this.state.user._id : undefined}
         title={userName}
         handleClickProfile={this.clickedShowBoard}
       />

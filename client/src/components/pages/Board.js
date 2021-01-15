@@ -25,9 +25,9 @@ class Board extends Component {
     return (
         <>
         <Navbar 
-          handleLogin={this.handleLogin}
-          handleLogout={this.handleLogout}
-          userId={this.userId}
+          handleLogin={this.props.handleLogin}
+          handleLogout={this.props.handleLogout}
+          userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
         {columns}
