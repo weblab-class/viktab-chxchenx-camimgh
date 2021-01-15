@@ -1,3 +1,41 @@
-.Navbar-container {
-    height: 10vh;
+.NavBar-container {
+    padding: var(--m) 0;
+    background-color: rgb(0,0,0,.5);
+}
+  
+.NavBar-title {
+    color: var(--white);
+    font-size: 20px;
+}
+  
+.NavBar-linkContainer {
+    margin: var(--l);
+}
+  
+.NavBar-link,
+.NavBar-link:visited {
+    color: var(--white);
+    opacity: 0.6;
+    text-decoration: none;
+}
+  
+.NavBar-link:hover {
+    opacity: 0.8;
+}
+  
+.NavBar-link.NavBar-login {
+    opacity: 1;
+}
+  
+.NavBar-link + .NavBar-link {
+    margin-left: var(--m);
+}
+
+.title {
+    font-family: Lora;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: lowercase;
 }
