@@ -7,7 +7,7 @@
 
 	left: 80vw;
 	top: 0;
-	z-index: 10;
+	z-index: 1;
 }
 
 .Sidebar-hide {
@@ -19,5 +19,5 @@
 
 	left: 100vw;
 	top: 0;
-	z-index: 10;
+	z-index: 1;
 }

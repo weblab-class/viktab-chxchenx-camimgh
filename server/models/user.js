@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
+  boards: { type: [String], default: [] },
   tasks: { type: [String], default: [] },
   events: { type: [String], default: [] },
   addToCal: { type: Boolean, default: false },

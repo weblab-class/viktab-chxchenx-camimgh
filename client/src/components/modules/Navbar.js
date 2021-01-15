@@ -12,7 +12,7 @@ class Navbar extends Component {
     return (
       <nav className="Navbar-countainer">
         <span>
-				{this.props.userId ? (
+				{this.props.user ? (
 					<GoogleLogout
 						clientId={GOOGLE_CLIENT_ID}
 						buttonText="Logout"

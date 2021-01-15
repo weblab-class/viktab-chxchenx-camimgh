@@ -2,18 +2,27 @@
 
 import React, { Component } from "react";
 
+import BoardCard from "./BoardCard.js";
+import "./Sidebar.css";
+
 class Sidebar extends Component {
   constructor(props) {
-    super(props);
-  }
+		super(props);
+	}
 
   render() {
-    const visibility = this.props.sidebarVisibility ? "Sidebar-show" : "Sidebar-hide";
-    console.log(visibility);
+		const visibility = this.props.sidebarVisibility ? "Sidebar-show" : "Sidebar-hide";
+		console.log(this.props.user);
 
     return (
       <div className={visibility}>
-          Hi this is my sidebar lol
+				{this.props.user ? 
+				this.props.user.boards.map((boardid) => {
+					<BoardCard boardid={boardid} />
+				}) : <div> Could not find user :( </div>}
+				<div>
+						Create a new board
+				</div>
       </div>
     );
   }

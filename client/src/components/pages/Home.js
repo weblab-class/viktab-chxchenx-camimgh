@@ -32,12 +32,15 @@ class Home extends Component {
       <Navbar 
         handleLogin={this.handleLogin}
         handleLogout={this.handleLogout}
-        userId={this.userId}
+        user={this.state.user}
         title={userName}
         handleClickProfile={this.clickedShowBoard}
       />
       <TasksBlock userId={this.userId} />
-      <Sidebar sidebarVisibility={this.state.showBoards} />
+      <Sidebar 
+        sidebarVisibility={this.state.showBoards}
+        user={this.state.user} 
+      />
       </>
     );
   }
