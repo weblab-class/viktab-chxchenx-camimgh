@@ -31,6 +31,14 @@
     margin-left: var(--m);
 }
 
+.NavBar-text {
+    color: var(--white);
+    opacity: 0.6;
+    text-decoration: none;
+    margin-left: var(--m);
+    margin: var(--l);
+}
+
 .title {
     font-family: Lora;
     font-style: italic;

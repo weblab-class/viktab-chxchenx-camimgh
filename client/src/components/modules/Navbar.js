@@ -32,9 +32,9 @@ class Navbar extends Component {
 				className="NavBar-link NavBar-login"
 				/>
 			)}
-			<Link to="/" className="NavBar-link">
+			<span className="NavBar-text">
 				Home
-			</Link>
+			</span>
 		</div>
 		<div className="title u-inlineBlock">
 			{this.props.title}
@@ -46,6 +46,9 @@ class Navbar extends Component {
 					</Link>
 				)}
 		</div>
+		<span className="NavBar-link" onClick={this.props.handleClickProfile}>
+			Insert profile pic here
+		</span>
       </nav>
     );
   }
