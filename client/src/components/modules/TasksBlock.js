@@ -12,7 +12,7 @@ class TasksBlock extends Component {
   }
 
   componentDidMount() {
-    get(`/api/userTasks`, { userid: this.props.userId }).then((tasks) => this.setState({ tasks: tasks }));
+    get(`/api/userTasks`, { userid: this.props.userId }).then((tasks) => this.setState({ tasks: tasks}));
   }
 
   render() {

@@ -12,7 +12,6 @@ class BoardCard extends Component {
   }
 
   componentDidMount() {
-    console.log("boardid: " + this.props.boardid);
     get(`/api/board`, { boardid: this.props.boardid }).then((board) => this.setState({ board: board }));
   }
 

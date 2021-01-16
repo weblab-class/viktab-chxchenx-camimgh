@@ -55,7 +55,6 @@ class App extends Component {
   }
 
   clickedShowBoard = () => {
-    console.log("show");
     this.setState({
       showBoards: !this.state.showBoards
     });

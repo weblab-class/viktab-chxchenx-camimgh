@@ -9,13 +9,17 @@ class Board extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
-			board: undefined
+      board: undefined,
+      user: undefined
 		}
   }
 
   componentDidMount() {
     get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
       this.setState({ board: board });
+    });
+    get(`/api/user`, { userid: this.props.userId }).then((user) => {
+      this.setState({ user: user })
     });
   }
 
