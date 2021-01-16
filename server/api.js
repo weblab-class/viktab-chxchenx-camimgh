@@ -52,7 +52,7 @@ router.post("/initsocket", (req, res) => {
 });
 
 router.post("/addboard", (req, res) => {
-  User.findOneAndUpdate({_id: req.body.user}, { $push: {boards: req.body.board}});
+  User.findOneAndUpdate({_id: req.body.user}, { $push: {boards: req.body.board}}).then(() => console.log("added boardId to user"));
   res.send({});
 });
 
