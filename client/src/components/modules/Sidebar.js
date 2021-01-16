@@ -22,13 +22,14 @@ class Sidebar extends Component {
 
   render() {
 		const visibility = this.props.sidebarVisibility ? "Sidebar-show" : "Sidebar-hide";
+		console.log(this.props.user ? this.props.user.boards : "no user");
 
     return (
 			<>
 			<div className={visibility}>
 				{this.props.user ? 
 				this.props.user.boards.map((boardid) => {
-					<BoardCard boardid={boardid} />
+					return <BoardCard boardid={boardid} />
 				}) : <div> Could not find user :( </div>}
 				<div onClick={this.clickedCreateBoard}>
 						Create a new board

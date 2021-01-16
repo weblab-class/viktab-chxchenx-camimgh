@@ -15,6 +15,9 @@ const Board = require("./models/board");
 const Column = require("./models/column");
 const Task = require("./models/task");
 
+const mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
+
 // import authentication library
 const auth = require("./auth");
 
@@ -23,6 +26,7 @@ const router = express.Router();
 
 //initialize socket
 const socketManager = require("./server-socket");
+const { query } = require("express");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -44,6 +48,11 @@ router.get("/user", (req, res) => {
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  res.send({});
+});
+
+router.post("/addboard", (req, res) => {
+  User.findOneAndUpdate({_id: req.body.user}, { $push: {boards: req.body.board}});
   res.send({});
 });
 

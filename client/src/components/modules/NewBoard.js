@@ -38,6 +38,7 @@ class NewBoard extends Component {
 				columns: columnIds
 			};
 			post("/api/board", body).then((board) => {
+				post("/api/addboard", {user: userId, board: board._id});
 				navigate(`/board/${board._id}`);
 			});
 		});
@@ -47,7 +48,6 @@ class NewBoard extends Component {
 		const className = this.props.show ? "NewBoard-containerVisible" : "NewBoard-containerHidden";
     return (
 		<div className={className}>
-			<form>
 				<div className="u-textCenter">
 					New Board
 				</div>
@@ -57,7 +57,6 @@ class NewBoard extends Component {
 				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
 				<input type="submit" value="Create" onClick={this.clickedCreate}/>
-			</form>
 		</div>
     );
   }
