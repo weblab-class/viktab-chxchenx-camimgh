@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
   addToCal: { type: Boolean, default: false },
   points: { type: Number, default: 0 },
   accessories: { type: [String], default: [] },
-  alergies: { type: [String], default: [] }
+  allergies: { type: [String], default: [] }
 });
 
 // compile model from schema
