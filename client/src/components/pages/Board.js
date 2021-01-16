@@ -23,6 +23,10 @@ class Board extends Component {
     });
   }
 
+  newTask = () => {
+    console.log("new task");
+  }
+
   render() {
     const columns = this.state.board ? this.state.board.columns.map((column) => {
       return (<Column columnId={column}/>)
@@ -37,6 +41,8 @@ class Board extends Component {
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
+        <img src="../images/add.png" onClick={this.newTask}>
+        </img>
         {columns}
         <Sidebar 
           sidebarVisibility={this.props.showBoards}
