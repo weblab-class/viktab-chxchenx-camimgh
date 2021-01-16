@@ -5,3 +5,47 @@
 .NewBoard-containerHidden {
     visibility: hidden;
 }
+
+.boardField {
+    position: relative;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.boardField label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: white;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.boardField input {
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: white;
+    font-family: Poppins;
+}
+
+.boardField input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #EEE;
+}
+
+.boardField input:focus ~ label {
+    top: -12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.boardField input:valid ~ label {
+    top: -12px;
+    font-size: 12px;
+    font-weight: 600;
+}

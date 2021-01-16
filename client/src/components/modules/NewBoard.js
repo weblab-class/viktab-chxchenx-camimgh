@@ -46,19 +46,19 @@ class NewBoard extends Component {
   render() {
 		const className = this.props.show ? "NewBoard-containerVisible" : "NewBoard-containerHidden";
     return (
-      <div className={className}>
-				<div>
+		<div className={className}>
+			<form>
+				<div className="u-textCenter">
 					New Board
 				</div>
-				<div>
-					Board name: 
-				</div>
-				<div>
-					<input type="text" id="boardName" name="boardName" />
+				<div className="boardField">
+					<input type="text" id="boardName" name="boardName" required=" " />
+					<label>Board Name</label>
 				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
 				<input type="submit" value="Create" onClick={this.clickedCreate}/>
-      </div>
+			</form>
+		</div>
     );
   }
 }

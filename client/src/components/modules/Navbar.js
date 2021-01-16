@@ -47,7 +47,7 @@ class Navbar extends Component {
 				)}
 		</div>
 		<span className="NavBar-link" onClick={this.props.handleClickProfile}>
-			Toggle Boards
+			Boards
 		</span>
       </nav>
     );
