@@ -10,19 +10,12 @@ class Home extends Component {
     super(props);
     this.state = {
       user: undefined,
-      showBoards:false
     }
   }
 
   componentDidMount() {
     document.title = "Home";
     get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
-  }
-
-  clickedShowBoard = () => {
-    this.setState({
-      showBoards: !this.state.showBoards
-    });
   }
 
   render() {
@@ -32,14 +25,14 @@ class Home extends Component {
       <Navbar 
         handleLogin={this.props.handleLogin}
         handleLogout={this.props.handleLogout}
+        handleShowBoards={this.props.handleShowBoards}
         userId={this.state.user ? this.state.user._id : undefined}
         title={userName}
-        handleClickProfile={this.clickedShowBoard}
         handleClickHome={this.props.handleClickHome}
       />
       <TasksBlock userId={this.userId} />
       <Sidebar 
-        sidebarVisibility={this.state.showBoards}
+        sidebarVisibility={this.props.showBoards}
         user={this.state.user} 
       />
       </>

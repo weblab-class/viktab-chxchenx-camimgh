@@ -3,6 +3,7 @@ import { get } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
 import Column from "../modules/Column.js";
+import Sidebar from "../modules/Sidebar.js";
 
 class Board extends Component {
   constructor(props) {
@@ -27,11 +28,16 @@ class Board extends Component {
         <Navbar 
           handleLogin={this.props.handleLogin}
           handleLogout={this.props.handleLogout}
+          handleClickHome={this.props.handleClickHome}
+          handleShowBoards={this.props.handleShowBoards}
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
-          handleClickHome={this.props.handleClickHome}
         />
         {columns}
+        <Sidebar 
+          sidebarVisibility={this.props.showBoards}
+          user={this.state.user} 
+        />
         </>
     );
   }

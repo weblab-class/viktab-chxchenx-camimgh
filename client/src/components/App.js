@@ -21,6 +21,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      showBoards:false
     };
   }
 
@@ -53,6 +54,13 @@ class App extends Component {
     navigate(`/home/${this.state.userId}`);
   }
 
+  clickedShowBoard = () => {
+    console.log("show");
+    this.setState({
+      showBoards: !this.state.showBoards
+    });
+  }
+
   render() {
     return (
       <>
@@ -68,14 +76,18 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             handleClickHome={this.handleClickHome}
+            handleShowBoards={this.clickedShowBoard}
             userId={this.state.userId}
+            showBoards={this.state.showBoards}
           />
           <Board 
             path="/board/:boardId"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             handleClickHome={this.handleClickHome}
+            handleShowBoards={this.clickedShowBoard}
             userId={this.state.userId}
+            showBoards={this.state.showBoards}
           />
           <NotFound default />
         </Router>
