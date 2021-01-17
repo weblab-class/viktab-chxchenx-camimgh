@@ -83,14 +83,24 @@ router.get("/column", (req, res) => {
   });
 });
 
+router.post("/column/addtask", (req, res) => {
+  Column.findOneAndUpdate({_id: req.body.column}, { $push: {tasks: req.body.task}}).then(() => console.log("added taskId to column"));
+  res.send({});
+});
+
 router.post("/column", (req, res) => {
   const newColumn = new Column({
     name: req.body.name,
   });
-  newColumn.save().then((column) => {
-    res.send(column);
-  });
+  newColumn.save().then((column) => {res.send(column)});
 });
+
+router.post("/task", (req, res) => {
+  const newTask = new Task({
+    name: req.body.name
+  });
+  newTask.save().then((task) => {res.send(task)});
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

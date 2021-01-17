@@ -60,7 +60,8 @@ class Board extends Component {
         />
         < NewTask 
 				show={this.state.showCreate}
-				user={this.state.user}
+        user={this.state.user}
+        columns={this.state.board ? this.state.board.columns : []}
 				/>
         </>
     );
