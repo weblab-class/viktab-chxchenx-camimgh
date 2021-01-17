@@ -48,6 +48,7 @@ class NewBoard extends Component {
 		const className = this.props.show ? "NewBoard-containerVisible" : "NewBoard-containerHidden";
     return (
 		<div className={className}>
+			<div>
 				<div className="u-textCenter">
 					New Board
 				</div>
@@ -57,6 +58,7 @@ class NewBoard extends Component {
 				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
 				<input type="submit" value="Create" onClick={this.clickedCreate}/>
+			</div>
 		</div>
     );
   }
