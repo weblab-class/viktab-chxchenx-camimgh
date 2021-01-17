@@ -35,3 +35,25 @@
 	background-color: rgba(255,255,255,0.75);
 	color: black;
 }
+
+.sideContainer {
+	padding: 5vh;
+	padding-right: 4vh;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	max-height: 96vh;
+	overflow: auto;
+}
+
+.sideContainer::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.sideContainer::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+}
+   
+.sideContainer::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	border-radius: 50px;
+}

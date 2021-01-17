@@ -26,14 +26,16 @@ class Sidebar extends Component {
     return (
 			<>
 			<div className={visibility}>
-				{this.props.user ? 
-				this.props.user.boards.map((boardid) => {
-					return <BoardCard boardid={boardid} handleClickBoard={this.props.handleClickBoard} className="createBoard" />
-				}) : <div> Could not find user :( </div>}
-				<div onClick={this.clickedCreateBoard} className="createBoard">
-						+ Create a new board
+				<div className="sideContainer">
+					{this.props.user ? 
+					this.props.user.boards.map((boardid) => {
+						return <BoardCard boardid={boardid} handleClickBoard={this.props.handleClickBoard} />
+					}) : <div> Could not find user :( </div>}
+					<div onClick={this.clickedCreateBoard} className="createBoard">
+							+ Create a new board
+					</div>
 				</div>
-      </div>
+      		</div>
 			< NewBoard 
 				show={this.state.showCreate}
 				user={this.props.user}

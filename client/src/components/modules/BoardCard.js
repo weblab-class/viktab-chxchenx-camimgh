@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { navigate } from "@reach/router";
 
 import { get } from "../../utilities";
+import "./BoardCard.css";
 
 class BoardCard extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class BoardCard extends Component {
 
   render() {
     return (
-      <div onClick={this.clicked}>
+      <div onClick={this.clicked} className="boardCard">
           {this.state.board ? this.state.board.name : "board.name"}
       </div>
     );
