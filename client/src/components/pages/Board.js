@@ -23,11 +23,18 @@ class Board extends Component {
     });
   }
 
+  showDiffBoard = () => {
+    get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
+      this.setState({ board: board, showBoards: false });
+    });
+  }
+
   newTask = () => {
     console.log("new task");
   }
 
   render() {
+    console.log(this.state.board);
     const columns = this.state.board ? this.state.board.columns.map((column) => {
       return (<Column columnId={column}/>)
     }) : (<div> We could not find this board in the database :( </div>);
@@ -46,6 +53,7 @@ class Board extends Component {
         {columns}
         <Sidebar 
           sidebarVisibility={this.props.showBoards}
+          handleClickBoard={this.showDiffBoard}
           user={this.state.user} 
         />
         </>

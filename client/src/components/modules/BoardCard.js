@@ -16,7 +16,9 @@ class BoardCard extends Component {
   }
 
   clicked = () => {
-    navigate(`/board/${this.props.boardid}`);
+    navigate(`/board/${this.props.boardid}`).then(() => {
+      this.props.handleClickBoard();
+    });
   }
 
   render() {

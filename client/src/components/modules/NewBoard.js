@@ -9,7 +9,7 @@ class NewBoard extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
-			template: ["done"]
+			template: []
 		}
 	}
 	

@@ -33,6 +33,7 @@ class Home extends Component {
       <TasksBlock userId={this.userId} />
       <Sidebar 
         sidebarVisibility={this.props.showBoards}
+        handleClickBoard={() => {}}
         user={this.state.user} 
       />
       </>
