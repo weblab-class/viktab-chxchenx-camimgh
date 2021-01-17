@@ -1,0 +1,7 @@
+.NewTask-containerVisible {
+  visibility: visible;
+}
+
+.NewTask-containerHidden {
+  visibility: hidden;
+}

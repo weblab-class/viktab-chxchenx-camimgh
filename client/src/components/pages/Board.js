@@ -4,13 +4,15 @@ import { get } from "../../utilities";
 import Navbar from "../modules/Navbar.js";
 import Column from "../modules/Column.js";
 import Sidebar from "../modules/Sidebar.js";
+import NewTask from "../modules/NewTask.js";
 
 class Board extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
       board: undefined,
-      user: undefined
+      user: undefined,
+      showCreate: false
 		}
   }
 
@@ -30,7 +32,7 @@ class Board extends Component {
   }
 
   newTask = () => {
-    console.log("new task");
+    this.setState({showCreate: true});
   }
 
   render() {
@@ -56,6 +58,10 @@ class Board extends Component {
           handleClickBoard={this.showDiffBoard}
           user={this.state.user} 
         />
+        < NewTask 
+				show={this.state.showCreate}
+				user={this.state.user}
+				/>
         </>
     );
   }
