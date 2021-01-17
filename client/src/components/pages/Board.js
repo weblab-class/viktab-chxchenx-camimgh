@@ -11,6 +11,7 @@ class Board extends Component {
 		super(props);
 		this.state = {
       board: undefined,
+      columns: undefined,
       user: undefined,
       showCreate: false
 		}
@@ -19,6 +20,12 @@ class Board extends Component {
   componentDidMount() {
     get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
       this.setState({ board: board });
+      let colPromises = board.columns.map((column) => {
+        return get("/api/column", {columnid:column});
+      });
+      Promise.all(colPromises).then((columns) => {
+        this.setState({columns: columns});
+      });
     });
     get(`/api/user`, { userid: this.props.userId }).then((user) => {
       this.setState({ user: user })
@@ -61,7 +68,7 @@ class Board extends Component {
         < NewTask 
 				show={this.state.showCreate}
         user={this.state.user}
-        columns={this.state.board ? this.state.board.columns : []}
+        columns={this.state.columns}
 				/>
         </>
     );

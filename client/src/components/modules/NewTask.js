@@ -12,16 +12,6 @@ class NewTask extends Component {
     }
   }
 
-  componentDidMount() {
-    let colPromises = this.props.columns.map((column) => {
-			return get("/api/column", {columnid:column});
-    });
-
-    Promise.all(colPromises).then((columns) => {
-      this.setState({columns: columns});
-    });
-  }
-
   clickedCreate() {
     console.log("clicked create");
     // create task and add to db then add it's id to this column and board (?)
@@ -32,7 +22,6 @@ class NewTask extends Component {
     const column = columnInput.value;
 
     post("/api/task", {name: name}).then((task) => {
-      const taskId = task._id;
       post("api/column/addtask", {column: column, task: task._id});
     });
   };
@@ -51,9 +40,9 @@ class NewTask extends Component {
 				</div>
         <div>
           <select name="columns" id="columns">
-            {this.props.columns.map((column) => {
+            {this.props.columns ? this.props.columns.map((column) => {
               return <option value={column._id}>{column.name}</option>
-            })}
+            }) : <option value={"0"}>No options found :(</option>}
           </select>
           <label>Column</label>
         </div>
