@@ -13,6 +13,8 @@
 | - Actually starts the webserver
 */
 
+require('dotenv').config();
+
 // validator runs some basic checks to make sure you've set everything up correctly
 // this is a tool provided by staff, so you don't need to worry about it
 const validator = require("./validator");
@@ -32,7 +34,7 @@ const auth = require("./auth");
 const socketManager = require("./server-socket");
 
 // Server configuration below
-const mongoConnectionURL = "mongodb+srv://admin:bukabuka@cluster0.dxmnj.mongodb.net/Cluster0?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.ATLAS_SRV;
 
 const databaseName = "TagYourself";
 
@@ -56,7 +58,7 @@ app.use(express.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    secret: "session-secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
