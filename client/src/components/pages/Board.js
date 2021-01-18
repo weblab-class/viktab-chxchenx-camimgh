@@ -64,7 +64,7 @@ class Board extends Component {
         }
       }
       Promise.all(taskPromises).then((tasks) => {
-        this.setState({tasks: tasks});
+        this.setState({tasks: tasks, showCreate: false});
       });
     });
   }
@@ -81,7 +81,7 @@ class Board extends Component {
           title={this.state.board ? this.state.board.name : "board.name"}
         />
         <div>
-          Invite your friends to join this board! Link: {`http://singularity-app.herokuapp.com/invite/${this.props.boardId}`}
+          Invite your friends to join this board! Link: {`https://singularity-app.herokuapp.com/invite/${this.props.boardId}`}
         </div>
         <img src="../images/add.png" onClick={this.newTask}>
         </img>
