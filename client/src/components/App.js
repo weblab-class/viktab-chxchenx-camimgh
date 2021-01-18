@@ -45,12 +45,16 @@ class App extends Component {
     });
   };
 
-  handleLoginBoard = (res) => {
+  handleLoginBoard = (res, boardId) => {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
-      post("/api/initsocket", { socketid: socket.id });
+      post("/api/initsocket", { socketid: socket.id }).then(() => {
+        post("/api/adduser", {board: boardId, user: user._id}).then(() => {
+          navigate(`/board/${boardId}`);
+        });
+      })
     });
   }
 
@@ -100,7 +104,7 @@ class App extends Component {
           />
           <Invite 
             path="/invite/:boardId"
-            handleLogin={this.handleLogin}
+            handleLogin={this.handleLoginBoard}
             handleLogout={this.handleLogout}
             handleClickHome={this.handleClickHome}
             handleShowBoards={this.clickedShowBoard}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { navigate } from "@reach/router";
+import { post } from "../../utilities";
 
 import "../../utilities.css";
 import "./Invite.css";
@@ -17,13 +18,14 @@ class Invite extends Component {
   componentDidUpdate() {
     // Redirect to board page if already logged in
     if (this.props.userId) {
-      navigate(`/board/${this.props.boardId}`);
+      post("/api/adduser", {board: this.props.boardId, user: this.props.userId}).then(() => {
+        navigate(`/board/${this.props.boardId}`);
+      });
     } 
   }
 
   handleLogin = (res) => {
-    this.props.handleLogin(res);
-    navigate(`/board/${this.props.boardId}`);
+    this.props.handleLogin(res, this.props.boardId);
   }
 
   render() {

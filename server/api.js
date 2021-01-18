@@ -93,6 +93,16 @@ router.post("/addtask", (req, res) => {
   });
 });
 
+router.post("/adduser", (req, res) => {
+  let promises = []
+  promises.push(Board.findOneAndUpdate({_id: req.body.board}, { $push: {users: req.body.user}}));
+  promises.push(User.findOneAndUpdate({_id: req.body.user}, { $push: {boards: req.body.board}}));
+  Promise.all(promises).then(() => {
+    console.log("added user to board");
+    res.send({});
+  });
+});
+
 router.post("/column", (req, res) => {
   const newColumn = new Column({
     name: req.body.name,
