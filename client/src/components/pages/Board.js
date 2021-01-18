@@ -23,18 +23,7 @@ class Board extends Component {
   componentDidMount() {
     get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
       this.setState({ board: board });
-      let colPromises = board.columns.map((column) => {
-        return get("/api/column", {columnid:column});
-      });
-      Promise.all(colPromises).then((columns) => {
-        this.setState({columns: columns});
-      });
-      let taskPromises = board.tasks.map((task) => {
-        return get("/api/task", {taskid:task});
-      });
-      Promise.all(taskPromises).then((tasks) => {
-        this.setState({tasks: tasks});
-      });
+      this.updateBoard(board);
     });
     get(`/api/user`, { userid: this.props.userId }).then((user) => {
       this.setState({ user: user })
@@ -44,6 +33,22 @@ class Board extends Component {
   showDiffBoard = () => {
     get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
       this.setState({ board: board, showBoards: false });
+      this.updateBoard(board);
+    });
+  }
+
+  updateBoard = (board) => {
+    let colPromises = board.columns.map((column) => {
+      return get("/api/column", {columnid:column});
+    });
+    Promise.all(colPromises).then((columns) => {
+      this.setState({columns: columns});
+    });
+    let taskPromises = board.tasks.map((task) => {
+      return get("/api/task", {taskid:task});
+    });
+    Promise.all(taskPromises).then((tasks) => {
+      this.setState({tasks: tasks});
     });
   }
 
