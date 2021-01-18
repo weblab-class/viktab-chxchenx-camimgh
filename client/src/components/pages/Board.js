@@ -50,17 +50,20 @@ class Board extends Component {
   }
 
   madeTask = () => {
-    let colPromises = this.state.columns.map((column) => {
+    let colPromises = this.state.board.columns.map((column) => {
       return get("/api/column", {columnid:column});
     });
     Promise.all(colPromises).then((columns) => {
       this.setState({columns: columns});
-    });
-    let taskPromises = board.tasks.map((task) => {
-      return get("/api/task", {taskid:task});
-    });
-    Promise.all(taskPromises).then((tasks) => {
-      this.setState({tasks: tasks});
+      let taskPromises = [];
+      for (const column of columns) {
+        for (const task of column.tasks) {
+          taskPromises.push(get("/api/task", {taskid:task}))
+        }
+      }
+      Promise.all(taskPromises).then((tasks) => {
+        this.setState({tasks: tasks});
+      });
     });
   }
 

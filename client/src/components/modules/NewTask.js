@@ -23,7 +23,9 @@ class NewTask extends Component {
     const board = this.props.board._id;
 
     post("/api/task", {name: name}).then((task) => {
-      post("/api/addtask", {column: column, task: task._id, board: board});
+      post("/api/addtask", {column: column, task: task._id, board: board}).then(() => {
+        this.props.madeTask();
+      });
     });
   };
 
