@@ -84,7 +84,7 @@ router.get("/column", (req, res) => {
 });
 
 router.post("/addtask", (req, res) => {
-  let promises = []
+  let promises = [];
   promises.push(Column.findOneAndUpdate({_id: req.body.column}, { $addToSet: {tasks: req.body.task}}));
   promises.push(Board.findOneAndUpdate({_id: req.body.board}, { $addToSet: {tasks: req.body.task}}));
   Promise.all(promises).then(() => {
@@ -92,6 +92,22 @@ router.post("/addtask", (req, res) => {
     res.send({});
   });
 });
+
+router.post("/updatetask", (req, res) => {
+  let promises = [];
+  promises.push(Task.findOneAndUpdate({_id: req.body.task}, { $set: {name: req.body.name, description: req.body.description, finishBy: req.body.date}}));
+  if (req.body.assignUser) {
+    promises.push(Task.findOneAndUpdate({_id: req.body.task}, { $addToSet: {assignees: req.body.assignUser}}));
+  }
+  if (req.body.newcolumn) {
+    promises.push(Column.findOneAndUpdate({_id: req.body.newcolumn}, { $addToSet: {tasks: req.body.task}}));
+    promises.push(Column.findOneAndUpdate({_id: req.body.oldcolumn}, { $pull: {tasks: req.body.task}}));
+  }
+  Promise.all(promises).then(() => {
+    console.log("updated task");
+    res.send({});
+  });
+})
 
 router.post("/adduser", (req, res) => {
   let promises = []

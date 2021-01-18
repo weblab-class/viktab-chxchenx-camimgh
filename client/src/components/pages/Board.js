@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
+import { post, get } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
 import Column from "../modules/Column.js";
@@ -64,7 +64,7 @@ class Board extends Component {
       return get("/api/column", {columnid:column});
     });
     Promise.all(colPromises).then((columns) => {
-      this.setState({columns: columns});
+      this.setState({columns: columns.filter((col,index,arr)=>arr.findIndex(t=>(t._id === col._id))===index)});
       let taskPromises = [];
       for (const column of columns) {
         for (const task of column.tasks) {
@@ -72,7 +72,7 @@ class Board extends Component {
         }
       }
       Promise.all(taskPromises).then((tasks) => {
-        this.setState({tasks: tasks, showCreate: false});
+        this.setState({tasks: tasks.filter((task,index,arr)=>arr.findIndex(t=>(t._id === task._id))===index), showCreate: false});
       });
     });
   }
@@ -97,7 +97,26 @@ class Board extends Component {
   }
 
   updateTask = (task, updates) => {
+    let oldColumn = undefined;
+    for (const col of this.state.columns) {
+      if (col.tasks.indexOf(task._id) > -1) {
+        oldColumn = col;
+      }
+    }
+    const column = oldColumn._id === updates.column ? undefined : updates.column;
 
+    const body = {
+      task: task._id,
+      name: updates.name,
+      description: updates.description,
+      date: updates.date,
+      oldcolumn: oldColumn._id,
+      newcolumn: column,
+      assignUser: updates.assigned ? this.state.user._id : undefined
+    }
+    post("/api/updatetask", body).then(() => {
+      this.madeTask();
+    })
   }
 
   deleteTask = (task) => {

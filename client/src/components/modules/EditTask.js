@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 
-import { post } from "../../utilities";
-
 import "./EditTask.css";
 
 class EditTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      columns: undefined
+      columns: undefined,
+      selectedCol: undefined
     }
+  }
+
+  updateCol = (event) => {
+    this.setState({
+      selectedCol: event.target.value
+    });
   }
 
   clickedUpdate = () => {
@@ -20,19 +25,22 @@ class EditTask extends Component {
     const descriptionInput = document.getElementById("taskDescription");
     const description = descriptionInput.value;
 
-    const columnInput = document.getElementById("columns");
-    const column = columnInput.value;
+    const assignedInput = document.getElementById("taskDescription");
+    const assigned = assignedInput.value;
+
+    const column = this.state.selectedCol;
 
     const dateInput = document.getElementById("taskDate");
     const date = dateInput.value;
 
-    const board = this.props.board._id;
-
-    post("/api/task", {name: name}).then((task) => {
-      post("/api/addtask", {column: column, task: task._id, board: board}).then(() => {
-        this.props.madeTask();
-      });
-    });
+    const body = {
+      name: name,
+      description: description,
+      assigned: assigned,
+      column: column,
+      date: date
+    };
+    this.props.updateTask(this.props.task, body);
   };
 
   clickedDelete = () => {
@@ -54,9 +62,13 @@ class EditTask extends Component {
 					<input type="text" id="taskDescription" name="taskDescription" required=" " placeholder = {this.props.task ? this.props.task.description : "task.description"} />
 					<label>Task Description</label>
 				</div>
+        <div className="taskField">
+					<input type="checkbox" id="taskAssigned" name="taskAssigned" required=" " />
+					<label>Assign yourself</label>
+				</div>
         <div>
           <label>Column</label>
-          <select name="columns" id="columns">
+          <select name="columns" id="columns" onChange={this.updateCol}>
             {this.props.columns.map((column) => {
               return <option value={column._id}>{column.name}</option>
             })}
