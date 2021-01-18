@@ -78,6 +78,9 @@ class Board extends Component {
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
+        <div>
+          Invite your friends to join this board! Link: {`localhost:5000/invite/${this.props.boardId}`}
+        </div>
         <img src="../images/add.png" onClick={this.newTask}>
         </img>
         {this.state.columns.map((column) => {
