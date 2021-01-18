@@ -1,0 +1,12 @@
+.column {
+    border-radius: 25px;
+    border: 1px solid white;
+    padding: 25px;
+    width: 25vw;
+    height: 75vh;
+    overflow: auto;
+}
+
+.column::-webkit-scrollbar {
+    visibility: hidden;
+}

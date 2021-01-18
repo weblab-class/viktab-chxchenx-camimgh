@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 
 import Task from "./Task.js";
+import "./TasksBlock.css";
 
 class TasksBlock extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class TasksBlock extends Component {
 
   render() {
     return (
-      <div >
+      <div className="tasksBlock">
           {this.state.tasks.map((task) => (
             <Task taskId={task}/>
           ))}
