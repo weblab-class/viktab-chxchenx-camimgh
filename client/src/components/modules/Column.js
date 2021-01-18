@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
 
 import Task from "./Task.js";
 
@@ -9,14 +8,13 @@ class Column extends Component {
   }
 
   render() {
-    console.log(this.props.column);
     return (
       <div>
       <h1>
         {this.props.column.name}
       </h1>
-      {this.props.column.tasks.map((task) => {
-          return <Task taskId={task} />
+      {this.props.tasks.map((task) => {
+          return <Task task={task} />
       })}
       </div>
     );

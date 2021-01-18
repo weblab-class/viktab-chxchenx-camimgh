@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { get, post } from "../../utilities";
+import { post } from "../../utilities";
 
 import "./NewTask.css";
 
@@ -12,7 +12,7 @@ class NewTask extends Component {
     }
   }
 
-  clickedCreate() {
+  clickedCreate = () => {
     // create task and add to db then add it's id to this column and board (?)
     const nameInput = document.getElementById("taskName");
     const name = nameInput.value;
@@ -20,14 +20,15 @@ class NewTask extends Component {
     const columnInput = document.getElementById("columns");
     const column = columnInput.value;
 
+    const board = this.props.board._id;
+
     post("/api/task", {name: name}).then((task) => {
-      post("/api/addtask", {column: column, task: task._id});
+      post("/api/addtask", {column: column, task: task._id, board: board});
     });
   };
 
   render() {
     const className = this.props.show ? "NewTask-containerVisible" : "NewTask-containerHidden";
-    console.log(this.props.show);
     return (
       <div className={className}>
         <div className="u-textCenter">

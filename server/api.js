@@ -85,6 +85,7 @@ router.get("/column", (req, res) => {
 
 router.post("/addtask", (req, res) => {
   Column.findOneAndUpdate({_id: req.body.column}, { $push: {tasks: req.body.task}}).then(() => console.log("added taskId to column"));
+  Board.findOneAndUpdate({_id: req.body.board}, { $push: {tasks: req.body.task}}).then(() => console.log("added taskId to board"));
   res.send({});
 });
 
