@@ -41,12 +41,12 @@ class NewTask extends Component {
 					<label>Task Name</label>
 				</div>
         <div>
+          <label>Column</label>
           <select name="columns" id="columns">
             {this.props.columns ? this.props.columns.map((column) => {
               return <option value={column._id}>{column.name}</option>
             }) : <option value={"0"}>No options found :(</option>}
           </select>
-          <label>Column</label>
         </div>
         <input type="submit" value="Create" onClick={this.clickedCreate}/>
       </div>

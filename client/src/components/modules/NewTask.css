@@ -1,5 +1,7 @@
 .NewTask-containerVisible {
   visibility: visible;
+  border: 1px solid white;
+  padding: 25px;
 }
 
 .NewTask-containerHidden {
