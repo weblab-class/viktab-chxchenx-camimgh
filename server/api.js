@@ -83,7 +83,7 @@ router.get("/column", (req, res) => {
   });
 });
 
-router.post("/column/addtask", (req, res) => {
+router.post("/addtask", (req, res) => {
   Column.findOneAndUpdate({_id: req.body.column}, { $push: {tasks: req.body.task}}).then(() => console.log("added taskId to column"));
   res.send({});
 });
@@ -93,6 +93,12 @@ router.post("/column", (req, res) => {
     name: req.body.name,
   });
   newColumn.save().then((column) => {res.send(column)});
+});
+
+router.get("/task", (req, res) => {
+  Task.findById(req.query.taskid).then((task) => {
+    res.send(task);
+  });
 });
 
 router.post("/task", (req, res) => {

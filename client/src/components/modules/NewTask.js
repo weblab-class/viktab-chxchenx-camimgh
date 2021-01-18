@@ -13,7 +13,6 @@ class NewTask extends Component {
   }
 
   clickedCreate() {
-    console.log("clicked create");
     // create task and add to db then add it's id to this column and board (?)
     const nameInput = document.getElementById("taskName");
     const name = nameInput.value;
@@ -22,7 +21,7 @@ class NewTask extends Component {
     const column = columnInput.value;
 
     post("/api/task", {name: name}).then((task) => {
-      post("api/column/addtask", {column: column, task: task._id});
+      post("/api/addtask", {column: column, task: task._id});
     });
   };
 

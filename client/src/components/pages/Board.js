@@ -11,7 +11,7 @@ class Board extends Component {
 		super(props);
 		this.state = {
       board: undefined,
-      columns: undefined,
+      columns: [],
       user: undefined,
       showCreate: false
 		}
@@ -43,10 +43,6 @@ class Board extends Component {
   }
 
   render() {
-    console.log(this.state.board);
-    const columns = this.state.board ? this.state.board.columns.map((column) => {
-      return (<Column columnId={column}/>)
-    }) : (<div> We could not find this board in the database :( </div>);
     return (
         <>
         <Navbar 
@@ -59,7 +55,9 @@ class Board extends Component {
         />
         <img src="../images/add.png" onClick={this.newTask}>
         </img>
-        {columns}
+        {this.state.columns.map((column) => {
+          return (<Column column={column}/>)
+        })}
         <Sidebar 
           sidebarVisibility={this.props.showBoards}
           handleClickBoard={this.showDiffBoard}
