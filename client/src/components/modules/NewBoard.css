@@ -1,5 +1,18 @@
 .NewBoard-containerVisible {
     visibility: visible;
+    border: 1px solid white;
+    padding: 25px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 25vw;
+    height: 25vh;
+    margin: auto;
+    margin-top: 15vh;
+    margin-left: 37vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
 }
 
 .NewBoard-containerHidden {
@@ -17,25 +30,25 @@
     top: 0px;
     left: 0px;
     font-size: 16px;
-    color: white;
+    color: black;
     pointer-events: none;
     transition: all 0.5s ease-in-out;
 }
 
 .boardField input {
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     background: transparent;
     padding: 8px 0 5px 0;
     font-size: 16px;
-    color: white;
+    color: black;
     font-family: Poppins;
 }
 
 .boardField input:focus {
     border: none;
     outline: none;
-    border-bottom: 1px solid #EEE;
+    border-bottom: 1px solid black;
 }
 
 .boardField input:focus ~ label {
