@@ -5,6 +5,8 @@ import Navbar from "../modules/Navbar.js";
 import TasksBlock from "../modules/TasksBlock.js";
 import Sidebar from "../modules/Sidebar.js";
 
+import "./Home.css";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -21,22 +23,22 @@ class Home extends Component {
   render() {
     const userName = this.state.user ? this.state.user.name : "user.name";
     return (
-      <>
-      <Navbar 
-        handleLogin={this.props.handleLogin}
-        handleLogout={this.props.handleLogout}
-        handleShowBoards={this.props.handleShowBoards}
-        userId={this.state.user ? this.state.user._id : undefined}
-        title={userName}
-        handleClickHome={this.props.handleClickHome}
-      />
-      <TasksBlock userId={this.userId} />
-      <Sidebar 
-        sidebarVisibility={this.props.showBoards}
-        handleClickBoard={() => {}}
-        user={this.state.user} 
-      />
-      </>
+      <div className="home">
+        <Navbar 
+          handleLogin={this.props.handleLogin}
+          handleLogout={this.props.handleLogout}
+          handleShowBoards={this.props.handleShowBoards}
+          userId={this.state.user ? this.state.user._id : undefined}
+          title={userName}
+          handleClickHome={this.props.handleClickHome}
+        />
+        <TasksBlock userId={this.userId} />
+        <Sidebar 
+          sidebarVisibility={this.props.showBoards}
+          handleClickBoard={() => {}}
+          user={this.state.user} 
+        />
+      </div>
     );
   }
 }
