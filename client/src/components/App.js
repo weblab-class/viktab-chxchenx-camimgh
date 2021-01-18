@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Home from "./pages/Home.js";
 import Board from "./pages/Board.js";
+import Invite from "./pages/Invite.js";
 
 import "../utilities.css";
 
@@ -44,6 +45,15 @@ class App extends Component {
     });
   };
 
+  handleLoginBoard = (res) => {
+    console.log(`Logged in as ${res.profileObj.name}`);
+    const userToken = res.tokenObj.id_token;
+    post("/api/login", { token: userToken }).then((user) => {
+      this.setState({ userId: user._id });
+      post("/api/initsocket", { socketid: socket.id });
+    });
+  }
+
   handleLogout = () => {
     this.setState({ userId: undefined });
     post("/api/logout");
@@ -81,6 +91,15 @@ class App extends Component {
           />
           <Board 
             path="/board/:boardId"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            handleClickHome={this.handleClickHome}
+            handleShowBoards={this.clickedShowBoard}
+            userId={this.state.userId}
+            showBoards={this.state.showBoards}
+          />
+          <Invite 
+            path="/invite/:boardId"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             handleClickHome={this.handleClickHome}
