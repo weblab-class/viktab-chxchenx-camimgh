@@ -5,6 +5,7 @@ import Navbar from "../modules/Navbar.js";
 import Column from "../modules/Column.js";
 import Sidebar from "../modules/Sidebar.js";
 import NewTask from "../modules/NewTask.js";
+import EditTask from "../modules/EditTask.js";
 
 import "./Board.css";
 
@@ -13,10 +14,12 @@ class Board extends Component {
 		super(props);
 		this.state = {
       board: undefined,
+      user: undefined,
       columns: [],
       tasks: [],
-      user: undefined,
-      showCreate: false
+      currTask: undefined,
+      showCreate: false,
+      showEditTask: false
 		}
   }
 
@@ -74,6 +77,21 @@ class Board extends Component {
     });
   }
 
+  clickedTask = (task) => {
+    this.setState({
+      currTask: task,
+      showEditTask: true
+    })
+  }
+
+  updateTask = (task, updates) => {
+
+  }
+
+  deleteTask = (task) => {
+
+  }
+
   render() {
     return (
         <>
@@ -86,7 +104,7 @@ class Board extends Component {
           title={this.state.board ? this.state.board.name : "board.name"}
         />
         <div>
-          Invite your friends to join this board! Link: {`https://singularity-app.herokuapp.com/invite/${this.props.boardId}`}
+          Invite your friends to join this board! Link: {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
         </div>
         <img src="../images/add.png" onClick={this.newTask}>
         </img>
@@ -95,6 +113,7 @@ class Board extends Component {
             return (<Column 
               column={column}
               tasks={this.state.tasks.filter(task => column.tasks.indexOf(task._id) > -1)}
+              clickedTask={this.clickedTask}
             />)
           })}
         </div>
@@ -103,13 +122,20 @@ class Board extends Component {
           handleClickBoard={this.showDiffBoard}
           user={this.state.user} 
         />
-        < NewTask 
+        <NewTask 
           show={this.state.showCreate}
           user={this.state.user}
           board={this.state.board}
           columns={this.state.columns}
           madeTask={this.madeTask}
 				/>
+        <EditTask 
+          show={this.state.showEditTask}
+          task={this.state.currTask}
+          columns={this.state.columns}
+          updateTask={this.updateTask}
+          deleteTask={this.deleteTask}
+        />
         </>
     );
   }

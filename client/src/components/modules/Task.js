@@ -6,9 +6,13 @@ class Task extends Component {
     super(props);
   }
 
+  clicked = () => {
+    this.props.clickedTask(this.props.task);
+  }
+
   render() {
     return (
-      <div className="task">
+      <div className="task" onClick={this.clicked}>
           {this.props.task.name}
       </div>
     );

@@ -15,7 +15,7 @@ class Column extends Component {
           {this.props.column.name}
         </h1>
         {this.props.tasks.map((task) => {
-            return <Task task={task} />
+            return <Task task={task} clickedTask={this.props.clickedTask} />
         })}
       </div>
     );
