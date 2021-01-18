@@ -14,7 +14,7 @@ class NewTask extends Component {
 
   clickedCreate = () => {
     // create task and add to db then add it's id to this column and board (?)
-    const nameInput = document.getElementById("taskName");
+    const nameInput = document.getElementById("newTaskName");
     const name = nameInput.value;
 
     const columnInput = document.getElementById("columns");
@@ -37,7 +37,7 @@ class NewTask extends Component {
 					New Task
 				</div>
         <div className="taskField">
-					<input type="text" id="taskName" name="taskName" required=" " />
+					<input type="text" id="newTaskName" name="newTaskName" required=" " />
 					<label>Task Name</label>
 				</div>
         <div>
@@ -49,6 +49,7 @@ class NewTask extends Component {
           </select>
         </div>
         <input type="submit" value="Create" onClick={this.clickedCreate}/>
+        <input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
       </div>
     );
   }

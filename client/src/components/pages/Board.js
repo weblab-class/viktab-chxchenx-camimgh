@@ -84,6 +84,18 @@ class Board extends Component {
     })
   }
 
+  clickedCancelEdit = () => {
+    this.setState({
+      showCreate: false
+    })
+  }
+
+  clickedCancelNew = () => {
+    this.setState({
+      showEditTask: false
+    })
+  }
+
   updateTask = (task, updates) => {
 
   }
@@ -128,6 +140,7 @@ class Board extends Component {
           board={this.state.board}
           columns={this.state.columns}
           madeTask={this.madeTask}
+          clickedCancel={this.clickedCancelEdit}
 				/>
         <EditTask 
           show={this.state.showEditTask}
@@ -135,6 +148,7 @@ class Board extends Component {
           columns={this.state.columns}
           updateTask={this.updateTask}
           deleteTask={this.deleteTask}
+          clickedCancel={this.clickedCancelNew}
         />
         </>
     );

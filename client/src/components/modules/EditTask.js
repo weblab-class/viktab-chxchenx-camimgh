@@ -68,6 +68,7 @@ class EditTask extends Component {
 				</div>
         <input type="submit" value="Save" onClick={this.clickedUpdate}/>
         <input type="submit" value="Delete Task" onClick={this.clickedDelete}/>
+        <input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
       </div>
     );
   }

@@ -58,6 +58,7 @@ class NewBoard extends Component {
 				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
 				<input type="submit" value="Create" onClick={this.clickedCreate}/>
+				<input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
 			</div>
 		</div>
     );
