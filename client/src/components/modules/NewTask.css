@@ -5,3 +5,47 @@
 .NewTask-containerHidden {
   visibility: hidden;
 }
+
+.taskField {
+  position: relative;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.taskField label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  color: white;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.taskField input {
+  border: none;
+  border-bottom: 1px solid white;
+  background: transparent;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: white;
+  font-family: Poppins;
+}
+
+.taskField input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #EEE;
+}
+
+.taskField input:focus ~ label {
+  top: -12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.taskField input:valid ~ label {
+  top: -12px;
+  font-size: 12px;
+  font-weight: 600;
+}

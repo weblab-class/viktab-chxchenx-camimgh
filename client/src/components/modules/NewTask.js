@@ -36,7 +36,7 @@ class NewTask extends Component {
         <div className="u-textCenter">
 					New Task
 				</div>
-        <div>
+        <div className="taskField">
 					<input type="text" id="taskName" name="taskName" required=" " />
 					<label>Task Name</label>
 				</div>
