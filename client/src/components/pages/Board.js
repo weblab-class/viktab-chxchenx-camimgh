@@ -6,6 +6,8 @@ import Column from "../modules/Column.js";
 import Sidebar from "../modules/Sidebar.js";
 import NewTask from "../modules/NewTask.js";
 
+import "./Board.css";
+
 class Board extends Component {
   constructor(props) {
 		super(props);
@@ -83,12 +85,14 @@ class Board extends Component {
         </div>
         <img src="../images/add.png" onClick={this.newTask}>
         </img>
-        {this.state.columns.map((column) => {
-          return (<Column 
-            column={column}
-            tasks={this.state.tasks.filter(task => column.tasks.indexOf(task._id) > -1)}
-          />)
-        })}
+        <div className="columnContainer">
+          {this.state.columns.map((column) => {
+            return (<Column 
+              column={column}
+              tasks={this.state.tasks.filter(task => column.tasks.indexOf(task._id) > -1)}
+            />)
+          })}
+        </div>
         <Sidebar 
           sidebarVisibility={this.props.showBoards}
           handleClickBoard={this.showDiffBoard}

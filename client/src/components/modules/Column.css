@@ -2,9 +2,10 @@
     border-radius: 25px;
     border: 1px solid white;
     padding: 25px;
-    width: 25vw;
-    height: 75vh;
+    width: 350px;
+    height: 63vh;
     overflow: auto;
+    margin-left: 25px;
 }
 
 .column::-webkit-scrollbar {

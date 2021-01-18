@@ -1,0 +1,8 @@
+.columnContainer {
+    width: calc("80vw-50px");
+    height: 70vh;
+    padding: 25px;
+    padding-left: 0px;
+    overflow: auto;
+    display: flex;
+}
