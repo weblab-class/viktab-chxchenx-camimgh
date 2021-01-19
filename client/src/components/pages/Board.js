@@ -118,6 +118,9 @@ class Board extends Component {
     }
     post("/api/updatetask", body).then(() => {
       this.madeTask();
+      this.setState({
+        showEditTask: false
+      });
     })
   }
 
@@ -137,6 +140,9 @@ class Board extends Component {
       column: column._id
     }).then(() => {
       this.updateBoard();
+      this.setState({
+        showEditTask: false
+      });
     })
   }
 

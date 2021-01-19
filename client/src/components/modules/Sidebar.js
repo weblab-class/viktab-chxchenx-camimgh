@@ -26,6 +26,13 @@ class Sidebar extends Component {
     });
 	}
 
+	clickedCreate = () => {
+		this.setState({
+      showCreate: false
+		});
+		this.props.handleClickBoard();
+	}
+
   render() {
 		const visibility = this.props.sidebarVisibility ? "Sidebar-show" : "Sidebar-hide";
 
@@ -45,7 +52,7 @@ class Sidebar extends Component {
 			<NewBoard 
 				show={this.state.showCreate}
 				user={this.props.user}
-				clickedCreate={this.props.handleClickBoard}
+				clickedCreate={this.clickedCreate}
 				clickedCancel={this.clickedCancel}
 				/>
 			</>
