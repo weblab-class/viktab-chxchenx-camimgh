@@ -9,7 +9,8 @@ class NewBoard extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
-			template: []
+			template: [],
+			name: ""
 		}
 	}
 	
@@ -46,6 +47,13 @@ class NewBoard extends Component {
 		});
 	}
 
+	clickedCancel = () => {
+		this.setState({
+			name: ""
+		});
+		this.props.clickedCancel();
+	}
+
   render() {
 		const className = this.props.show ? "NewBoard-containerVisible" : "NewBoard-containerHidden";
     return (
@@ -55,12 +63,23 @@ class NewBoard extends Component {
 					New Board
 				</div>
 				<div className="boardField">
-					<input type="text" id="boardName" name="boardName" required=" " />
+					<input 
+						type="text" 
+						id="boardName" 
+						name="boardName" 
+						required=" " 
+						value={this.state.name}
+						onChange={(event) => {
+              this.setState({
+                name: event.target.value
+              });
+            }}
+						/>
 					<label>Board Name</label>
 				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
 				<input type="submit" value="Create" onClick={this.clickedCreate}/>
-				<input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
+				<input type="submit" value="Cancel" onClick={this.clickedCancel}/>
 			</div>
 		</div>
     );
