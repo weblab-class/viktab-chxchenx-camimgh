@@ -77,6 +77,17 @@ router.post("/board", (req, res) => {
   newBoard.save().then((board) => res.send(board));
 });
 
+router.post("/leaveboard", (req, res) => {
+  let promises = [];
+  promises.push(Board.findOneAndUpdate({_id: req.body.board}, { $pull: {users: req.body.user}}));
+  promises.push(User.findOneAndUpdate({_id: req.body.user}, { $pull: {boards: req.body.board}}));
+  // TODO: remove user from all tasks too
+  Promise.all(promises).then(() => {
+    console.log("left board");
+    res.send({});
+  });
+})
+
 router.get("/column", (req, res) => {
   Column.findById(req.query.columnid).then((column) => {
     res.send(column);

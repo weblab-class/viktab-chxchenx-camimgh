@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { post, get } from "../../utilities";
+import { navigate } from "@reach/router";
 
 import Navbar from "../modules/Navbar.js";
 import Column from "../modules/Column.js";
@@ -142,6 +143,16 @@ class Board extends Component {
     })
   }
 
+  leaveBoard = () => {
+    post("/api/leaveboard", {user: this.state.user._id, board: this.state.board._id}).then(() => {
+      navigate(`/home/${this.state.user._id}`);
+    })
+  }
+
+  removeBoard = () => {
+
+  }
+
   render() {
     return (
         <>
@@ -156,6 +167,8 @@ class Board extends Component {
         <div>
           Invite your friends to join this board! Link: {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
         </div>
+        <input type="submit" value="Leave board" onClick={this.leaveBoard}/>
+        <input type="submit" value="Delete board" onClick={this.removeBoard}/>
         <img src="../images/add.png" onClick={this.newTask}>
         </img>
         <div className="columnContainer">
