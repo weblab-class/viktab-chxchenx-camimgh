@@ -7,7 +7,20 @@ class EditTask extends Component {
     super(props);
     this.state = {
       columns: undefined,
-      selectedCol: undefined
+      selectedCol: undefined,
+      gotTask: false,
+      name: "",
+      description: ""
+    }
+  }
+
+  componentDidUpdate() {
+    if (!this.state.gotTask && this.props.task) {
+      this.setState({
+        gotTask: true,
+        name: this.props.task.name,
+        description: this.props.task.description
+      })
     }
   }
 
@@ -41,10 +54,19 @@ class EditTask extends Component {
       date: date
     };
     this.props.updateTask(this.props.task, body);
+    this.clickedCancel();
   };
 
   clickedDelete = () => {
     this.props.deleteTask(this.props.task);
+    this.clickedCancel();
+  }
+
+  clickedCancel = () => {
+    this.setState({
+      gotTask: false
+    });
+    this.props.clickedCancel();
   }
 
   render() {
@@ -55,11 +77,31 @@ class EditTask extends Component {
 					Edit task
 				</div>
         <div className="taskField">
-					<input type="text" id="taskName" name="taskName" required=" " placeholder = {this.props.task ? this.props.task.name : "task.name"} />
+          <input
+            type="text"
+            id="taskName"
+            name="taskName"
+            value = {this.state.name}
+            onChange={(event) => {
+              this.setState({
+                name: event.target.value
+              });
+            }}
+            />
 					<label>Task Name</label>
 				</div>
         <div className="taskField">
-					<input type="text" id="taskDescription" name="taskDescription" required=" " placeholder = {this.props.task ? this.props.task.description : "task.description"} />
+          <input
+            type="text"
+            id="taskDescription"
+            name="taskDescription"
+            value = {this.state.description}
+            onChange={(event) => {
+              this.setState({
+                description: event.target.value
+              });
+            }}
+            />
 					<label>Task Description</label>
 				</div>
         <div className="taskField">
@@ -80,7 +122,7 @@ class EditTask extends Component {
 				</div>
         <input type="submit" value="Save" onClick={this.clickedUpdate}/>
         <input type="submit" value="Delete Task" onClick={this.clickedDelete}/>
-        <input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
+        <input type="submit" value="Cancel" onClick={this.clickedCancel}/>
       </div>
     );
   }

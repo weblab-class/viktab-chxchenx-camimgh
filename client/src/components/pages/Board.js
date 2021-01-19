@@ -45,7 +45,6 @@ class Board extends Component {
       return get("/api/column", {columnid:column});
     });
     Promise.all(colPromises).then((columns) => {
-      console.log(columns);
       this.setState({columns: columns});
     });
     let taskPromises = this.state.board.tasks.map((task) => {
@@ -53,7 +52,6 @@ class Board extends Component {
     });
     Promise.all(taskPromises).then((tasks) => {
       this.setState({tasks: tasks});
-      console.log(tasks);
     });
   }
 
@@ -94,7 +92,8 @@ class Board extends Component {
 
   clickedCancelNew = () => {
     this.setState({
-      showEditTask: false
+      showEditTask: false,
+      currTask: undefined
     })
   }
 
@@ -131,9 +130,6 @@ class Board extends Component {
         column = col;
       }
     }
-    console.log(task._id);
-    console.log(this.props.boardId);
-    console.log(column._id);
     post("/api/deletetask", {
       task: task._id,
       board: this.props.boardId,
