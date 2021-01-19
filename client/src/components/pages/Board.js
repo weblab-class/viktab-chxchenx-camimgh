@@ -146,11 +146,14 @@ class Board extends Component {
   leaveBoard = () => {
     post("/api/leaveboard", {user: this.state.user._id, board: this.state.board._id}).then(() => {
       navigate(`/home/${this.state.user._id}`);
-    })
+    });
   }
 
   removeBoard = () => {
-
+    const users = this.state.board.users;
+    post("/api/removeboard", {board: this.state.board._id, users: users}).then(() => {
+      navigate(`/home/${this.state.user._id}`);
+    });
   }
 
   render() {

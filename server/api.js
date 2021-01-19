@@ -88,6 +88,19 @@ router.post("/leaveboard", (req, res) => {
   });
 })
 
+router.post("/removeboard", (req, res) => {
+  let promises = [];
+  for (const user of req.body.users) {
+    promises.push(User.findOneAndUpdate({_id: user}, { $pull: {boards: req.body.board}}));
+  }
+  promises.push(Board.findByIdAndRemove({_id: req.body.board}));
+  // TODO: remove this board's tasks for all users
+  Promise.all(promises).then(() => {
+    console.log("removed board");
+    res.send({});
+  });
+});
+
 router.get("/column", (req, res) => {
   Column.findById(req.query.columnid).then((column) => {
     res.send(column);
