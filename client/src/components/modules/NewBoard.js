@@ -38,7 +38,9 @@ class NewBoard extends Component {
 				columns: columnIds
 			};
 			post("/api/board", body).then((board) => {
-				post("/api/addboard", {user: userId, board: board._id});
+				post("/api/addboard", {user: userId, board: board._id}).then(() => {
+					this.props.clickedCreate();
+				});
 				navigate(`/board/${board._id}`);
 			});
 		});

@@ -41,17 +41,19 @@ class Board extends Component {
   }
 
   updateBoard = (board) => {
-    let colPromises = board.columns.map((column) => {
+    let colPromises = this.state.board.columns.map((column) => {
       return get("/api/column", {columnid:column});
     });
     Promise.all(colPromises).then((columns) => {
+      console.log(columns);
       this.setState({columns: columns});
     });
-    let taskPromises = board.tasks.map((task) => {
+    let taskPromises = this.state.board.tasks.map((task) => {
       return get("/api/task", {taskid:task});
     });
     Promise.all(taskPromises).then((tasks) => {
       this.setState({tasks: tasks});
+      console.log(tasks);
     });
   }
 
@@ -120,7 +122,22 @@ class Board extends Component {
   }
 
   deleteTask = (task) => {
-
+    let column = undefined;
+    for (const col of this.state.columns) {
+      if (col.tasks.indexOf(task._id) > -1) {
+        column = col;
+      }
+    }
+    console.log(task._id);
+    console.log(this.props.boardId);
+    console.log(column._id);
+    post("/api/deletetask", {
+      task: task._id,
+      board: this.props.boardId,
+      column: column._id
+    }).then(() => {
+      this.updateBoard();
+    })
   }
 
   render() {

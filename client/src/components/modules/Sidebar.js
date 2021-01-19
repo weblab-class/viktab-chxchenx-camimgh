@@ -45,6 +45,7 @@ class Sidebar extends Component {
 			<NewBoard 
 				show={this.state.showCreate}
 				user={this.props.user}
+				clickedCreate={this.props.handleClickBoard}
 				clickedCancel={this.clickedCancel}
 				/>
 			</>

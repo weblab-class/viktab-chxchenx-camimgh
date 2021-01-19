@@ -44,7 +44,7 @@ class EditTask extends Component {
   };
 
   clickedDelete = () => {
-
+    this.props.deleteTask(this.props.task);
   }
 
   render() {

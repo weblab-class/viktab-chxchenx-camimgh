@@ -109,6 +109,17 @@ router.post("/updatetask", (req, res) => {
   });
 })
 
+router.post("/deletetask", (req, res) => {
+  let promises = [];
+  promises.push(Column.findOneAndUpdate({_id: req.body.column}, { $pull: {tasks: req.body.task}}));
+  promises.push(Board.findOneAndUpdate({_id: req.body.board}, { $pull: {tasks: req.body.task}}));
+  promises.push(Task.findByIdAndRemove({_id: req.body.task}));
+  Promise.all(promises).then(() => {
+    console.log("deleted task");
+    res.send({});
+  });
+})
+
 router.post("/adduser", (req, res) => {
   let promises = []
   promises.push(Board.findOneAndUpdate({_id: req.body.board}, { $addToSet: {users: req.body.user}}));
