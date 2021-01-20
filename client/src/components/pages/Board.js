@@ -114,7 +114,8 @@ class Board extends Component {
       date: updates.date,
       oldcolumn: oldColumn._id,
       newcolumn: column,
-      assignUser: updates.assigned ? this.state.user._id : undefined
+      assignUser: updates.assigned ? this.state.user._id : undefined,
+      assignUsername: updates.assigned ? this.state.user.name : undefined
     }
     post("/api/updatetask", body).then(() => {
       this.madeTask();
@@ -198,6 +199,7 @@ class Board extends Component {
 				/>
         <EditTask 
           show={this.state.showEditTask}
+          user={this.state.user}
           task={this.state.currTask}
           columns={this.state.columns}
           updateTask={this.updateTask}

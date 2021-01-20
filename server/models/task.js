@@ -4,6 +4,7 @@ const TaskSchema = new mongoose.Schema({
   name: String,
   description: { type: String, default: "" },
   assignees: { type: [String], default: [] },
+  assigneeNames: { type: [String], default: [] },
   finishBy: { type: Date, default: undefined },
   points: { type: Number, default: 1 },
   color: { type: String, default: "purple" }

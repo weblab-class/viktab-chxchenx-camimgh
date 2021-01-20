@@ -10,7 +10,8 @@ class EditTask extends Component {
       selectedCol: undefined,
       gotTask: false,
       name: "",
-      description: ""
+      description: "",
+      assigned: false
     }
   }
 
@@ -19,7 +20,8 @@ class EditTask extends Component {
       this.setState({
         gotTask: true,
         name: this.props.task.name,
-        description: this.props.task.description
+        description: this.props.task.description,
+        assigned: this.props.task.assignees.indexOf(this.props.user._id) > -1
       })
     }
   }
@@ -31,25 +33,16 @@ class EditTask extends Component {
   }
 
   clickedUpdate = () => {
-    // create task and add to db then add it's id to this column and board (?)
-    const nameInput = document.getElementById("taskName");
-    const name = nameInput.value;
-
-    const descriptionInput = document.getElementById("taskDescription");
-    const description = descriptionInput.value;
-
-    const assignedInput = document.getElementById("taskDescription");
-    const assigned = assignedInput.value;
-
+    // create task and add to db then add it's id to this column and board
     const column = this.state.selectedCol;
 
     const dateInput = document.getElementById("taskDate");
     const date = dateInput.value;
 
     const body = {
-      name: name,
-      description: description,
-      assigned: assigned,
+      name: this.state.name,
+      description: this.state.description,
+      assigned: this.state.assigned,
       column: column,
       date: date
     };
@@ -105,7 +98,19 @@ class EditTask extends Component {
 					<label>Task Description</label>
 				</div>
         <div className="taskField">
-					<input type="checkbox" id="taskAssigned" name="taskAssigned" required=" " />
+          <input 
+            type="checkbox"
+            id="taskAssigned"
+            name="taskAssigned"
+            checked = {this.state.assigned}
+            onChange={(event) => {
+              console.log(event.target.value);
+              console.log(event.target.checked);
+              this.setState({
+                assigned: event.target.checked
+              });
+            }}
+            />
 					<label>Assign yourself</label>
 				</div>
         <div>

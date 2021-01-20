@@ -14,6 +14,12 @@ class Task extends Component {
     return (
       <div className="task" onClick={this.clicked}>
           {this.props.task.name}
+          <h3>
+            Assigned to:
+          </h3>
+          {this.props.task.assigneeNames.filter((name) => {
+            return <div>{name}</div>
+          })}
       </div>
     );
   }

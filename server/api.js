@@ -121,7 +121,7 @@ router.post("/updatetask", (req, res) => {
   let promises = [];
   promises.push(Task.findOneAndUpdate({_id: req.body.task}, { $set: {name: req.body.name, description: req.body.description, finishBy: req.body.date}}));
   if (req.body.assignUser) {
-    promises.push(Task.findOneAndUpdate({_id: req.body.task}, { $addToSet: {assignees: req.body.assignUser}}));
+    promises.push(Task.findOneAndUpdate({_id: req.body.task}, { $addToSet: {assignees: req.body.assignUser, assigneeNames: req.body.assignUsername}}));
   }
   if (req.body.newcolumn) {
     promises.push(Column.findOneAndUpdate({_id: req.body.newcolumn}, { $addToSet: {tasks: req.body.task}}));
