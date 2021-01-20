@@ -13,12 +13,23 @@ class Home extends Component {
     super(props);
     this.state = {
       user: undefined,
+      boards: []
     }
   }
 
   componentDidMount() {
     document.title = "Home";
-    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
+    get(`/api/user`, { userid: this.props.userId }).then((user) => {
+      const promises = user.boards.map((board) => {
+        return get(`/api/board`, {boardid: board});
+      })
+      Promise.all(promises).then((boards) => {
+        this.setState({
+          user: user,
+          boards: boards
+        })
+      });
+    });
   }
 
   render() {
@@ -34,6 +45,7 @@ class Home extends Component {
         />
         <TasksBlock 
           user={this.state.user}
+          boards={this.state.boards}
         />
         <Sidebar 
           sidebarVisibility={this.props.showBoards}

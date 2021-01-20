@@ -11,8 +11,10 @@ class Task extends Component {
   }
 
   render() {
-    return (
-      <div className="task" onClick={this.clicked}>
+    let div = "";
+    if (this.props.in === "column") {
+      div = (
+        <div className="task" onClick={this.clicked}>
           {this.props.task.name}
           <h3>
             Assigned to:
@@ -21,7 +23,26 @@ class Task extends Component {
             return <div>{name}</div>
           })}
       </div>
-    );
+      )
+    } else {
+      let boardName = "board";
+      for (const board of this.props.boards) {
+        if (board.tasks.indexOf(this.props.task._id) > -1) {
+          boardName = board.name;
+        }
+      }
+      div = (
+        <div className="task">
+          <h3>
+          {boardName}
+          </h3>
+          <div>
+          {this.props.task.name}
+          </div>
+      </div>
+      );
+    }
+    return div;
   }
 }
 

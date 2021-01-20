@@ -34,7 +34,9 @@ class TasksBlock extends Component {
           {this.state.tasks.map((task) => (
             <Task
               task={task}
+              boards={this.props.boards}
               clickedTask={()=>{}}
+              in="home"
             />
           ))}
       </div>
