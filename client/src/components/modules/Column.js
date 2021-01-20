@@ -17,7 +17,9 @@ class Column extends Component {
         {this.props.tasks.map((task) => {
             return <Task
               task={task}
+              column={this.props.column}
               clickedTask={this.props.clickedTask}
+              clickedDone={(event) => {this.props.clickedDone(task)}}
               in="column"
               />
         })}

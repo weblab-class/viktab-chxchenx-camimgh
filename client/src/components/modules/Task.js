@@ -22,7 +22,8 @@ class Task extends Component {
           {this.props.task.assigneeNames.filter((name) => {
             return <div>{name}</div>
           })}
-      </div>
+          {this.props.column.name != "Done" ? (<input type="submit" value="Done" onClick={this.props.clickedDone}/>) : ""}
+        </div>
       )
     } else {
       let boardName = "board";
@@ -39,6 +40,7 @@ class Task extends Component {
           <div>
           {this.props.task.name}
           </div>
+          <input type="submit" value="Done" onClick={this.props.clickedDone}/>
       </div>
       );
     }

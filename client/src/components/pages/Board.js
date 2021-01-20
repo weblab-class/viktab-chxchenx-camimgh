@@ -129,6 +129,24 @@ class Board extends Component {
     })
   }
 
+  doneTask = (task) => {
+    let doneColumn = "";
+    for (const col of this.state.columns) {
+      if (col.name === "Done") {
+        doneColumn = col._id;
+      }
+    }
+
+    const updates = {
+      name: task.name,
+      description: task.description,
+      date: task.date,
+      assigned: false,
+      column: doneColumn
+    }
+    this.updateTask(task, updates);
+  }
+
   deleteTask = (task) => {
     let column = undefined;
     for (const col of this.state.columns) {
@@ -184,6 +202,7 @@ class Board extends Component {
               column={column}
               tasks={this.state.tasks.filter(task => column.tasks.indexOf(task._id) > -1)}
               clickedTask={this.clickedTask}
+              clickedDone={this.doneTask}
             />)
           })}
         </div>
