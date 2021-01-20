@@ -104,8 +104,6 @@ class EditTask extends Component {
             name="taskAssigned"
             checked = {this.state.assigned}
             onChange={(event) => {
-              console.log(event.target.value);
-              console.log(event.target.checked);
               this.setState({
                 assigned: event.target.checked
               });

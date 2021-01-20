@@ -106,6 +106,7 @@ class Board extends Component {
       }
     }
     const column = oldColumn._id === updates.column ? undefined : updates.column;
+    const unassign = (!updates.assigned && task.assignees.indexOf(this.state.user._id) > -1);
 
     const body = {
       task: task._id,
@@ -115,7 +116,9 @@ class Board extends Component {
       oldcolumn: oldColumn._id,
       newcolumn: column,
       assignUser: updates.assigned ? this.state.user._id : undefined,
-      assignUsername: updates.assigned ? this.state.user.name : undefined
+      assignUsername: updates.assigned ? this.state.user.name : undefined,
+      unassignUser: unassign ? this.state.user._id : undefined,
+      unassignUsername: unassign ? this.state.user.name : undefined,
     }
     post("/api/updatetask", body).then(() => {
       this.madeTask();
