@@ -8,19 +8,34 @@ class TasksBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [],
+      gotUser: false
     }
   }
 
-  componentDidMount() {
-    get(`/api/userTasks`, { userid: this.props.userId }).then((tasks) => this.setState({ tasks: tasks}));
+  componentDidUpdate() {
+    if (!this.state.gotUser && this.props.user) {
+      const taskIds = this.props.user.tasks;
+      const promises = taskIds.map((taskId) => {
+        return get(`/api/task`, {taskid: taskId});
+      })
+      Promise.all(promises).then((tasks) => {
+        this.setState({
+          tasks: tasks,
+          gotUser: true
+        })
+      });
+    }
   }
 
   render() {
     return (
       <div className="tasksBlock">
           {this.state.tasks.map((task) => (
-            <Task taskId={task}/>
+            <Task
+              task={task}
+              clickedTask={()=>{}}
+            />
           ))}
       </div>
     );
