@@ -121,7 +121,7 @@ class Board extends Component {
       unassignUser: unassign ? this.state.user._id : undefined,
       unassignUsername: unassign ? this.state.user.name : undefined,
     }
-    post("/api/updatetask", body).then(() => {
+    post("/api/updatetask", body).then((user) => {
       this.madeTask();
       this.setState({
         showEditTask: false

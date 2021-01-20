@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
 import TasksBlock from "../modules/TasksBlock.js";
@@ -32,6 +32,49 @@ class Home extends Component {
     });
   }
 
+  clickedDone = (task) => {
+    let currBoard = undefined;
+    for (const board of this.state.boards) {
+      if (board.tasks.indexOf(task._id) > -1) {
+        currBoard = board;
+      }
+    }
+
+    const promises = currBoard.columns.map((column) => {
+      return get(`/api/column`, {columnid: column});
+    })
+    Promise.all(promises).then((columns) => {
+      let doneColumn = "";
+      let oldColumn = "";
+      for (const column of columns) {
+        if (column.name === "Done") {
+          doneColumn = column._id;
+        }
+        if (column.tasks.indexOf(task._id) > -1) {
+          oldColumn = column._id;
+        }
+      }
+
+      const body = {
+        task: task._id,
+        name: task.name,
+        description: task.description,
+        date: task.date,
+        oldcolumn: oldColumn,
+        newcolumn: doneColumn,
+        assignUser: undefined,
+        assignUsername: undefined,
+        unassignUser: this.state.user._id,
+        unassignUsername: this.state.user.name,
+      }
+      post("/api/updatetask", body).then((user) => {
+        this.setState({
+          user: user
+        })
+      });
+    });
+  }
+
   render() {
     const userName = this.state.user ? this.state.user.name : "user.name";
     return (
@@ -46,6 +89,7 @@ class Home extends Component {
         <TasksBlock 
           user={this.state.user}
           boards={this.state.boards}
+          clickedDone={this.clickedDone}
         />
         <Sidebar 
           sidebarVisibility={this.props.showBoards}

@@ -9,12 +9,13 @@ class TasksBlock extends Component {
     super(props);
     this.state = {
       tasks: [],
-      gotUser: false
+      gotUser: false,
+      user: this.props.user
     }
   }
 
   componentDidUpdate() {
-    if (!this.state.gotUser && this.props.user) {
+    if (this.props.user != this.state.user) {
       const taskIds = this.props.user.tasks;
       const promises = taskIds.map((taskId) => {
         return get(`/api/task`, {taskid: taskId});
@@ -22,7 +23,8 @@ class TasksBlock extends Component {
       Promise.all(promises).then((tasks) => {
         this.setState({
           tasks: tasks,
-          gotUser: true
+          gotUser: true,
+          user: this.props.user
         })
       });
     }
@@ -36,6 +38,7 @@ class TasksBlock extends Component {
               task={task}
               boards={this.props.boards}
               clickedTask={()=>{}}
+              clickedDone={(event) => {this.props.clickedDone(task)}}
               in="home"
             />
           ))}

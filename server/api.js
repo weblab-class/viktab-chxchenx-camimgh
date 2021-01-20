@@ -133,8 +133,10 @@ router.post("/updatetask", (req, res) => {
     promises.push(Column.findOneAndUpdate({_id: req.body.oldcolumn}, { $pull: {tasks: req.body.task}}));
   }
   Promise.all(promises).then(() => {
-    console.log("updated task");
-    res.send({});
+    const userId = req.body.assignUser || req.body.unassignUser
+    User.findById(userId).then((user) => {
+      res.send(user);
+    });
   });
 })
 
