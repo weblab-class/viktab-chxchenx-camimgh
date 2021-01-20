@@ -8,6 +8,12 @@
 	left: 80vw;
 	top: 0;
 	z-index: 1;
+
+	transition:               left   500ms ease;
+        -moz-transition:    left   500ms ease;
+        -ms-transition:     left   500ms ease;
+        -o-transition:      left   500ms ease;
+        -webkit-transition: left   500ms ease;
 }
 
 .Sidebar-hide {
@@ -20,6 +26,12 @@
 	left: 100vw;
 	top: 0;
 	z-index: 1;
+
+	transition:               left   500ms ease;
+        -moz-transition:    left   500ms ease;
+        -ms-transition:     left   500ms ease;
+        -o-transition:      left   500ms ease;
+        -webkit-transition: left   500ms ease;
 }
 
 .createBoard {

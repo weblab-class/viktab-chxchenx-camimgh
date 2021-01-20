@@ -1,17 +1,29 @@
 .SidebarButton-containerShowing {
   position: fixed;
-  width: 1vw;
+  width: 1.5vw;
 
   left: 78.5vw;
   top: 48vh;
   z-index: 1;
+
+  transition:               left   500ms ease;
+        -moz-transition:    left   500ms ease;
+        -ms-transition:     left   500ms ease;
+        -o-transition:      left   500ms ease;
+        -webkit-transition: left   500ms ease;
 }
 
 .SidebarButton-containerHidden {
   position: fixed;
-  width: 1vw;
+  width: 1.5vw;
 
   left: 98.5vw;
   top: 48vh;
   z-index: 1;
+
+  transition:               left   500ms ease;
+        -moz-transition:    left   500ms ease;
+        -ms-transition:     left   500ms ease;
+        -o-transition:      left   500ms ease;
+        -webkit-transition: left   500ms ease;
 }

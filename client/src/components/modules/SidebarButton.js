@@ -11,7 +11,7 @@ class SidebarButton extends Component {
     const img = this.props.show ? "../images/right.png" : "../images/left.png"
     return (
       <div className={className} onClick={this.props.clicked}>
-        <img src={img} />
+        <img className="SidebarButton-img" src={img} />
       </div>
     );
   }
