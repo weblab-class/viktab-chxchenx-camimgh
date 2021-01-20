@@ -46,9 +46,6 @@ class Navbar extends Component {
 					</Link>
 				)}
 		</div>
-		<span className="NavBar-link" onClick={this.props.handleShowBoards}>
-			Boards
-		</span>
       </nav>
     );
   }

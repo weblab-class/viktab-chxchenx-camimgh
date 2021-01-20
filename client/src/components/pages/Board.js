@@ -5,6 +5,7 @@ import { navigate } from "@reach/router";
 import Navbar from "../modules/Navbar.js";
 import Column from "../modules/Column.js";
 import Sidebar from "../modules/Sidebar.js";
+import SidebarButton from "../modules/SidebarButton.js";
 import NewTask from "../modules/NewTask.js";
 import EditTask from "../modules/EditTask.js";
 
@@ -167,7 +168,6 @@ class Board extends Component {
           handleLogin={this.props.handleLogin}
           handleLogout={this.props.handleLogout}
           handleClickHome={this.props.handleClickHome}
-          handleShowBoards={this.props.handleShowBoards}
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
@@ -191,6 +191,10 @@ class Board extends Component {
           sidebarVisibility={this.props.showBoards}
           handleClickBoard={this.showDiffBoard}
           user={this.state.user} 
+        />
+        <SidebarButton
+          show={this.props.showBoards}
+          clicked={this.props.handleShowBoards}
         />
         <NewTask 
           show={this.state.showCreate}

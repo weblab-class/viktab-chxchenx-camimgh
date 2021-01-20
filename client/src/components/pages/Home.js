@@ -4,6 +4,7 @@ import { get } from "../../utilities";
 import Navbar from "../modules/Navbar.js";
 import TasksBlock from "../modules/TasksBlock.js";
 import Sidebar from "../modules/Sidebar.js";
+import SidebarButton from "../modules/SidebarButton.js";
 
 import "./Home.css";
 
@@ -27,7 +28,6 @@ class Home extends Component {
         <Navbar 
           handleLogin={this.props.handleLogin}
           handleLogout={this.props.handleLogout}
-          handleShowBoards={this.props.handleShowBoards}
           userId={this.state.user ? this.state.user._id : undefined}
           title={userName}
           handleClickHome={this.props.handleClickHome}
@@ -39,6 +39,10 @@ class Home extends Component {
           sidebarVisibility={this.props.showBoards}
           handleClickBoard={() => {}}
           user={this.state.user} 
+        />
+        <SidebarButton
+          show={this.props.showBoards}
+          clicked={this.props.handleShowBoards}
         />
       </div>
     );

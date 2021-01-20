@@ -1,0 +1,17 @@
+.SidebarButton-containerShowing {
+  position: fixed;
+  width: 1vw;
+
+  left: 78.5vw;
+  top: 48vh;
+  z-index: 1;
+}
+
+.SidebarButton-containerHidden {
+  position: fixed;
+  width: 1vw;
+
+  left: 98.5vw;
+  top: 48vh;
+  z-index: 1;
+}
