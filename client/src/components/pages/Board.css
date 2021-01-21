@@ -8,10 +8,16 @@
 }
 
 .inviteLink {
-    width: 80vw;
+    width: 85vw;
     margin: auto;
     border: 1px solid white;
-    padding: 1vh 5vw;
+    padding: 1vh 1vw;
     border-radius: 5px;
     text-align: center;
+    font-size: 11pt;
+}
+
+.inviteMessage {
+    font-weight: bold;
+    font-size: 9pt;
 }

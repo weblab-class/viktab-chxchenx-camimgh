@@ -190,7 +190,9 @@ class Board extends Component {
           title={this.state.board ? this.state.board.name : "board.name"}
         />
         <div className="inviteLink">
-          Invite your friends to join this board! Link: {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
+          <span class="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
+          <br />
+          {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
         </div>
         <input type="submit" value="Leave board" onClick={this.leaveBoard}/>
         <input type="submit" value="Delete board" onClick={this.removeBoard}/>
