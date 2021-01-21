@@ -6,17 +6,34 @@
   z-index: 1;
   left: 0;
   top: 0;
-  width: 25vw;
+  width: 50vw;
   height: 25vh;
   margin: auto;
   margin-top: 15vh;
-  margin-left: 37vw;
+  margin-left: 25vw;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
 }
 
 .NewTask-containerHidden {
   visibility: hidden;
+}
+
+.boxTitle {
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+.overlayLabel {
+  font-style: italic;
+  opacity: 0.8;
+  font-size: 10pt;
+}
+
+.dropdownLabel {
+  font-weight: bold;
+  font-size: 11pt;
+  padding-right: 10px;
 }
 
 .taskField {
@@ -39,10 +56,11 @@
   border: none;
   border-bottom: 1px solid black;
   background: transparent;
-  padding: 8px 0 5px 0;
+  padding: 1vh 5vw;
   font-size: 16px;
   color: black;
   font-family: Poppins;
+  width: 40vw;
 }
 
 .taskField input:focus {

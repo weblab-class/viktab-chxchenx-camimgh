@@ -33,15 +33,15 @@ class NewTask extends Component {
     const className = this.props.show ? "NewTask-containerVisible" : "NewTask-containerHidden";
     return (
       <div className={className}>
-        <div className="u-textCenter">
-					New Task
+        <div className="u-textCenter boxTitle">
+					CREATE A NEW TASK
 				</div>
         <div className="taskField">
 					<input type="text" id="newTaskName" name="newTaskName" required=" " />
-					<label>Task Name</label>
+					<label className="overlayLabel">Task Name</label>
 				</div>
         <div>
-          <label>Column</label>
+          <label className="dropdownLabel">Column</label>
           <select name="columns" id="columns">
             {this.props.columns ? this.props.columns.map((column) => {
               return <option value={column._id}>{column.name}</option>
