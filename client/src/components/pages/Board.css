@@ -1,6 +1,12 @@
+.boardBody {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .columnContainer {
     width: calc("80vw-50px");
-    height: 70vh;
+    height: 59vh;
+    border: 1px solid white;
     padding: 25px;
     padding-left: 0px;
     overflow: auto;
@@ -8,13 +14,11 @@
 }
 
 .inviteLink {
-    width: 85vw;
+    width: 40vw;
     margin: auto;
-    border: 1px solid white;
     padding: 1vh 1vw;
-    border-radius: 5px;
     text-align: center;
-    font-size: 11pt;
+    font-size: 8pt;
 }
 
 .inviteMessage {
@@ -27,12 +31,15 @@
     margin: auto;
     text-align: center;
     padding: 3vh 5vw;
+    height: 10vh;
 }
 
 input {
     padding: 1vh 1vw;
     font-family: Poppins;
     font-weight: bold;
+    font-size: 9pt;
+    height: 5vh;
 }
 
 .middleButton {

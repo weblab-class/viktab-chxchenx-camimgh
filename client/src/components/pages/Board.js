@@ -181,7 +181,7 @@ class Board extends Component {
 
   render() {
     return (
-        <>
+      <div className="boardBody">
         <Navbar 
           handleLogin={this.props.handleLogin}
           handleLogout={this.props.handleLogout}
@@ -189,12 +189,12 @@ class Board extends Component {
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
-        <div className="inviteLink">
-          <span class="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
-          <br />
-          {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
-        </div>
         <div className="buttonBox">
+          <div className="inviteLink">
+            <span class="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
+            <br />
+            {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
+          </div>
           <input type="submit" value="LEAVE BOARD" onClick={this.leaveBoard}/>
           <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} className="middleButton"/>
           <input type="submit" value="ADD TASK" onClick={this.newTask} />
@@ -235,7 +235,7 @@ class Board extends Component {
           deleteTask={this.deleteTask}
           clickedCancel={this.clickedCancelNew}
         />
-        </>
+      </div>
     );
   }
 }
