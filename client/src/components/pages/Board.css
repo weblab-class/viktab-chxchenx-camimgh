@@ -7,7 +7,7 @@
     width: calc("80vw-50px");
     height: 59vh;
     border: 1px solid white;
-    padding: 25px;
+    padding: 3vh 1vw;
     padding-left: 0px;
     overflow: auto;
     display: flex;

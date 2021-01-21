@@ -16,7 +16,8 @@
     font-size: 18pt;
     font-weight: bold;
     text-transform: uppercase;
-    height: 5vh;
+    height: 4vh;
+    border-bottom: 1px solid white;
 }
 
 .taskBox {
