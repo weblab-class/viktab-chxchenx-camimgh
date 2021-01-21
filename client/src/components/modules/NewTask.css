@@ -40,6 +40,7 @@
   position: relative;
   margin-bottom: 25px;
   margin-top: 25px;
+  width: 40vw;
 }
 
 .taskField label {
@@ -50,6 +51,7 @@
   color: black;
   pointer-events: none;
   transition: all 0.5s ease-in-out;
+  width: 40vw;
 }
 
 .taskField input {
@@ -67,16 +69,19 @@
   border: none;
   outline: none;
   border-bottom: 1px solid black;
+  width: 40vw;
 }
 
 .taskField input:focus ~ label {
   top: -12px;
   font-size: 12px;
   font-weight: 600;
+  width: 40vw;
 }
 
 .taskField input:valid ~ label {
   top: -12px;
   font-size: 12px;
   font-weight: 600;
+  width: 40vw;
 }
