@@ -3,11 +3,23 @@
     border: 1px solid white;
     padding: 25px;
     width: 350px;
-    height: 63vh;
+    height: 53vh;
     overflow: auto;
     margin-left: 25px;
 }
 
 .column::-webkit-scrollbar {
     visibility: hidden;
+}
+
+.columnTitle {
+    font-size: 18pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 5vh;
+}
+
+.taskBox {
+    height: 48vh;
+    overflow: auto;
 }

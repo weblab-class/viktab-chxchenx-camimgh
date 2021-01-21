@@ -11,18 +11,20 @@ class Column extends Component {
   render() {
     return (
       <div className="column">
-        <h1>
+        <div className="columnTitle">
           {this.props.column.name}
-        </h1>
-        {this.props.tasks.map((task) => {
-            return <Task
-              task={task}
-              column={this.props.column}
-              clickedTask={this.props.clickedTask}
-              clickedDone={(event) => {this.props.clickedDone(task)}}
-              in="column"
-              />
-        })}
+        </div>
+        <div className="taskBox">
+          {this.props.tasks.map((task) => {
+              return <Task
+                task={task}
+                column={this.props.column}
+                clickedTask={this.props.clickedTask}
+                clickedDone={(event) => {this.props.clickedDone(task)}}
+                in="column"
+                />
+          })}
+        </div>
       </div>
     );
   }
