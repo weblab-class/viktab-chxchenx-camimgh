@@ -6,3 +6,12 @@
     overflow: auto;
     display: flex;
 }
+
+.inviteLink {
+    width: 80vw;
+    margin: auto;
+    border: 1px solid white;
+    padding: 1vh 5vw;
+    border-radius: 5px;
+    text-align: center;
+}
