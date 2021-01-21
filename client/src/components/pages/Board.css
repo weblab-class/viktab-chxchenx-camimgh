@@ -21,3 +21,21 @@
     font-weight: bold;
     font-size: 9pt;
 }
+
+.buttonBox {
+    width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 3vh 5vw;
+}
+
+input {
+    padding: 1vh 1vw;
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.middleButton {
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
