@@ -11,6 +11,21 @@ class Task extends Component {
   }
 
   render() {
+    console.log(this.props.task);
+    let finishBy = "";
+    if (this.props.task.finishBy) {
+      finishBy = (
+        <div>
+          <h3>
+            Finish by:
+          </h3>
+          <div>
+            {this.props.task.finishBy}
+          </div>
+        </div>
+      )
+    }
+    console.log(finishBy);
     let div = "";
     if (this.props.in === "column") {
       div = (
@@ -22,6 +37,7 @@ class Task extends Component {
           {this.props.task.assigneeNames.filter((name) => {
             return <div>{name}</div>
           })}
+          {finishBy}
           {this.props.column.name != "Done" ? (<input type="submit" value="Done" onClick={this.props.clickedDone}/>) : ""}
         </div>
       )
@@ -40,6 +56,7 @@ class Task extends Component {
           <div>
           {this.props.task.name}
           </div>
+          {finishBy}
           <input type="submit" value="Done" onClick={this.props.clickedDone}/>
       </div>
       );

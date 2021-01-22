@@ -11,6 +11,7 @@ class EditTask extends Component {
       gotTask: false,
       name: "",
       description: "",
+      date: new Date().toISOString().split('T')[0],
       assigned: false
     }
   }
@@ -36,15 +37,12 @@ class EditTask extends Component {
     // create task and add to db then add it's id to this column and board
     const column = this.state.selectedCol;
 
-    const dateInput = document.getElementById("taskDate");
-    const date = dateInput.value;
-
     const body = {
       name: this.state.name,
       description: this.state.description,
       assigned: this.state.assigned,
       column: column,
-      date: date
+      date: this.state.date
     };
     this.props.updateTask(this.props.task, body);
     this.clickedCancel();
@@ -120,7 +118,23 @@ class EditTask extends Component {
           </select>
         </div>
         <div className="taskField">
-					<input type="datetime-local" id="taskDate" name="taskDate" required=" " />
+					<input
+            type="date"
+            id="taskDate"
+            name="taskDate"
+            required=" "
+            value = {this.state.date}
+            onChange={(event) => {
+              this.setState({
+                date: event.target.value
+              });
+            }}
+            onInput={(event) => {
+              this.setState({
+                date: event.target.value
+              });
+            }}
+          />
 					<label>Finish By</label>
 				</div>
         <input type="submit" value="Save" onClick={this.clickedUpdate}/>

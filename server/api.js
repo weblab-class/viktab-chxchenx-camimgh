@@ -188,6 +188,14 @@ router.post("/task", (req, res) => {
   newTask.save().then((task) => {res.send(task)});
 })
 
+// for debugging
+router.post("/removetasks", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {tasks: []}}).then(() => {
+    console.log("removed user tasks");
+    res.send({});
+  });
+})
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
