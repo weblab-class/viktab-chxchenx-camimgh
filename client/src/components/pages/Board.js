@@ -191,7 +191,7 @@ class Board extends Component {
         />
         <div className="buttonBox">
           <div className="inviteLink">
-            <span class="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
+            <span className="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
             <br />
             {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
           </div>

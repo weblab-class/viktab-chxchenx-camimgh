@@ -6,6 +6,7 @@ import Skeleton from "./pages/Skeleton.js";
 import Home from "./pages/Home.js";
 import Board from "./pages/Board.js";
 import Invite from "./pages/Invite.js";
+import Profile from "./pages/Profile.js";
 
 import "../utilities.css";
 
@@ -96,6 +97,15 @@ class App extends Component {
           <Board 
             path="/board/:boardId"
             handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            handleClickHome={this.handleClickHome}
+            handleShowBoards={this.clickedShowBoard}
+            userId={this.state.userId}
+            showBoards={this.state.showBoards}
+          />
+          <Profile 
+            path="/profile/:userId"
+            handleLogin={this.handleLoginBoard}
             handleLogout={this.handleLogout}
             handleClickHome={this.handleClickHome}
             handleShowBoards={this.clickedShowBoard}
