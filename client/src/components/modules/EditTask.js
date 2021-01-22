@@ -11,7 +11,7 @@ class EditTask extends Component {
       gotTask: false,
       name: "",
       description: "",
-      date: new Date().toISOString().split('T')[0],
+      date: "2000-01-01",
       assigned: false
     }
   }

@@ -116,6 +116,7 @@ class Board extends Component {
       date: updates.date,
       oldcolumn: oldColumn._id,
       newcolumn: column,
+      user: this.state.user._id,
       assignUser: updates.assigned ? this.state.user._id : undefined,
       assignUsername: updates.assigned ? this.state.user.name : undefined,
       unassignUser: unassign ? this.state.user._id : undefined,

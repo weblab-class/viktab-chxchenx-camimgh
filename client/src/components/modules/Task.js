@@ -11,16 +11,15 @@ class Task extends Component {
   }
 
   render() {
-    console.log(this.props.task);
     let finishBy = "";
-    if (this.props.task.finishBy) {
+    if (this.props.task.finishBy && this.props.task.finishBy.substring(0, 10) != "2000-01-01") {
       finishBy = (
         <div>
           <h3>
             Finish by:
           </h3>
           <div>
-            {this.props.task.finishBy}
+            {this.props.task.finishBy.substring(0, 10)}
           </div>
         </div>
       )

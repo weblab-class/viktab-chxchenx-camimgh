@@ -133,8 +133,7 @@ router.post("/updatetask", (req, res) => {
     promises.push(Column.findOneAndUpdate({_id: req.body.oldcolumn}, { $pull: {tasks: req.body.task}}));
   }
   Promise.all(promises).then(() => {
-    const userId = req.body.assignUser || req.body.unassignUser
-    User.findById(userId).then((user) => {
+    User.findById(req.body.user).then((user) => {
       res.send(user);
     });
   });
