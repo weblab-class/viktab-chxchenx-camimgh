@@ -1,0 +1,7 @@
+.EditProfile-containerVisible {
+  visibility: visible;
+}
+
+.EditProfile-containerHidden {
+  visibility: hidden;
+}

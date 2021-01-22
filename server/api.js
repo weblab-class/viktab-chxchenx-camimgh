@@ -161,6 +161,13 @@ router.post("/adduser", (req, res) => {
   });
 });
 
+router.post("/updateuser", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {bio: req.body.bio, planet: req.body.planet}}).then(() => {
+    console.log("updated user");
+    res.send({});
+  });
+})
+
 router.post("/column", (req, res) => {
   const newColumn = new Column({
     name: req.body.name,
