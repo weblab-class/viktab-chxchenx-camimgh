@@ -24,7 +24,6 @@ class Task extends Component {
         </div>
       )
     }
-    console.log(finishBy);
     let div = "";
     if (this.props.in === "column") {
       div = (

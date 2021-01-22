@@ -6,9 +6,9 @@ class EditTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      columns: undefined,
-      selectedCol: undefined,
+      column: undefined,
       gotTask: false,
+      gotColumn: false,
       name: "",
       description: "",
       date: "2000-01-01",
@@ -25,23 +25,27 @@ class EditTask extends Component {
         assigned: this.props.task.assignees.indexOf(this.props.user._id) > -1
       })
     }
-  }
-
-  updateCol = (event) => {
-    this.setState({
-      selectedCol: event.target.value
-    });
+    if (!this.state.gotColumn && this.props.columns.length > 0 && this.props.task) {
+      let currCol = "";
+      for (const col of this.props.columns) {
+        if (col.tasks.indexOf(this.props.task._id) > -1) {
+          currCol = col._id;
+        }
+      }
+      this.setState({
+        gotColumn: true,
+        column: currCol
+      })
+    }
   }
 
   clickedUpdate = () => {
     // create task and add to db then add it's id to this column and board
-    const column = this.state.selectedCol;
-
     const body = {
       name: this.state.name,
       description: this.state.description,
       assigned: this.state.assigned,
-      column: column,
+      column: this.state.column,
       date: this.state.date
     };
     this.props.updateTask(this.props.task, body);
@@ -55,7 +59,8 @@ class EditTask extends Component {
 
   clickedCancel = () => {
     this.setState({
-      gotTask: false
+      gotTask: false,
+      gotColumn: false
     });
     this.props.clickedCancel();
   }
@@ -111,7 +116,17 @@ class EditTask extends Component {
 				</div>
         <div>
           <label>Column</label>
-          <select name="columns" id="columns" onChange={this.updateCol}>
+          <select
+            name="columns"
+            id="columns"
+            value={this.state.column}
+            onChange={(event) => {
+              console.log(event.target.value);
+              this.setState({
+                column: event.target.value
+              })
+            }}
+          >
             {this.props.columns.map((column) => {
               return <option value={column._id}>{column.name}</option>
             })}
