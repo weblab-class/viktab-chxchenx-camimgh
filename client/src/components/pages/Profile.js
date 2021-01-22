@@ -21,6 +21,9 @@ class Profile extends Component {
 
 	render () {
 		const userName = this.state.user ? this.state.user.name : "user.name";
+		const points = this.state.user ? this.state.user.points : "user.points";
+		const planet = this.state.user ? this.state.user.planet : "Mercury";
+		const img = "../images/" + planet + ".png";
 		return (
 			<div>
 				<Navbar 
@@ -30,8 +33,30 @@ class Profile extends Component {
 					title={userName}
 					handleClickHome={this.props.handleClickHome}
 				/>
+				<img src={img}/>
 				<div>
-					Hi!
+					{userName}
+				</div>
+				<div>
+					<span>
+						Points
+					</span>
+					<span>
+						{points}
+					</span>
+				</div>
+				<div>
+					<span>
+						Planet
+					</span>
+					<span>
+						{planet}
+					</span>
+				</div>
+				<div>
+					<span>
+						Bio
+					</span>
 				</div>
 			</div>
 		)
