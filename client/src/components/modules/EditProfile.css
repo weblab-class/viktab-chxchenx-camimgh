@@ -1,20 +1,31 @@
 .EditProfile-containerVisible {
   visibility: visible;
   border: 1px solid white;
-  padding: 25px;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
   position: fixed;
   z-index: 1;
-  left: 0;
+  width: 30vw;
   top: 0;
-  width: 25vw;
-  height: 50vh;
-  margin: auto;
-  margin-top: 15vh;
-  margin-left: 37vw;
+  left: 0;
+  margin-left: 35vw;
+  margin-top: 20vh;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
 }
 
 .EditProfile-containerHidden {
   visibility: hidden;
+}
+
+.editTitle {
+  font-weight: bold;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.editBio input {
+  width: 25vw;
+  margin: auto;
 }
