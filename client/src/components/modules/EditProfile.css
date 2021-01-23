@@ -18,14 +18,31 @@
   visibility: hidden;
 }
 
-.editTitle {
+.ep-title {
   font-weight: bold;
   font-size: 10pt;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+.editTitle {
+  font-weight: bold;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 15px;
+}
+
 .editBio input {
   width: 25vw;
   margin: auto;
+}
+
+.planetBuy {
+  height: 20vh;
+  overflow: auto;
+}
+
+.secondButton {
+  margin-left: 5vw;
 }
