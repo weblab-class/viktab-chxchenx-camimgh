@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   googleid: String,
   bio: { type: String, default: "" },
   planet: { type: String, default: "Mercury" },
+  planets: { type: [String], default: ["Mercury"] },
   boards: { type: [String], default: [] },
   tasks: { type: [String], default: [] },
   events: { type: [String], default: [] },

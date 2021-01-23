@@ -47,10 +47,14 @@ class Profile extends Component {
 		});
 	}
 
-	clickedCancel() {
+	clickedCancel = (event) => {
 		this.setState({
 			showEdit: false
 		});
+	}
+
+	boughtPlanet = (planet) => {
+		
 	}
 
 	render () {
@@ -70,7 +74,8 @@ class Profile extends Component {
           show={this.state.showEdit}
           user={this.state.user}
           updateUser={this.updateUser}
-          clickedCancel={this.clickedCancel}
+					clickedCancel={this.clickedCancel}
+					boughtPlanet={this.boughtPlanet}
         />
 				<img src={img}/>
 				<div>
