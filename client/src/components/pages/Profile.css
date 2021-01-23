@@ -1,5 +1,6 @@
 body {
     height: 100vh;
+    overflow: hidden;
 }
 
 .profileContainer {
@@ -9,6 +10,8 @@ body {
     border: 3px solid white;
     border-radius: 25px;
     text-align: center;
+    height: 55vh;
+    margin-top: 7.5vh;
 }
 
 .userName {

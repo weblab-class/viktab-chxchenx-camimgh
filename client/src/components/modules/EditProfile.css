@@ -1,5 +1,18 @@
 .EditProfile-containerVisible {
   visibility: visible;
+  border: 1px solid white;
+  padding: 25px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 25vw;
+  height: 50vh;
+  margin: auto;
+  margin-top: 15vh;
+  margin-left: 37vw;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
 }
 
 .EditProfile-containerHidden {
