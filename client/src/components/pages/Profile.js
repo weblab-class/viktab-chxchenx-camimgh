@@ -53,8 +53,18 @@ class Profile extends Component {
 		});
 	}
 
-	boughtPlanet = (planet) => {
-		
+	boughtPlanet = (planet, newPoints) => {
+		const body = {
+			user: this.props.userId,
+			points: newPoints,
+			planet: planet
+		}
+		post("/api/addplanet", body).then((user) => {
+			this.setState({
+				user: user,
+				planet: planet
+			});
+		})
 	}
 
 	render () {
@@ -72,7 +82,8 @@ class Profile extends Component {
 				/>
 				<EditProfile 
           show={this.state.showEdit}
-          user={this.state.user}
+					user={this.state.user}
+					points={points}
           updateUser={this.updateUser}
 					clickedCancel={this.clickedCancel}
 					boughtPlanet={this.boughtPlanet}

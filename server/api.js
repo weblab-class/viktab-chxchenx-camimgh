@@ -175,6 +175,14 @@ router.post("/userpoints", (req, res) => {
   });
 })
 
+router.post("/addplanet", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {points: req.body.points, planet: req.body.planet}, $addToSet: {planets: req.body.planet}}).then(() => {
+    User.findById(req.body.user).then((user) => {
+      res.send(user);
+    });
+  })
+})
+
 router.post("/column", (req, res) => {
   const newColumn = new Column({
     name: req.body.name,

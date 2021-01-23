@@ -5,6 +5,7 @@ import Planet from "../modules/Planet.js";
 import "./EditProfile.css";
 
 const planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+const points = [1, 5, 10, 15, 20, 25, 30, 35];
 
 class EditProfile extends Component {
   constructor(props) {
@@ -58,6 +59,8 @@ class EditProfile extends Component {
             return (
               <Planet
                 planet={planet}
+                points={points[planets.indexOf(planet)]}
+                userPoints={this.props.points}
                 unlocked={hasPlanets.indexOf(planet) > -1}
                 boughtPlanet={this.props.boughtPlanet}
               />
