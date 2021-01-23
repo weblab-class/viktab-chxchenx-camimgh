@@ -56,8 +56,10 @@ class EditTask extends Component {
   };
 
   clickedDelete = () => {
-    this.props.deleteTask(this.props.task);
-    this.clickedCancel();
+    if (window.confirm("Are you sure you want to delete this task?")) {
+      this.props.deleteTask(this.props.task);
+      this.clickedCancel();
+    }
   }
 
   clickedCancel = () => {

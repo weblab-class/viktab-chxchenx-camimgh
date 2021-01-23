@@ -7,7 +7,9 @@ class Planet extends Component {
   }
 
   clicked = (event) => {
-    console.log(this.props.planet);
+    if (window.confirm("Are you sure you want to buy this planet?")) {
+      console.log(this.props.planet);
+    }
   }
 
   render() {
