@@ -12,13 +12,19 @@ class Profile extends Component {
 	super(props);
 	this.state = {
 			user: undefined,
+			bio: "",
+			planet: "Mercury",
 			showEdit: false
 		};
 	}
 
 	componentDidMount() {
 		document.title = "Profile Page";
-		get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
+		get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({
+			user: user,
+			bio: user.bio,
+			planet: user.planet
+		}));
 	}
 
 	clickedEdit = (event) => {
@@ -35,7 +41,9 @@ class Profile extends Component {
 		};
 		post("/api/updateuser", body);
 		this.setState({
-			showEdit: false
+			showEdit: false,
+			bio: updates.bio,
+			planet: updates.planet
 		});
 	}
 
@@ -48,9 +56,7 @@ class Profile extends Component {
 	render () {
 		const userName = this.state.user ? this.state.user.name : "user.name";
 		const points = this.state.user ? this.state.user.points : "user.points";
-		const bio = this.state.user ? this.state.user.bio : "user.bio";
-		const planet = this.state.user ? this.state.user.planet : "Mercury";
-		const img = "../images/" + planet + ".png";
+		const img = "../images/" + this.state.planet + ".png";
 		return (
 			<div>
 				<Navbar 
@@ -83,14 +89,14 @@ class Profile extends Component {
 						Planet
 					</span>
 					<span>
-						{planet}
+						{this.state.planet}
 					</span>
 				</div>
 				<div>
 					Bio
 				</div>
 				<div>
-					{bio}
+					{this.state.bio}
 				</div>
 				<input type="submit" value="Edit" onClick={this.clickedEdit}/>
 			</div>

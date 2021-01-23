@@ -6,8 +6,10 @@ class Task extends Component {
     super(props);
   }
 
-  clicked = () => {
-    this.props.clickedTask(this.props.task);
+  clicked = (event) => {
+    if (event.target.value != "Done") {
+      this.props.clickedTask(this.props.task);
+    }
   }
 
   render() {

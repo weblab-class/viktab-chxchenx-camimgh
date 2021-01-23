@@ -147,6 +147,12 @@ class Board extends Component {
       column: doneColumn
     }
     this.updateTask(task, updates);
+
+    post("/api/userpoints", {user: this.props.userId, points: this.state.user.points + task.points}).then((user) => {
+      this.setState({
+        user: user
+      });
+    });
   }
 
   deleteTask = (task) => {

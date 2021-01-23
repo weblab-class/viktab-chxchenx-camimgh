@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
   bio: { type: String, default: "" },
-  planet: { type: [String], default: "Mercury" },
+  planet: { type: String, default: "Mercury" },
   boards: { type: [String], default: [] },
   tasks: { type: [String], default: [] },
   events: { type: [String], default: [] },

@@ -165,6 +165,14 @@ router.post("/updateuser", (req, res) => {
     console.log("updated user");
     res.send({});
   });
+});
+
+router.post("/userpoints", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {points: req.body.points}}).then(() => {
+    User.findById(req.body.user).then((user) => {
+      res.send(user);
+    });
+  });
 })
 
 router.post("/column", (req, res) => {
