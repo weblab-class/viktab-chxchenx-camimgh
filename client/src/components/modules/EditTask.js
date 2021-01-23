@@ -11,6 +11,7 @@ class EditTask extends Component {
       gotColumn: false,
       name: "",
       description: "",
+      points: 1,
       date: "2000-01-01",
       assigned: false
     }
@@ -22,6 +23,7 @@ class EditTask extends Component {
         gotTask: true,
         name: this.props.task.name,
         description: this.props.task.description,
+        points: this.props.task.points,
         assigned: this.props.task.assignees.indexOf(this.props.user._id) > -1
       })
     }
@@ -46,6 +48,7 @@ class EditTask extends Component {
       description: this.state.description,
       assigned: this.state.assigned,
       column: this.state.column,
+      points: this.state.points,
       date: this.state.date
     };
     this.props.updateTask(this.props.task, body);
@@ -131,6 +134,20 @@ class EditTask extends Component {
               return <option value={column._id}>{column.name}</option>
             })}
           </select>
+        </div>
+        <div className="taskField">
+          <input
+            type="number"
+            id="points"
+            name="points"
+            value = {this.state.points}
+            onChange={(event) => {
+              this.setState({
+                points: event.target.value
+              });
+            }}
+          />
+          <label>Points</label>
         </div>
         <div className="taskField">
 					<input

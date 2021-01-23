@@ -113,6 +113,7 @@ class Board extends Component {
       task: task._id,
       name: updates.name,
       description: updates.description,
+      points: updates.points,
       date: updates.date,
       oldcolumn: oldColumn._id,
       newcolumn: column,
