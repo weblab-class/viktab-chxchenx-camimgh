@@ -80,14 +80,6 @@ class Profile extends Component {
 					title={userName}
 					handleClickHome={this.props.handleClickHome}
 				/>
-				<EditProfile 
-          show={this.state.showEdit}
-					user={this.state.user}
-					points={points}
-          updateUser={this.updateUser}
-					clickedCancel={this.clickedCancel}
-					boughtPlanet={this.boughtPlanet}
-        />
 				<img src={img}/>
 				<div>
 					{userName}
@@ -115,6 +107,14 @@ class Profile extends Component {
 					{this.state.bio}
 				</div>
 				<input type="submit" value="Edit" onClick={this.clickedEdit}/>
+				<EditProfile 
+          show={this.state.showEdit}
+					user={this.state.user}
+					points={points}
+          updateUser={this.updateUser}
+					clickedCancel={this.clickedCancel}
+					boughtPlanet={this.boughtPlanet}
+        />
 			</div>
 		)
 	}
