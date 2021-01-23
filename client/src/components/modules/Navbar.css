@@ -17,6 +17,10 @@
     color: var(--white);
     opacity: 0.6;
     text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10pt;
 }
   
 .NavBar-link:hover {

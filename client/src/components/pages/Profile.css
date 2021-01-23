@@ -12,6 +12,7 @@ body {
     text-align: center;
     height: 55vh;
     margin-top: 7.5vh;
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .userName {
