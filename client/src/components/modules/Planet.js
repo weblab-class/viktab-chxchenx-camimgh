@@ -13,6 +13,10 @@ class Planet extends Component {
       } else if (window.confirm("Are you sure you want to buy this planet?")) {
         this.props.boughtPlanet(this.props.planet, this.props.userPoints - this.props.points);
       }
+    } else if (this.props.planet != this.props.currPlanet) {
+      if (window.confirm("Do you want to switch to this planet?")) {
+        this.props.changePlanet(this.props.planet);
+      }
     }
   }
 

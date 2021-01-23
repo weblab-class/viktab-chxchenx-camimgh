@@ -20,11 +20,13 @@ class Profile extends Component {
 
 	componentDidMount() {
 		document.title = "Profile Page";
-		get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({
-			user: user,
-			bio: user.bio,
-			planet: user.planet
-		}));
+		get(`/api/user`, { userid: this.props.userId }).then((user) => {
+			this.setState({
+				user: user,
+				bio: user.bio,
+				planet: user.planet
+			});
+		});
 	}
 
 	clickedEdit = (event) => {
@@ -60,6 +62,15 @@ class Profile extends Component {
 			planet: planet
 		}
 		post("/api/addplanet", body).then((user) => {
+			this.setState({
+				user: user,
+				planet: planet
+			});
+		})
+	}
+
+	changePlanet = (planet) => {
+		post("/api/setplanet", {user: this.props.userId, planet: planet}).then((user) => {
 			this.setState({
 				user: user,
 				planet: planet
@@ -110,13 +121,14 @@ class Profile extends Component {
 					<br />
 					<input type="submit" value="Edit" onClick={this.clickedEdit}/>
 					<EditProfile 
-			show={this.state.showEdit}
+						show={this.state.showEdit}
 						user={this.state.user}
 						points={points}
-			updateUser={this.updateUser}
+						updateUser={this.updateUser}
 						clickedCancel={this.clickedCancel}
 						boughtPlanet={this.boughtPlanet}
-			/>
+						changePlanet={this.changePlanet}
+					/>
 				</div>
 			</div>
 		)
