@@ -1,7 +1,48 @@
 .EditProfile-containerVisible {
   visibility: visible;
+  border: 1px solid white;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  position: fixed;
+  z-index: 1;
+  width: 30vw;
+  top: 0;
+  left: 0;
+  margin-left: 35vw;
+  margin-top: 20vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
 }
 
 .EditProfile-containerHidden {
   visibility: hidden;
+}
+
+.ep-title {
+  font-weight: bold;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.editTitle {
+  font-weight: bold;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 15px;
+}
+
+.editBio input {
+  width: 25vw;
+  margin: auto;
+}
+
+.planetBuy {
+  height: 20vh;
+  overflow: auto;
+}
+
+.secondButton {
+  margin-left: 5vw;
 }

@@ -61,13 +61,13 @@ class EditProfile extends Component {
     const className = this.props.show ? "EditProfile-containerVisible" : "EditProfile-containerHidden";
     return (
       <div className={className}>
-        <div className="u-textCenter">
+        <div className="ep-title">
 					Edit Profile
 				</div>
-        <div>
-          <div className="taskField">
-            <label>Planet</label>
-          </div>
+        <div className="editTitle">
+          <label>Planet</label>
+        </div>
+        <div className="planetBuy">
           {planets.map((planet) => {
             return (
               <Planet
@@ -82,7 +82,8 @@ class EditProfile extends Component {
             )
           })}
         </div>
-        <div className="taskField">
+					<div className="editTitle">Bio</div>
+        <div className="editBio">
           <input
             type="text"
             id="bio"
@@ -94,10 +95,10 @@ class EditProfile extends Component {
               });
             }}
             />
-					<label>Bio</label>
 				</div>
+        <br />
         <input type="submit" value="Save" onClick={this.clickedUpdate}/>
-        <input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
+        <input type="submit" value="Cancel" onClick={this.props.clickedCancel} className="secondButton" />
       </div>
     );
   }

@@ -1,0 +1,62 @@
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.profileContainer {
+    width: 30vw;
+    padding: 3vh 2.5vw;
+    margin: auto;
+    border: 3px solid white;
+    border-radius: 25px;
+    text-align: center;
+    height: 55vh;
+    margin-top: 7.5vh;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.userName {
+    text-align: center;
+    font-family: Poppins;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15pt;
+    letter-spacing: 3px;
+}
+
+.infoLine {
+    border-bottom: 1px solid white;
+    width: 30vw;
+    margin: auto;
+    margin-top: 15px;
+    display: table;
+}
+
+.info {
+    display: table-cell;
+}
+
+.left {
+    text-align: left;
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 10pt;
+    letter-spacing: 2px;
+}
+
+.right {
+    text-align: right;
+}
+
+.info div {
+    display: inline-block;
+}
+
+.bio {
+    height: 10vh;
+    text-align: left;
+    margin: auto;
+    margin-top: 1vh;
+    font-size: 10pt;
+    overflow: auto;
+}

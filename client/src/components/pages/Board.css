@@ -4,8 +4,9 @@
 }
 
 .columnContainer {
-    width: calc("80vw-50px");
-    height: 59vh;
+    width: 95vw;
+    margin: auto;
+    height: 61vh;
     border: 1px solid white;
     padding: 3vh 1vw;
     padding-left: 0px;
@@ -32,6 +33,7 @@
     text-align: center;
     padding: 3vh 5vw;
     height: 10vh;
+    padding-top: 0vh;
 }
 
 input {

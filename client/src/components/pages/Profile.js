@@ -91,42 +91,45 @@ class Profile extends Component {
 					title={userName}
 					handleClickHome={this.props.handleClickHome}
 				/>
-				<EditProfile 
-          show={this.state.showEdit}
-					user={this.state.user}
-					points={points}
-          updateUser={this.updateUser}
-					clickedCancel={this.clickedCancel}
-					boughtPlanet={this.boughtPlanet}
-					changePlanet={this.changePlanet}
-        />
-				<img src={img}/>
-				<div>
-					{userName}
+				<div className="profileContainer">
+					<img src={img}/>
+					<div className="userName">
+						{userName}
+					</div>
+					<div className="infoLine">
+						<div className="info left">
+							<div>POINTS</div>
+						</div>
+						<div className="info right">
+							<div>{points}</div>
+						</div>
+					</div>
+					<div className="infoLine">
+						<div className="info left">
+							<div>PLANET</div>
+						</div>
+						<div className="info right">
+							<div>{this.state.planet}</div>
+						</div>
+					</div>
+					<div className="infoLine left">
+						BIO
+					</div>
+					<div className="bio">
+						{this.state.bio}
+					</div>
+					<br />
+					<input type="submit" value="Edit" onClick={this.clickedEdit}/>
+					<EditProfile 
+						show={this.state.showEdit}
+						user={this.state.user}
+						points={points}
+						updateUser={this.updateUser}
+						clickedCancel={this.clickedCancel}
+						boughtPlanet={this.boughtPlanet}
+						changePlanet={this.changePlanet}
+					/>
 				</div>
-				<div>
-					<span>
-						Points
-					</span>
-					<span>
-						{points}
-					</span>
-				</div>
-				<div>
-					<span>
-						Planet
-					</span>
-					<span>
-						{this.state.planet}
-					</span>
-				</div>
-				<div>
-					Bio
-				</div>
-				<div>
-					{this.state.bio}
-				</div>
-				<input type="submit" value="Edit" onClick={this.clickedEdit}/>
 			</div>
 		)
 	}
