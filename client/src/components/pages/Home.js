@@ -20,6 +20,7 @@ class Home extends Component {
   componentDidMount() {
     document.title = "Home";
     get(`/api/user`, { userid: this.props.userId }).then((user) => {
+      post("/api/addevent", {});
       const promises = user.boards.map((board) => {
         return get(`/api/board`, {boardid: board});
       })

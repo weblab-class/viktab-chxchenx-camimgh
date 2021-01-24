@@ -27,6 +27,7 @@ class Board extends Component {
 
   componentDidMount() {
     get(`/api/board`, { boardid: this.props.boardId }).then((board) => {
+      document.title = board.name;
       this.setState({ board: board });
       this.updateBoard(board);
     });

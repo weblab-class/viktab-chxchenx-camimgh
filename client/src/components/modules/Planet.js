@@ -10,7 +10,7 @@ class Planet extends Component {
     if (!this.props.unlocked) {
       if (this.props.userPoints < this.props.points) {
         window.alert("You don't have enough points to get this planet yet! Complete more tasks to earn points and build your solar system.");
-      } else if (window.confirm("Are you sure you want to buy this planet?")) {
+      } else if (window.confirm("Are you sure you want to buy " + this.props.planet + "? It'll cost you " + this.props.points + " points.")) {
         this.props.boughtPlanet(this.props.planet, this.props.userPoints - this.props.points);
       }
     } else if (this.props.planet != this.props.currPlanet) {

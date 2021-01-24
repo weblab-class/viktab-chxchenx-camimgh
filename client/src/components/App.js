@@ -42,6 +42,13 @@ class App extends Component {
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
+      if (!user.code || user.code.length == 0) {
+        get("/api/code", {}).then((url) => {
+          window.open(url.url, "_blank");
+          const token = window.prompt("To give singularity permission to add events to your google calendar, open the popup, follow the instructions, and then paste the code below.");
+          console.log(token);
+        })
+      }
       navigate(`/home/${user._id}`);
     });
   };

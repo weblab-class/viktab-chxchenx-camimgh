@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { navigate } from "@reach/router";
+import { post } from "../../utilities";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -16,7 +17,9 @@ class Skeleton extends Component {
 
   componentDidUpdate() {
     // Redirect to home page if logged in
+    document.title = "Singularity";
     if (this.props.userId) {
+      post("/api/addevent", {});
       navigate(`/home/${this.props.userId}`);
     } 
   }
