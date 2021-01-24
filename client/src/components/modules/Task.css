@@ -6,3 +6,23 @@
 .task:hover {
     background-color: rgba(255, 255, 255, 0.25);
 }
+
+.labelText {
+    font-size: 10pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.descriptorText {
+    display: inline-block;
+    font-size: 10pt;
+}
+
+.doneBlock {
+    margin-top: 5px;
+    display: block;
+}

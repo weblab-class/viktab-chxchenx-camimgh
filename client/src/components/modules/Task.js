@@ -17,10 +17,10 @@ class Task extends Component {
     if (this.props.task.finishBy && this.props.task.finishBy.substring(0, 10) != "2000-01-01") {
       finishBy = (
         <div>
-          <h3>
+          <div className="labelText">
             Finish by:
-          </h3>
-          <div>
+          </div>
+          <div className="descriptorText">
             {this.props.task.finishBy.substring(0, 10)}
           </div>
         </div>
@@ -31,14 +31,17 @@ class Task extends Component {
       div = (
         <div className="task" onClick={this.clicked}>
           {this.props.task.name}
-          <h3>
+          <br />
+          <div className="labelText">
             Assigned to:
-          </h3>
-          {this.props.task.assigneeNames.filter((name) => {
-            return <div>{name}</div>
-          })}
+          </div>
+          <div className="descriptorText">
+            {this.props.task.assigneeNames.filter((name) => {
+              return <div>{name}</div>
+            })}
+          </div>
           {finishBy}
-          {this.props.column.name != "Done" ? (<input type="submit" value="Done" onClick={this.props.clickedDone}/>) : ""}
+          {this.props.column.name != "Done" ? (<input type="submit" value="Done" onClick={this.props.clickedDone} className="doneBlock" />) : ""}
         </div>
       )
     } else {
@@ -57,7 +60,7 @@ class Task extends Component {
           {this.props.task.name}
           </div>
           {finishBy}
-          <input type="submit" value="Done" onClick={this.props.clickedDone}/>
+          <input type="submit" value="Done" onClick={this.props.clickedDone} className="doneBlock" />
       </div>
       );
     }
