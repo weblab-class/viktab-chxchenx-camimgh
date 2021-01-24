@@ -29,6 +29,14 @@ class Profile extends Component {
 		});
 	}
 
+	getCode() {
+		get("/api/code", {}).then((url) => {
+			window.open(url.url, "_blank");
+			const code = window.prompt("To give singularity permission to add events to your google calendar, open the popup, follow the instructions, and then paste your code below.");
+			post("/api/usercode", {user: this.props.userId, code: code});
+		});
+	}
+
 	clickedEdit = (event) => {
 		this.setState({
 			showEdit: true
@@ -39,8 +47,10 @@ class Profile extends Component {
 		const body = {
 			user: this.props.userId,
 			bio: updates.bio,
-			planet: updates.planet
+			planet: updates.planet,
+			addToCal: updates.addToCal
 		};
+		if (updates.addToCal && this.state.user.code.length == 0) this.getCode();
 		post("/api/updateuser", body);
 		this.setState({
 			showEdit: false,

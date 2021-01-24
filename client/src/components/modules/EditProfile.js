@@ -15,6 +15,7 @@ class EditProfile extends Component {
       bio: "",
       planet: "",
       planets: [],
+      addToCal: false,
       gotUser: false
     }
   }
@@ -26,7 +27,8 @@ class EditProfile extends Component {
         user: this.props.user,
         bio: this.props.user.bio,
         planet: this.props.user.planet,
-        planets: this.props.user.planets
+        planets: this.props.user.planets,
+        addToCal: this.props.user.addToCal
       });
     }
   }
@@ -52,7 +54,8 @@ class EditProfile extends Component {
   clickedUpdate = () => {
     const body = {
       bio: this.state.bio,
-      planet: this.state.planet
+      planet: this.state.planet,
+      addToCal: this.state.addToCal
     };
     this.props.updateUser(body);
   };
@@ -92,6 +95,20 @@ class EditProfile extends Component {
             onChange={(event) => {
               this.setState({
                 bio: event.target.value
+              });
+            }}
+            />
+				</div>
+          <div className="editTitle">Add events to Google Calendar</div>
+        <div className="editBio">
+          <input
+            type="checkbox"
+            id="gcal"
+            name="gcal"
+            checked = {this.state.addToCal}
+            onChange={(event) => {
+              this.setState({
+                addToCal: event.target.checked
               });
             }}
             />

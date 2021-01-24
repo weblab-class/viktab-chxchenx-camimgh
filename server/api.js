@@ -168,7 +168,7 @@ router.post("/adduser", (req, res) => {
 });
 
 router.post("/updateuser", (req, res) => {
-  User.findByIdAndUpdate({_id: req.body.user}, { $set: {bio: req.body.bio, planet: req.body.planet}}).then(() => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {bio: req.body.bio, planet: req.body.planet, addToCal: req.body.addToCal}}).then(() => {
     console.log("updated user");
     res.send({});
   });
@@ -251,6 +251,13 @@ router.get("/code", (req, res) => {
       console.log(authUrl);
       res.send({url: authUrl});
     });
+  });
+});
+
+router.post("/usercode", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: req.body.code}}).then(() => {
+    console.log("added gcal code for user");
+    res.send({});
   });
 });
 

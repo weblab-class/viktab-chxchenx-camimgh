@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
+  code: { type: String, default: "" },
   bio: { type: String, default: "" },
   planet: { type: String, default: "Mercury" },
   planets: { type: [String], default: ["Mercury"] },
