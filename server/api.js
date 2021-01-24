@@ -224,11 +224,18 @@ router.post("/removetasks", (req, res) => {
     console.log("removed user tasks");
     res.send({});
   });
-})
+});
 
 router.post("/removeplanets", (req, res) => {
   User.findByIdAndUpdate({_id: req.body.user}, { $set: {planets: ["Mercury"], planet: "Mercury"}}).then(() => {
     console.log("removed user planets");
+    res.send({});
+  });
+});
+
+router.post("/unauth", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: "", auth: "", addToCal: false}}).then(() => {
+    console.log("unauthorized user");
     res.send({});
   });
 })
@@ -242,22 +249,64 @@ router.get("/code", (req, res) => {
     const oAuth2Client = new google.auth.OAuth2(
         client_id, client_secret, redirect_uris[0]);
 
+    console.log(typeof(oAuth2Client));
+    console.log(oAuth2Client);
+    req.session.auth = oAuth2Client;
+
     // Get url to ask user for token
     fs.readFile(TOKEN_PATH, (err, token) => {
       const authUrl = oAuth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: SCOPES,
       });
-      console.log(authUrl);
-      res.send({url: authUrl});
+      console.log("api 1:");
+      console.log(oAuth2Client);
+      res.send({url: authUrl, auth: oAuth2Client, callback: gotCode});
+      // const newAuth = new Auth({
+      //   OAuth2Client: {
+      //     _events: oAuth2Client._events,
+      //     _eventsCount: oAuth2Client._eventsCount,
+      //     _maxListeners: oAuth2Client._maxListeners,
+      //     transporter:oAuth2Client.transporter,
+      //     credentials: oAuth2Client.credentials,
+      //     certificateCache: oAuth2Client.certificateCache,
+      //     certificateExpiry: oAuth2Client.certificateExpiry,
+      //     certificateCacheFormat: oAuth2Client.certificateCacheFormat,
+      //     refreshTokenPromises: oAuth2Client.refreshTokenPromises,
+      //     _clientId: oAuth2Client._clientId,
+      //     _clientSecret: oAuth2Client._clientSecret,
+      //     redirectUri: oAuth2Client.redirectUri,
+      //     eagerRefreshThresholdMillis: oAuth2Client.eagerRefreshThresholdMillis
+      //   }
+      // });
+      // console.log("hi!!");
+      // console.log(newAuth);
+      // newAuth.save().then((auth) => {
+      //   console.log(auth);
+      //   res.send({url: authUrl});
+      // })
     });
   });
 });
 
+function gotCode(code, auth) {
+  console.log("gotcode");
+}
+
 router.post("/usercode", (req, res) => {
-  User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: req.body.code}}).then(() => {
-    console.log("added gcal code for user");
-    res.send({});
+  console.log("api 2:");
+  console.log(typeof(req.session.auth));
+  console.log(req.session.auth);
+  console.log(req.body.auth);
+  const oAuth2Client = req.body.auth;
+  oAuth2Client.getToken(req.body.code, (err, token) => {
+    if (err) return console.error('Error retrieving access token', err);
+    oAuth2Client.setCredentials(token);
+    // Store the auth for later
+    User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: req.body.code, auth: oAuth2Client}}).then(() => {
+      console.log("added gcal code and auth for user");
+      res.send({});
+    });
   });
 });
 
@@ -270,6 +319,35 @@ router.post("/addevent", (req, res) => {
     authorize(JSON.parse(content), addEvent);
   });
   res.send({});
+});
+
+router.post("/addToCal", (req, res) => {
+  const event = {
+    'summary': req.body.name,
+    'description': req.body.description,
+    'start': {
+      'dateTime': '2021-01-27T09:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    },
+    'end:': {
+      'dateTime': '2021-01-27T10:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    }
+  };
+
+  const calendar = google.calendar({version: 'v3', auth});
+  calendar.events.insert({
+    auth: req.body.auth,
+    calendarId: 'primary',
+    resource: event,
+  }, function(err, event) {
+    if (err) {
+      console.log('There was an error contacting the Calendar service: ' + err);
+      return;
+    }
+    console.log("oop");
+    console.log('Event created: %s', event.htmlLink);
+  });
 })
 
 /**
@@ -362,17 +440,20 @@ function addEvent(auth) {
   };
 
   const calendar = google.calendar({version: 'v3', auth});
-  calendar.events.insert({
-    auth: auth,
-    calendarId: 'primary',
-    resource: event,
-  }, function(err, event) {
-    if (err) {
-      console.log('There was an error contacting the Calendar service: ' + err);
-      return;
-    }
-    console.log('Event created: %s', event.htmlLink);
-  });
+  // calendar.events.insert({
+  //   auth: auth,
+  //   calendarId: 'primary',
+  //   resource: event,
+  // }, function(err, event) {
+  //   if (err) {
+  //     console.log('There was an error contacting the Calendar service: ' + err);
+  //     return;
+  //   }
+  //   console.log("yee");
+  //   console.log(auth);
+  //   console.log(typeof(auth));
+  //   console.log('Event created: %s', event.htmlLink);
+  // });
 }
 
 // anything else falls to this "not found" case

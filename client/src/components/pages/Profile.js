@@ -30,10 +30,12 @@ class Profile extends Component {
 	}
 
 	getCode() {
-		get("/api/code", {}).then((url) => {
-			window.open(url.url, "_blank");
+		get("/api/code", {}).then((res) => {
+			window.open(res.url, "_blank");
 			const code = window.prompt("To give singularity permission to add events to your google calendar, open the popup, follow the instructions, and then paste your code below.");
-			post("/api/usercode", {user: this.props.userId, code: code});
+			console.log("Profile:");
+			console.log(res.auth);
+			post("/api/usercode", {user: this.props.userId, code: code, auth: res.auth});
 		});
 	}
 

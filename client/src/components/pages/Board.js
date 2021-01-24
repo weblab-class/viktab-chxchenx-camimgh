@@ -129,7 +129,16 @@ class Board extends Component {
       this.setState({
         showEditTask: false
       });
-    })
+    });
+    if (this.state.user.addToCal && updates.date.substring(0, 10) != "2000-01-01") {
+      const body = {
+        auth: this.state.user.auth,
+        name: updates.name,
+        description: updates.description,
+        date: updates.date.substring(0, 10)
+      };
+      post("/api/addToCal", body);
+    }
   }
 
   doneTask = (task) => {
