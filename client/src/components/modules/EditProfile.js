@@ -14,6 +14,7 @@ class EditProfile extends Component {
       user: undefined,
       bio: "",
       planet: "",
+      planets: [],
       gotUser: false
     }
   }
@@ -25,14 +26,27 @@ class EditProfile extends Component {
         user: this.props.user,
         bio: this.props.user.bio,
         planet: this.props.user.planet,
+        planets: this.props.user.planets
       });
     }
   }
 
-  updatePlanet = (event) => {
+  boughtPlanet = (planet, newPoints) => {
+    let planets = [...this.props.user ? this.props.user.planets : []];
+    if (planets.indexOf(planet) == -1) {
+      planets.push(planet);
+      this.setState({
+        planets: planets
+      });
+    }
+    this.props.boughtPlanet(planet, newPoints);
+  }
+
+  changePlanet = (planet) => {
     this.setState({
-      planet: event.target.value
+      planet: planet
     });
+    this.props.changePlanet(planet);
   }
 
   clickedUpdate = () => {
@@ -44,7 +58,6 @@ class EditProfile extends Component {
   };
 
   render() {
-    const hasPlanets = this.state.user ? this.state.user.planets : [];
     const className = this.props.show ? "EditProfile-containerVisible" : "EditProfile-containerHidden";
     return (
       <div className={className}>
@@ -59,10 +72,12 @@ class EditProfile extends Component {
             return (
               <Planet
                 planet={planet}
+                currPlanet={this.state.planet}
                 points={points[planets.indexOf(planet)]}
                 userPoints={this.props.points}
-                unlocked={hasPlanets.indexOf(planet) > -1}
-                boughtPlanet={this.props.boughtPlanet}
+                unlocked={this.state.planets.indexOf(planet) > -1}
+                boughtPlanet={this.boughtPlanet}
+                changePlanet={this.changePlanet}
               />
             )
           })}

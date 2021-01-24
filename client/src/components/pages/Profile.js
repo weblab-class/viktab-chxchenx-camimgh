@@ -20,11 +20,13 @@ class Profile extends Component {
 
 	componentDidMount() {
 		document.title = "Profile Page";
-		get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({
-			user: user,
-			bio: user.bio,
-			planet: user.planet
-		}));
+		get(`/api/user`, { userid: this.props.userId }).then((user) => {
+			this.setState({
+				user: user,
+				bio: user.bio,
+				planet: user.planet
+			});
+		});
 	}
 
 	clickedEdit = (event) => {
@@ -67,6 +69,15 @@ class Profile extends Component {
 		})
 	}
 
+	changePlanet = (planet) => {
+		post("/api/setplanet", {user: this.props.userId, planet: planet}).then((user) => {
+			this.setState({
+				user: user,
+				planet: planet
+			});
+		})
+	}
+
 	render () {
 		const userName = this.state.user ? this.state.user.name : "user.name";
 		const points = this.state.user ? this.state.user.points : "user.points";
@@ -87,6 +98,7 @@ class Profile extends Component {
           updateUser={this.updateUser}
 					clickedCancel={this.clickedCancel}
 					boughtPlanet={this.boughtPlanet}
+					changePlanet={this.changePlanet}
         />
 				<img src={img}/>
 				<div>

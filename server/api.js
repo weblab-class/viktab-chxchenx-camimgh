@@ -173,14 +173,22 @@ router.post("/userpoints", (req, res) => {
       res.send(user);
     });
   });
-})
+});
 
 router.post("/addplanet", (req, res) => {
   User.findByIdAndUpdate({_id: req.body.user}, { $set: {points: req.body.points, planet: req.body.planet}, $addToSet: {planets: req.body.planet}}).then(() => {
     User.findById(req.body.user).then((user) => {
       res.send(user);
     });
-  })
+  });
+});
+
+router.post("/setplanet", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {planet: req.body.planet} }).then(() => {
+    User.findById(req.body.user).then((user) => {
+      res.send(user);
+    });
+  });
 })
 
 router.post("/column", (req, res) => {
@@ -207,6 +215,13 @@ router.post("/task", (req, res) => {
 router.post("/removetasks", (req, res) => {
   User.findByIdAndUpdate({_id: req.body.user}, { $set: {tasks: []}}).then(() => {
     console.log("removed user tasks");
+    res.send({});
+  });
+})
+
+router.post("/removeplanets", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {planets: ["Mercury"], planet: "Mercury"}}).then(() => {
+    console.log("removed user planets");
     res.send({});
   });
 })
