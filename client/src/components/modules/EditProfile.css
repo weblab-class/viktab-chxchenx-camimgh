@@ -4,10 +4,10 @@
   position: fixed;
   z-index: 1;
   width: 50vw;
-  height: 65vh;
+  height: 57.5vh;
   top: 0;
   left: 0;
-  margin-top: 12.5vh;
+  margin-top: 15vh;
   margin-left: 22.5vw;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
@@ -34,8 +34,12 @@
 }
 
 .editBio input {
-  width: 47.5vw;
+  width: 48vw;
+  padding: 3vh 1vw;
   margin: auto;
+  font-family: Poppins;
+  margin-top: 1vh;
+
 }
 
 .planetBuy {
@@ -46,6 +50,11 @@
 .editButtons input {
   height: 40px;
   text-transform: uppercase;
+  font-family: Poppins;
+  width: 75px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 10pt;
 }
 
 .secondButton {

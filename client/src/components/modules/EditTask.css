@@ -1,17 +1,16 @@
 .EditTask-containerVisible {
   visibility: visible;
   border: 1px solid white;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding: 5vh 2.5vw;
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
-  width: 30vw;
+  width: 50vw;
   height: 75vh;
   margin: auto;
-  margin-top: 10vh;
-  margin-left: 30vw;
+  margin-top: 7.5vh;
+  margin-left: 22.5vw;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
 }

@@ -114,8 +114,7 @@ class EditProfile extends Component {
             }}
             />
 				</div>
-        <br />
-        <div className="editButtons">
+        <div className="modalButtons">
           <input type="submit" value="Save" onClick={this.clickedUpdate}/>
           <input type="submit" value="Cancel" onClick={this.props.clickedCancel} className="secondButton" />
         </div>
