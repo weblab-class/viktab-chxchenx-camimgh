@@ -27,9 +27,10 @@ body {
 .modalField input {
     background: transparent;
     border: none;
-    padding-top: 0vh;
-    padding-bottom: 0vh;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
     width: 47.5vw;
+    font-family: Poppins;
 }
 
 .modalField input:focus {

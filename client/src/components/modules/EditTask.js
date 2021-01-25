@@ -150,6 +150,7 @@ class EditTask extends Component {
           </div>
           <div className="inlineRight">
             <input
+              className="pointsField"
               type="number"
               id="points"
               name="points"
@@ -168,6 +169,7 @@ class EditTask extends Component {
           </div>
 					<div className="inlineRight">
             <input
+              className="dateField"
               type="date"
               id="taskDate"
               name="taskDate"

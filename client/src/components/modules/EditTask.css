@@ -7,9 +7,9 @@
   left: 0;
   top: 0;
   width: 50vw;
-  height: 75vh;
+  height: 50vh;
   margin: auto;
-  margin-top: 7.5vh;
+  margin-top: 20vh;
   margin-left: 22.5vw;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
@@ -17,4 +17,31 @@
 
 .EditTask-containerHidden {
   visibility: hidden;
+}
+
+.pointsField {
+  text-align: right;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid black;
+  font-family: Poppins;
+  width: 10vw;
+}
+
+.dateField {
+  text-align: right;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid black;
+  font-family: Poppins;
+  width: 10vw;
+  letter-spacing: 1px;
+}
+
+.pointsField:focus {
+  outline: none;
+}
+
+.dateField:focus {
+  outline: none;
 }
