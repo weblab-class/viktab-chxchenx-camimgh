@@ -106,19 +106,23 @@ class EditTask extends Component {
             }}
             />
 				</div>
-        <div className="taskField">
-          <input 
-            type="checkbox"
-            id="taskAssigned"
-            name="taskAssigned"
-            checked = {this.state.assigned}
-            onChange={(event) => {
-              this.setState({
-                assigned: event.target.checked
-              });
-            }}
-            />
-					<label>Assign yourself?</label>
+        <div className="modalInlines">
+          <div className="inlineLabel">
+            Assign yourself?
+          </div>
+          <div className="inlineRight">
+            <input 
+              type="checkbox"
+              id="taskAssigned"
+              name="taskAssigned"
+              checked = {this.state.assigned}
+              onChange={(event) => {
+                this.setState({
+                  assigned: event.target.checked
+                });
+              }}
+              />
+            </div>
 				</div>
         <div>
           <label className="modalSubtitle">Column</label>
@@ -182,9 +186,11 @@ class EditTask extends Component {
             />
           </div>
 				</div>
-        <input type="submit" value="Save" onClick={this.clickedUpdate}/>
-        <input type="submit" value="Delete Task" onClick={this.clickedDelete}/>
-        <input type="submit" value="Cancel" onClick={this.clickedCancel}/>
+        <div className="modalButtons">
+          <input type="submit" value="Save" onClick={this.clickedUpdate}/>
+          <input type="submit" value="Delete Task" onClick={this.clickedDelete} className="longButton secondButton" />
+          <input type="submit" value="Cancel" onClick={this.clickedCancel} className="secondButton" />
+        </div>
       </div>
     );
   }

@@ -48,14 +48,25 @@ body {
     letter-spacing: 1px;
     font-weight: bold;
     font-family: Poppins;
-    width: 75px;
+    width: 150px;
 }
 
 .secondButton {
     margin-left: 25px;
 }
 
+.longButton {
+    width: 150px;
+}
+
 .modalInlines {
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
+}
+
+.inlineLabel {
+    font-weight: bold;
+    font-size: 10pt;
+    text-transform: uppercase;
 }
