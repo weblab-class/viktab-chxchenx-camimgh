@@ -35,6 +35,65 @@ const SCOPES = ["https://www.googleapis.com/auth/calendar.events"];
 
 const TOKEN_PATH = 'token.json';
 
+fs.readFile('credentials.json', (err, content) => {
+  if (err) return console.log('Error loading client secret file:', err);
+  // Create oAuth2Client with credentials
+  const credentials = JSON.parse(content);
+  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  oAuth2Client = new google.auth.OAuth2(
+      client_id, client_secret, redirect_uris[0]);
+});
+
+router.get("/code", (req, res) => {
+  // Get url to ask user for token
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+  });
+  res.send({url: authUrl});
+});
+
+router.post("/usercode", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: req.body.code}}).then(() => {
+    console.log("added gcal code for user");
+    res.send({});
+  });
+});
+
+router.post("/addevent", (req, res) => {
+  console.log(req.body.code);
+  console.log(oAuth2Client);
+  oAuth2Client.getToken(req.body.code, (err, token) => {
+    if (err) return console.error('Error retrieving access token', err);
+    console.log(token);
+    oAuth2Client.setCredentials(token);
+  });
+  const event = {
+    'summary': req.body.name,
+    'description': req.body.description,
+    'start': {
+      'date': req.body.date
+    },
+    'end': {
+      'date': req.body.date
+    },
+  };
+
+  const calendar = google.calendar({version: 'v3', oAuth2Client});
+  calendar.events.insert({
+    auth: oAuth2Client,
+    calendarId: 'primary',
+    resource: event,
+  }, function(err, event) {
+    if (err) {
+      console.log('There was an error contacting the Calendar service: ' + err);
+      return;
+    }
+    console.log('Event created: %s', event.htmlLink);
+  });
+  res.send({});
+});
+
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
@@ -231,149 +290,14 @@ router.post("/removeplanets", (req, res) => {
     console.log("removed user planets");
     res.send({});
   });
-})
-
-router.get("/code", (req, res) => {
-  fs.readFile('credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err);
-    // Create oAuth2Client with credentials
-    const credentials = JSON.parse(content);
-    const {client_secret, client_id, redirect_uris} = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(
-        client_id, client_secret, redirect_uris[0]);
-
-    // Get url to ask user for token
-    fs.readFile(TOKEN_PATH, (err, token) => {
-      const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES,
-      });
-      console.log(authUrl);
-      res.send({url: authUrl});
-    });
-  });
 });
 
-router.post("/usercode", (req, res) => {
-  User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: req.body.code}}).then(() => {
-    console.log("added gcal code for user");
+router.post("/unauth", (req, res) => {
+  User.findByIdAndUpdate({_id: req.body.user}, { $set: {addToCal: false, code: ""}}).then(() => {
+    console.log("removed user planets");
     res.send({});
   });
-});
-
-router.post("/addevent", (req, res) => {
-  fs.readFile('credentials.json', (err, content) => {
-      console.log("reading file");
-    if (err) return console.log('Error loading client secret file:', err);
-    // Authorize a client with credentials, then call the Google Calendar API.
-    console.log(JSON.parse(content));
-    authorize(JSON.parse(content), addEvent);
-  });
-  res.send({});
 })
-
-/**
- * Create an OAuth2 client with the given credentials, and then execute the
- * given callback function.
- * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
- */
-function authorize(credentials, callback) {
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
-  console.log(client_secret);
-  console.log(client_id);
-  console.log(redirect_uris);
-  const oAuth2Client = new google.auth.OAuth2(
-      client_id, client_secret, redirect_uris[0]);
-
-  // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    console.log(TOKEN_PATH);
-    console.log(token);
-    if (err) return getAccessToken(oAuth2Client, callback);
-    oAuth2Client.setCredentials(JSON.parse(token));
-    console.log(oAuth2Client);
-    callback(oAuth2Client);
-  });
-}
-
-/**
- * Get and store new token after prompting for user authorization, and then
- * execute the given callback with the authorized OAuth2 client.
- * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
- * @param {getEventsCallback} callback The callback for the authorized client.
- */
-function getAccessToken(oAuth2Client, callback) {
-  const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-  });
-  console.log('Authorize this app by visiting this url:', authUrl);
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  rl.question('Enter the code from that page here: ', (code) => {
-    rl.close();
-    oAuth2Client.getToken(code, (err, token) => {
-      if (err) return console.error('Error retrieving access token', err);
-      oAuth2Client.setCredentials(token);
-      // Store the token to disk for later program executions
-      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-        if (err) return console.error(err);
-        console.log('Token stored to', TOKEN_PATH);
-      });
-      callback(oAuth2Client);
-    });
-  });
-}
-
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function addEvent(auth) {
-  const event = {
-    'summary': 'Google I/O 2015',
-    'location': '800 Howard St., San Francisco, CA 94103',
-    'description': 'A chance to hear more about Google\'s developer products.',
-    'start': {
-      'dateTime': '2021-01-28T09:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
-    },
-    'end': {
-      'dateTime': '2021-01-28T17:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
-    },
-    'recurrence': [
-      'RRULE:FREQ=DAILY;COUNT=2'
-    ],
-    'attendees': [
-      {'email': 'lpage@example.com'},
-      {'email': 'sbrin@example.com'},
-    ],
-    'reminders': {
-      'useDefault': false,
-      'overrides': [
-        {'method': 'email', 'minutes': 24 * 60},
-        {'method': 'popup', 'minutes': 10},
-      ],
-    },
-  };
-
-  const calendar = google.calendar({version: 'v3', auth});
-  calendar.events.insert({
-    auth: auth,
-    calendarId: 'primary',
-    resource: event,
-  }, function(err, event) {
-    if (err) {
-      console.log('There was an error contacting the Calendar service: ' + err);
-      return;
-    }
-    console.log('Event created: %s', event.htmlLink);
-  });
-}
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

@@ -19,7 +19,6 @@ class Skeleton extends Component {
     // Redirect to home page if logged in
     document.title = "Singularity";
     if (this.props.userId) {
-      post("/api/addevent", {});
       navigate(`/home/${this.props.userId}`);
     } 
   }
