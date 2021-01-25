@@ -86,10 +86,19 @@
   width: 40vw;
 }
 
-select {
-  margin-left: 5px;
+.columnSelect {
+  position: relative;
+}
+
+.columnSelect select {
+  width: 50vw;
+  font-family: Poppins;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1vh 0.5vw;
 }
 
 option {
-
+  letter-spacing: 1px;
 }

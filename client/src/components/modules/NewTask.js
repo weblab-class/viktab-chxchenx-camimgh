@@ -42,11 +42,13 @@ class NewTask extends Component {
 				</div>
         <div>
           <label className="modalSubtitle">Column</label>
-          <select name="columns" id="columns">
-            {this.props.columns ? this.props.columns.map((column) => {
-              return <option value={column._id}>{column.name}</option>
-            }) : <option value={"0"}>No options found :(</option>}
-          </select>
+          <div className="columnSelect">
+            <select name="columns" id="columns">
+              {this.props.columns ? this.props.columns.map((column) => {
+                return <option value={column._id}>{column.name}</option>
+              }) : <option value={"0"}>No options found :(</option>}
+            </select>
+          </div>
         </div>
         <div className="modalButtons">
           <input type="submit" value="Create" onClick={this.clickedCreate}/>
