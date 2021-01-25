@@ -1,15 +1,15 @@
 .NewTask-containerVisible {
   visibility: visible;
   border: 1px solid white;
-  padding: 25px;
+  padding: 5vh 2.5vw;
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 50vw;
-  height: 25vh;
+  height: 22.5vh;
   margin: auto;
-  margin-top: 15vh;
+  margin-top: 32.5vh;
   margin-left: 25vw;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
@@ -84,4 +84,12 @@
   font-size: 12px;
   font-weight: 600;
   width: 40vw;
+}
+
+select {
+  margin-left: 5px;
+}
+
+option {
+
 }

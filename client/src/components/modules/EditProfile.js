@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Planet from "../modules/Planet.js";
 
 import "./EditProfile.css";
+import "./modal.css";
 
 const planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
 const points = [1, 5, 10, 15, 20, 25, 30, 35];
@@ -114,8 +115,10 @@ class EditProfile extends Component {
             />
 				</div>
         <br />
-        <input type="submit" value="Save" onClick={this.clickedUpdate}/>
-        <input type="submit" value="Cancel" onClick={this.props.clickedCancel} className="secondButton" />
+        <div className="editButtons">
+          <input type="submit" value="Save" onClick={this.clickedUpdate}/>
+          <input type="submit" value="Cancel" onClick={this.props.clickedCancel} className="secondButton" />
+        </div>
       </div>
     );
   }

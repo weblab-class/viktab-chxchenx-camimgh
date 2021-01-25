@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { post } from "../../utilities";
 
 import "./NewTask.css";
+import "./modal.css";
 
 class NewTask extends Component {
   constructor(props) {
@@ -33,23 +34,24 @@ class NewTask extends Component {
     const className = this.props.show ? "NewTask-containerVisible" : "NewTask-containerHidden";
     return (
       <div className={className}>
-        <div className="u-textCenter boxTitle">
+        <div className="modalTitle">
 					CREATE A NEW TASK
 				</div>
-        <div className="taskField">
-					<input type="text" id="newTaskName" name="newTaskName" required=" " />
-					<label className="overlayLabel">Task Name</label>
+        <div className="modalField">
+					<input placeholder="task name..." type="text" id="newTaskName" name="newTaskName" required=" " />
 				</div>
         <div>
-          <label className="dropdownLabel">Column</label>
+          <label className="modalSubtitle">Column</label>
           <select name="columns" id="columns">
             {this.props.columns ? this.props.columns.map((column) => {
               return <option value={column._id}>{column.name}</option>
             }) : <option value={"0"}>No options found :(</option>}
           </select>
         </div>
-        <input type="submit" value="Create" onClick={this.clickedCreate}/>
-        <input type="submit" value="Cancel" onClick={this.props.clickedCancel}/>
+        <div className="modalButtons">
+          <input type="submit" value="Create" onClick={this.clickedCreate}/>
+          <input type="submit" value="Cancel" onClick={this.props.clickedCancel} className="secondButton" />
+        </div>
       </div>
     );
   }

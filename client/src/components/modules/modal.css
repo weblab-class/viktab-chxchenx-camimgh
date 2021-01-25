@@ -1,8 +1,13 @@
+body {
+    font-family: Poppins;
+}
+
 .modalTitle {
     font-family: Poppins;
     font-size: 10pt;
     text-transform: uppercase;
     font-weight: bold;
+    text-align: center;
 }
 
 .modalSubtitle {
@@ -16,6 +21,7 @@
     border: none;
     border-bottom: 1px solid black;
     margin: 2vh 0vw;
+    font-family: Poppins;
 }
 
 .modalField input {
@@ -40,6 +46,7 @@
     font-size: 8pt;
     height: 40px;
     letter-spacing: 1px;
+    font-weight: bold;
 }
 
 .secondButton {
