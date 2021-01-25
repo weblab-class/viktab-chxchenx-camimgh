@@ -67,31 +67,31 @@ router.post("/addevent", (req, res) => {
     if (err) return console.error('Error retrieving access token', err);
     console.log(token);
     oAuth2Client.setCredentials(token);
+    const event = {
+      'summary': req.body.name,
+      'description': req.body.description,
+      'start': {
+        'date': req.body.date
+      },
+      'end': {
+        'date': req.body.date
+      },
+    };
+  
+    const calendar = google.calendar({version: 'v3', oAuth2Client});
+    calendar.events.insert({
+      auth: oAuth2Client,
+      calendarId: 'primary',
+      resource: event,
+    }, function(err, event) {
+      if (err) {
+        console.log('There was an error contacting the Calendar service: ' + err);
+        return;
+      }
+      console.log('Event created: %s', event.htmlLink);
+    });
+    res.send({});
   });
-  const event = {
-    'summary': req.body.name,
-    'description': req.body.description,
-    'start': {
-      'date': req.body.date
-    },
-    'end': {
-      'date': req.body.date
-    },
-  };
-
-  const calendar = google.calendar({version: 'v3', oAuth2Client});
-  calendar.events.insert({
-    auth: oAuth2Client,
-    calendarId: 'primary',
-    resource: event,
-  }, function(err, event) {
-    if (err) {
-      console.log('There was an error contacting the Calendar service: ' + err);
-      return;
-    }
-    console.log('Event created: %s', event.htmlLink);
-  });
-  res.send({});
 });
 
 router.post("/login", auth.login);

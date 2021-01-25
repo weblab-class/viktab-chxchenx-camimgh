@@ -32,8 +32,8 @@ class Profile extends Component {
 	getCode() {
 		get("/api/code", {}).then((url) => {
 			window.open(url.url, "_blank");
-			const code = window.prompt("To give singularity permission to add events to your google calendar, open the popup, follow the instructions, and then paste your code below.");
-			post("/api/usercode", {user: this.props.userId, code: code});
+			// const code = window.prompt("To give singularity permission to add events to your google calendar, open the popup, follow the instructions, and then paste your code below.");
+			// post("/api/usercode", {user: this.props.userId, code: this.state.code});
 		});
 	}
 
@@ -141,6 +141,17 @@ class Profile extends Component {
 						changePlanet={this.changePlanet}
 					/>
 				</div>
+				<input
+            type="text"
+            id="code"
+            name="code"
+            onChange={(event) => {
+              this.setState({
+                code: event.target.value
+              });
+            }}
+          />
+				<input type="submit" value="Send" onClick={()=> {post("/api/usercode", {user: this.props.userId, code: this.state.code});}}/>
 			</div>
 		)
 	}
