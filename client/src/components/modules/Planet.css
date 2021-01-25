@@ -1,0 +1,7 @@
+.Planet-unlocked {
+
+}
+
+.Planet-locked {
+  filter: grayscale(100%);
+}

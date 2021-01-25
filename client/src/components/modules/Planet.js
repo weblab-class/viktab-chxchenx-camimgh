@@ -21,8 +21,9 @@ class Planet extends Component {
   }
 
   render() {
-    let planet = this.props.unlocked ? (<img src={"../images/" + this.props.planet + ".png"}></img>) :
-        (<img src="../images/add.png"></img>);
+    const url = "../images/" + this.props.planet + ".png";
+    const className = this.props.unlocked ? "Planet-unlocked" : "Planet-locked";
+    const planet = (<img className = {className} src={url}></img>)
     return (
       <span onClick={this.clicked}>
         {planet}
