@@ -5,6 +5,13 @@
     font-weight: bold;
 }
 
+.modalSubtitle {
+    font-family: Poppins;
+    font-size: 10pt;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .modalField {
     border: none;
     border-bottom: 1px solid black;

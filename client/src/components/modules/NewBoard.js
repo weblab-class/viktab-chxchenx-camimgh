@@ -78,6 +78,9 @@ class NewBoard extends Component {
 						}}
 						/>
 				</div>
+				<div className="modalSubtitle">
+					Template
+				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
 				<div className="modalButtons">
 					<input type="submit" value="Create" onClick={this.clickedCreate}/>
