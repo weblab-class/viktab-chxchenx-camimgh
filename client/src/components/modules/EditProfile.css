@@ -1,17 +1,17 @@
 .EditProfile-containerVisible {
   visibility: visible;
   border: 1px solid white;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
   position: fixed;
   z-index: 1;
-  width: 30vw;
+  width: 50vw;
+  height: 57.5vh;
   top: 0;
   left: 0;
-  margin-left: 35vw;
-  margin-top: 20vh;
+  margin-top: 15vh;
+  margin-left: 22.5vw;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
+  padding: 5vh 2.5vw;
 }
 
 .EditProfile-containerHidden {
@@ -34,8 +34,12 @@
 }
 
 .editBio input {
-  width: 25vw;
+  width: 48vw;
+  padding: 3vh 1vw;
   margin: auto;
+  font-family: Poppins;
+  margin-top: 1vh;
+
 }
 
 .planetBuy {
@@ -43,6 +47,16 @@
   overflow: auto;
 }
 
+.editButtons input {
+  height: 40px;
+  text-transform: uppercase;
+  font-family: Poppins;
+  width: 75px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 10pt;
+}
+
 .secondButton {
-  margin-left: 5vw;
+  margin-left: 25px;
 }

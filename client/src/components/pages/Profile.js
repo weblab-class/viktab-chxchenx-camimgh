@@ -128,8 +128,9 @@ class Profile extends Component {
 					<div className="bio">
 						{this.state.bio}
 					</div>
-					<br />
-					<input type="submit" value="Edit" onClick={this.clickedEdit}/>
+					<div className="modalButtons">
+						<input type="submit" value="Edit" onClick={this.clickedEdit} className="editButton" />
+					</div>
 					<EditProfile 
 						show={this.state.showEdit}
 						user={this.state.user}

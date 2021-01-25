@@ -220,8 +220,8 @@ class Board extends Component {
             {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
           </div>
           <input type="submit" value="LEAVE BOARD" onClick={this.leaveBoard}/>
-          <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} className="middleButton"/>
-          <input type="submit" value="ADD TASK" onClick={this.newTask} />
+          <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} className="secondButton"/>
+          <input type="submit" value="ADD TASK" onClick={this.newTask} className="secondButton" />
         </div>
         <div className="columnContainer">
           {this.state.columns.map((column) => {

@@ -10,7 +10,7 @@ body {
     border: 3px solid white;
     border-radius: 25px;
     text-align: center;
-    height: 55vh;
+    height: 400px;
     margin-top: 7.5vh;
     background-color: rgba(0, 0, 0, 0.75);
 }
@@ -59,4 +59,14 @@ body {
     margin-top: 1vh;
     font-size: 10pt;
     overflow: auto;
+}
+
+.editButton {
+    height: 40px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    font-family: Poppins;
+    width: 75px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }

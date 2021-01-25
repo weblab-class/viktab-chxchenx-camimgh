@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "./EditTask.css";
+import "./modal.css";
 
 class EditTask extends Component {
   constructor(props) {
@@ -74,11 +75,12 @@ class EditTask extends Component {
     const className = this.props.show ? "EditTask-containerVisible" : "EditTask-containerHidden";
     return (
       <div className={className}>
-        <div className="u-textCenter">
+        <div className="modalTitle">
 					Edit task
 				</div>
-        <div className="taskField">
+        <div className="modalField">
           <input
+            placeholder="task name..."
             type="text"
             id="taskName"
             name="taskName"
@@ -89,10 +91,10 @@ class EditTask extends Component {
               });
             }}
             />
-					<label>Task Name</label>
 				</div>
-        <div className="taskField">
+        <div className="modalField">
           <input
+            placeholder="task description..."
             type="text"
             id="taskDescription"
             name="taskDescription"
@@ -103,77 +105,94 @@ class EditTask extends Component {
               });
             }}
             />
-					<label>Task Description</label>
 				</div>
-        <div className="taskField">
-          <input 
-            type="checkbox"
-            id="taskAssigned"
-            name="taskAssigned"
-            checked = {this.state.assigned}
-            onChange={(event) => {
-              this.setState({
-                assigned: event.target.checked
-              });
-            }}
-            />
-					<label>Assign yourself</label>
+        <div className="modalInlines">
+          <div className="inlineLabel">
+            Assign yourself?
+          </div>
+          <div className="inlineRight">
+            <input 
+              type="checkbox"
+              id="taskAssigned"
+              name="taskAssigned"
+              checked = {this.state.assigned}
+              onChange={(event) => {
+                this.setState({
+                  assigned: event.target.checked
+                });
+              }}
+              />
+            </div>
 				</div>
         <div>
-          <label>Column</label>
-          <select
-            name="columns"
-            id="columns"
-            value={this.state.column}
-            onChange={(event) => {
-              console.log(event.target.value);
-              this.setState({
-                column: event.target.value
-              })
-            }}
-          >
-            {this.props.columns.map((column) => {
-              return <option value={column._id}>{column.name}</option>
-            })}
-          </select>
+          <label className="modalSubtitle">Column</label>
+          <div className="columnSelect">
+            <select
+              name="columns"
+              id="columns"
+              value={this.state.column}
+              onChange={(event) => {
+                console.log(event.target.value);
+                this.setState({
+                  column: event.target.value
+                })
+              }}
+            >
+              {this.props.columns.map((column) => {
+                return <option value={column._id}>{column.name}</option>
+              })}
+            </select>
+          </div>
         </div>
-        <div className="taskField">
-          <input
-            type="number"
-            id="points"
-            name="points"
-            value = {this.state.points}
-            onChange={(event) => {
-              this.setState({
-                points: event.target.value
-              });
-            }}
-          />
-          <label>Points</label>
+        <div className="modalInlines">
+          <div className="inlineLabel">
+            Points
+          </div>
+          <div className="inlineRight">
+            <input
+              className="pointsField"
+              type="number"
+              id="points"
+              name="points"
+              value = {this.state.points}
+              onChange={(event) => {
+                this.setState({
+                  points: event.target.value
+                });
+              }}
+            />
+          </div>
         </div>
-        <div className="taskField">
-					<input
-            type="date"
-            id="taskDate"
-            name="taskDate"
-            required=" "
-            value = {this.state.date}
-            onChange={(event) => {
-              this.setState({
-                date: event.target.value
-              });
-            }}
-            onInput={(event) => {
-              this.setState({
-                date: event.target.value
-              });
-            }}
-          />
-					<label>Finish By</label>
+        <div className="modalInlines">
+					<div className="inlineLabel">
+            Finish By
+          </div>
+					<div className="inlineRight">
+            <input
+              className="dateField"
+              type="date"
+              id="taskDate"
+              name="taskDate"
+              required=" "
+              value = {this.state.date}
+              onChange={(event) => {
+                this.setState({
+                  date: event.target.value
+                });
+              }}
+              onInput={(event) => {
+                this.setState({
+                  date: event.target.value
+                });
+              }}
+            />
+          </div>
 				</div>
-        <input type="submit" value="Save" onClick={this.clickedUpdate}/>
-        <input type="submit" value="Delete Task" onClick={this.clickedDelete}/>
-        <input type="submit" value="Cancel" onClick={this.clickedCancel}/>
+        <div className="modalButtons">
+          <input type="submit" value="Save" onClick={this.clickedUpdate}/>
+          <input type="submit" value="Delete Task" onClick={this.clickedDelete} className="longButton secondButton" />
+          <input type="submit" value="Cancel" onClick={this.clickedCancel} className="secondButton" />
+        </div>
       </div>
     );
   }

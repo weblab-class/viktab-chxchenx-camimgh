@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Template from "./Template.js";
+import './TemplatesBlock.css';
 
 class TemplatesBlock extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class TemplatesBlock extends Component {
 
   render() {
     return (
-      <div>
+      <div className="templatesBlock">
         < Template 
           selectedTemplate={this.props.selectedTemplate}
           name="name_1"

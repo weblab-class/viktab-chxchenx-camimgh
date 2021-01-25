@@ -1,0 +1,13 @@
+.template:hover {
+    background-color: gray;
+}
+
+.template:active {
+    font-weight: bold;
+}
+
+.template {
+    font-size: 9pt;
+    padding: 1vh 1vw;
+    letter-spacing: 0.5px;
+}

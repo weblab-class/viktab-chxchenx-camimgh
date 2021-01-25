@@ -6,9 +6,8 @@
 .columnContainer {
     width: 95vw;
     margin: auto;
-    height: 61vh;
-    border: 1px solid white;
-    padding: 3vh 1vw;
+    height: 63vh;
+    padding: 2vh 1vw;
     padding-left: 0px;
     overflow: auto;
     display: flex;
@@ -36,15 +35,11 @@
     padding-top: 0vh;
 }
 
-input {
+.buttonBox input {
     padding: 1vh 1vw;
     font-family: Poppins;
     font-weight: bold;
     font-size: 9pt;
     height: 5vh;
-}
-
-.middleButton {
-    margin-left: 3vw;
-    margin-right: 3vw;
+    margin-top: 0px;
 }

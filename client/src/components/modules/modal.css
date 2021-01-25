@@ -1,0 +1,73 @@
+body {
+    font-family: Poppins;
+}
+
+.modalTitle {
+    font-family: Poppins;
+    font-size: 10pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+.modalSubtitle {
+    font-family: Poppins;
+    font-size: 10pt;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.modalField {
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 2vh 0vw;
+    font-family: Poppins;
+}
+
+.modalField input {
+    background: transparent;
+    border: none;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    width: 47.5vw;
+    font-family: Poppins;
+}
+
+.modalField input:focus {
+    outline: none;
+}
+
+.modalButtons {
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.modalButtons input {
+    text-transform: uppercase;
+    font-size: 8pt;
+    height: 40px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-family: Poppins;
+    width: 150px;
+}
+
+.secondButton {
+    margin-left: 25px;
+}
+
+.longButton {
+    width: 150px;
+}
+
+.modalInlines {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.inlineLabel {
+    font-weight: bold;
+    font-size: 10pt;
+    text-transform: uppercase;
+}

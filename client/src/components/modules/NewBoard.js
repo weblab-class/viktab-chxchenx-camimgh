@@ -4,6 +4,7 @@ import { post } from "../../utilities";
 
 import TemplatesBlock from "./TemplatesBlock.js";
 import "./NewBoard.css";
+import "./modal.css";
 
 class NewBoard extends Component {
   constructor(props) {
@@ -59,27 +60,32 @@ class NewBoard extends Component {
     return (
 		<div className={className}>
 			<div>
-				<div className="u-textCenter">
+				<div className="u-textCenter modalTitle">
 					New Board
 				</div>
-				<div className="boardField">
+				<div className="modalField">
 					<input 
+						placeholder="board name..."
 						type="text" 
 						id="boardName" 
 						name="boardName" 
 						required=" " 
 						value={this.state.name}
 						onChange={(event) => {
-              this.setState({
-                name: event.target.value
-              });
-            }}
+						this.setState({
+							name: event.target.value
+						});
+						}}
 						/>
-					<label>Board Name</label>
+				</div>
+				<div className="modalSubtitle">
+					Template
 				</div>
 				< TemplatesBlock selectedTemplate={this.selectedTemplate}/>
-				<input type="submit" value="Create" onClick={this.clickedCreate}/>
-				<input type="submit" value="Cancel" onClick={this.clickedCancel}/>
+				<div className="modalButtons">
+					<input type="submit" value="Create" onClick={this.clickedCreate}/>
+					<input type="submit" value="Cancel" onClick={this.clickedCancel} className="secondButton" />
+				</div>
 			</div>
 		</div>
     );

@@ -5,12 +5,12 @@
     z-index: 1;
     left: 0;
     top: 0;
-    width: 25vw;
-    height: 35vh;
+    width: 50vw;
+    height: 30vh;
     padding: 5vh 2.5vw;
     margin: auto;
-    margin-top: 15vh;
-    margin-left: 35vw;
+    margin-top: 27vh;
+    margin-left: 22.5vw;
     background-color: rgba(255, 255, 255, 0.9);
     color: black;
 }
