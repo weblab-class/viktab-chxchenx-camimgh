@@ -131,7 +131,7 @@ class Board extends Component {
       });
     });
 
-    if (this.state.user.addToCal && task.finishBy.substring(0, 10) != "2000-01-01") {
+    if (this.state.user.addToCal && updates.date.substring(0, 10) != "2000-01-01") {
       const body = {
         code: this.state.user.code,
         name: updates.name,
@@ -189,6 +189,9 @@ class Board extends Component {
   leaveBoard = () => {
     if (window.confirm("Are you sure you want to leave this board?")) {
       post("/api/leaveboard", {user: this.state.user._id, board: this.state.board._id}).then(() => {
+        for (const task of this.state.tasks) {
+          post("/api/unassigntask", {user: this.state.user._id, task: task._id});
+        }
         navigate(`/home/${this.state.user._id}`);
       });
     }
@@ -198,6 +201,9 @@ class Board extends Component {
     if (window.confirm("Are you sure you want to remove this board?")) {
       const users = this.state.board.users;
       post("/api/removeboard", {board: this.state.board._id, users: users}).then(() => {
+        for (const task of this.state.tasks) {
+          post("/api/unassigntask", {user: this.state.user._id, task: task._id});
+        }
         navigate(`/home/${this.state.user._id}`);
       });
     }

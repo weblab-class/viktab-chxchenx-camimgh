@@ -3,7 +3,6 @@ import { get, post } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
 import EditProfile from "../modules/EditProfile.js";
-import GetCode from "../modules/GetCode.js";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -15,8 +14,7 @@ class Profile extends Component {
 			user: undefined,
 			bio: "",
 			planet: "Mercury",
-			showEdit: false,
-			showCode: false
+			showEdit: false
 		};
 	}
 
@@ -29,17 +27,6 @@ class Profile extends Component {
 				planet: user.planet
 			});
 		});
-	}
-
-	getCode() {
-		get("/api/code", {}).then((url) => {
-			this.setState({showCode: true});
-			window.open(url.url, "_blank");
-		});
-	}
-
-	sentCode = () => {
-		this.setState({showCode: false});
 	}
 
 	clickedEdit = (event) => {
@@ -144,11 +131,6 @@ class Profile extends Component {
 						clickedCancel={this.clickedCancel}
 						boughtPlanet={this.boughtPlanet}
 						changePlanet={this.changePlanet}
-					/>
-					<GetCode 
-						userId={this.props.userId}
-						show={this.state.showCode}
-						sentCode={this.sentCode}
 					/>
 				</div>
 			</div>
