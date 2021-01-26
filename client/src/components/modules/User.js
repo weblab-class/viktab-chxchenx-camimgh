@@ -40,10 +40,10 @@ class User extends Component {
     const planet = (<img src={url}></img>)
     const name = this.state.user ? this.state.user.name : "User.name";
     return (
-      <span onClick={this.clicked}>
-        {planet}
-        {name}
-      </span>
+      <div onClick={this.clicked} className="userLine">
+        <div className="planet">{planet}</div>
+        <div className="name">{name}</div>
+      </div>
     )
   }
 }

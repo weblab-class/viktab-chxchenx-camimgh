@@ -220,25 +220,28 @@ class Board extends Component {
           userId={this.props.userId}
           title={this.state.board ? this.state.board.name : "board.name"}
         />
-        <div className="buttonBox">
-          <div className="inviteLink">
-            <span className="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
-            <br />
-            {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
-          </div>
-          <input type="submit" value="LEAVE BOARD" onClick={this.leaveBoard}/>
-          <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} className="secondButton"/>
-          <input type="submit" value="ADD TASK" onClick={this.newTask} className="secondButton" />
-        </div>
-        <div >
-          {this.state.board ? this.state.board.users.map((user) => {
-            return (<User 
-              userId={user}
-              myUserId={this.props.userId}
-            />)
-          }) : <div/>}
-        </div>
         <div className="columnContainer">
+          <div className="infoBox">
+            <div className="inviteLink">
+              <span className="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
+              <br />
+              {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
+            </div>
+            <input type="submit" value="LEAVE BOARD" onClick={this.leaveBoard} /><br />
+            <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} /><br />
+            <input type="submit" value="ADD TASK" onClick={this.newTask} />
+            <div className="collabBox">
+              <div className="inviteMessage">COLLABORATORS</div>
+              <div className="collabList">
+                {this.state.board ? this.state.board.users.map((user) => {
+                  return (<User 
+                    userId={user}
+                    myUserId={this.props.userId}
+                  />)
+                }) : <div/>}
+              </div>
+            </div>
+          </div>
           {this.state.columns.map((column) => {
             return (<Column 
               column={column}
