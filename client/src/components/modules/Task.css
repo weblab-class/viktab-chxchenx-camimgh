@@ -1,11 +1,25 @@
 .task {
     border-bottom: 1px solid white;
     padding: 3vh 1vw;
-    display: flex;
-    justify-content: space-between;
+}
+
+.ctaskDone {
+    margin: auto;
+    text-align: center;
 }
 
 .task:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.homeTask {
+    display: flex;
+    border-bottom: 1px solid white;
+    padding: 3vh 1vw;
+    justify-content: space-between;
+}
+
+.homeTask:hover {
     background-color: rgba(255, 255, 255, 0.25);
 }
 

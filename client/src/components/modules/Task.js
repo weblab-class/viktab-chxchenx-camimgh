@@ -30,18 +30,20 @@ class Task extends Component {
     if (this.props.in === "column") {
       div = (
         <div className="task" onClick={this.clicked}>
-          {this.props.task.name}
-          <br />
-          <div className="labelText">
-            Assigned to:
+            {this.props.task.name}
+            <br />
+            <div className="labelText">
+              Assigned to:
+            </div>
+            <div className="descriptorText">
+              {this.props.task.assigneeNames.filter((name) => {
+                return <div>{name}</div>
+              })}
+            </div>
+            {finishBy}
+          <div className="ctaskDone">
+            {this.props.column.name != "Done" ? (<input type="submit" value="Done" onClick={this.props.clickedDone} className="doneBlock" />) : ""}
           </div>
-          <div className="descriptorText">
-            {this.props.task.assigneeNames.filter((name) => {
-              return <div>{name}</div>
-            })}
-          </div>
-          {finishBy}
-          {this.props.column.name != "Done" ? (<input type="submit" value="Done" onClick={this.props.clickedDone} className="doneBlock" />) : ""}
         </div>
       )
     } else {
@@ -52,7 +54,7 @@ class Task extends Component {
         }
       }
       div = (
-        <div className="task">
+        <div className="homeTask">
           <div className="flexleft">
             <div className="taskBoard">
               {boardName}
