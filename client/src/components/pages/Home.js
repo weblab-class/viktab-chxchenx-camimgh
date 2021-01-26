@@ -20,7 +20,7 @@ class Home extends Component {
   componentDidMount() {
     document.title = "Home";
     get(`/api/user`, { userid: this.props.userId }).then((user) => {
-      // post("/api/unauth", {user: user._id}); (remove auth code from mongoose for debugging)
+      // post("/api/unauth", {user: user._id}); // (remove auth code from mongoose for debugging)
       const promises = user.boards.map((board) => {
         return get(`/api/board`, {boardid: board});
       })
