@@ -8,9 +8,6 @@
 */
 
 const express = require("express");
-const fs = require('fs');
-const readline = require('readline');
-const {google} = require('googleapis');
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -30,69 +27,6 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 const { query } = require("express");
-
-const SCOPES = ["https://www.googleapis.com/auth/calendar.events"];
-
-const TOKEN_PATH = 'token.json';
-
-fs.readFile('credentials.json', (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
-  // Create oAuth2Client with credentials
-  const credentials = JSON.parse(content);
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
-  oAuth2Client = new google.auth.OAuth2(
-      client_id, client_secret, redirect_uris[0]);
-});
-
-router.get("/code", (req, res) => {
-  // Get url to ask user for token
-  const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-  });
-  res.send({url: authUrl});
-});
-
-router.post("/usercode", (req, res) => {
-  User.findByIdAndUpdate({_id: req.body.user}, { $set: {code: req.body.code}}).then(() => {
-    console.log("added gcal code for user");
-    res.send({});
-  });
-});
-
-router.post("/addevent", (req, res) => {
-  console.log(req.body.code);
-  console.log(oAuth2Client);
-  oAuth2Client.getToken(req.body.code, (err, token) => {
-    if (err) return console.error('Error retrieving access token', err);
-    console.log(token);
-    oAuth2Client.setCredentials(token);
-    const event = {
-      'summary': req.body.name,
-      'description': req.body.description,
-      'start': {
-        'date': req.body.date
-      },
-      'end': {
-        'date': req.body.date
-      },
-    };
-  
-    const calendar = google.calendar({version: 'v3', oAuth2Client});
-    calendar.events.insert({
-      auth: oAuth2Client,
-      calendarId: 'primary',
-      resource: event,
-    }, function(err, event) {
-      if (err) {
-        console.log('There was an error contacting the Calendar service: ' + err);
-        return;
-      }
-      console.log('Event created: %s', event.htmlLink);
-    });
-    res.send({});
-  });
-});
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -291,13 +225,6 @@ router.post("/removeplanets", (req, res) => {
     res.send({});
   });
 });
-
-router.post("/unauth", (req, res) => {
-  User.findByIdAndUpdate({_id: req.body.user}, { $set: {addToCal: false, code: ""}}).then(() => {
-    console.log("removed user planets");
-    res.send({});
-  });
-})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

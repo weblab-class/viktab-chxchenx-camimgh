@@ -100,24 +100,6 @@ class EditProfile extends Component {
             }}
             />
 				</div>
-        <div className="modalInlines">
-          <div className="inlineLabel">
-            Add events to Google Calendar?
-          </div>
-          <div className="inlineRight">
-            <input
-              type="checkbox"
-              id="gcal"
-              name="gcal"
-              checked = {this.state.addToCal}
-              onChange={(event) => {
-                this.setState({
-                  addToCal: event.target.checked
-                });
-              }}
-              />
-          </div>
-        </div>
         <div className="modalButtons">
           <input type="submit" value="Save" onClick={this.clickedUpdate}/>
           <input type="submit" value="Cancel" onClick={this.props.clickedCancel} className="secondButton" />
