@@ -3,6 +3,7 @@ import { get, post } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
 import EditProfile from "../modules/EditProfile.js";
+import GetCode from "../modules/GetCode.js";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -14,7 +15,8 @@ class Profile extends Component {
 			user: undefined,
 			bio: "",
 			planet: "Mercury",
-			showEdit: false
+			showEdit: false,
+			showCode: false
 		};
 	}
 
@@ -31,10 +33,13 @@ class Profile extends Component {
 
 	getCode() {
 		get("/api/code", {}).then((url) => {
+			this.setState({showCode: true});
 			window.open(url.url, "_blank");
-			// const code = window.prompt("To give singularity permission to add events to your google calendar, open the popup, follow the instructions, and then paste your code below.");
-			// post("/api/usercode", {user: this.props.userId, code: this.state.code});
 		});
+	}
+
+	sentCode = () => {
+		this.setState({showCode: false});
 	}
 
 	clickedEdit = (event) => {
@@ -140,11 +145,16 @@ class Profile extends Component {
 						boughtPlanet={this.boughtPlanet}
 						changePlanet={this.changePlanet}
 					/>
+					<GetCode 
+						userId={this.props.userId}
+						show={this.state.showCode}
+						sentCode={this.sentCode}
+					/>
 				</div>
 				<input
             type="text"
-            id="code"
-            name="code"
+            id="simplecode"
+            name="simplecode"
             onChange={(event) => {
               this.setState({
                 code: event.target.value
