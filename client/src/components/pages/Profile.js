@@ -151,17 +151,6 @@ class Profile extends Component {
 						sentCode={this.sentCode}
 					/>
 				</div>
-				<input
-            type="text"
-            id="simplecode"
-            name="simplecode"
-            onChange={(event) => {
-              this.setState({
-                code: event.target.value
-              });
-            }}
-          />
-				<input type="submit" value="Send" onClick={()=> {post("/api/usercode", {user: this.props.userId, code: this.state.code});}}/>
 			</div>
 		)
 	}
