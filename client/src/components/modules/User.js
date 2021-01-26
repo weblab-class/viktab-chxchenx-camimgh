@@ -20,6 +20,16 @@ class User extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.state.user && (this.props.userId != this.state.user._id)) {
+      get(`/api/user`, { userid: this.props.userId }).then((user) => {
+        this.setState({
+          user: user
+        });
+      });
+    }
+  }
+
   clicked = (event) => {
     const editable = this.props.myUserId === this.props.userId;
     navigate(`/profile/${this.props.userId}`, {state: {editable: editable, myUserId: this.props.myUserId}});
