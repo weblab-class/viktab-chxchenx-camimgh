@@ -87,11 +87,16 @@ class Home extends Component {
           title={userName}
           handleClickHome={this.props.handleClickHome}
         />
-        <TasksBlock 
-          user={this.state.user}
-          boards={this.state.boards}
-          clickedDone={this.clickedDone}
-        />
+        <div className="welcomeMessage">
+          Welcome back to Singularity! Here are your assigned tasks:
+        </div>
+        <div>
+          <TasksBlock 
+            user={this.state.user}
+            boards={this.state.boards}
+            clickedDone={this.clickedDone}
+          />
+        </div>
         <Sidebar 
           sidebarVisibility={this.props.showBoards}
           handleClickBoard={() => {}}

@@ -53,14 +53,18 @@ class Task extends Component {
       }
       div = (
         <div className="task">
-          <h3>
-          {boardName}
-          </h3>
-          <div>
-          {this.props.task.name}
+          <div className="flexleft">
+            <div className="taskBoard">
+              {boardName}
+            </div>
+            <div>
+              {this.props.task.name}
+            </div>
+            {finishBy}
           </div>
-          {finishBy}
-          <input type="submit" value="Done" onClick={this.props.clickedDone} className="doneBlock" />
+          <div className="flexright">
+            <input type="submit" value="Done" onClick={this.props.clickedDone} className="doneBlock" />
+          </div>
       </div>
       );
     }

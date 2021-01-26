@@ -1,4 +1,7 @@
 .tasksBlock {
-    height: 70vh;
+    height: 65vh;
+    width: 80vw;
+    margin: auto;
+    margin-top: 3vh;
     overflow: auto;
 }

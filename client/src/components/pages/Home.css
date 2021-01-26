@@ -2,3 +2,18 @@
     height: 100vh;
     overflow: hidden;
 }
+
+.welcomeMessage {
+    border: 1px solid white;
+    text-align: center;
+    padding: 3vh 0vw;
+    width: 80vw;
+    margin: auto;
+    margin-top: 3vh;
+    font-family: Lora;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    font-size: 11pt;
+}
