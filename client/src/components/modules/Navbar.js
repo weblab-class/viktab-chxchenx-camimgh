@@ -41,7 +41,7 @@ class Navbar extends Component {
 				Home
 			</span>
 			{this.props.userId && (
-					<Link to={`/profile/${this.props.userId}`} className="NavBar-link">
+					<Link to={`/profile/${this.props.userId}`} state={{editable: true}} className="NavBar-link">
 						Profile
 					</Link>
 				)}

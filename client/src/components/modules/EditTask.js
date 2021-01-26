@@ -132,7 +132,6 @@ class EditTask extends Component {
               id="columns"
               value={this.state.column}
               onChange={(event) => {
-                console.log(event.target.value);
                 this.setState({
                   column: event.target.value
                 })

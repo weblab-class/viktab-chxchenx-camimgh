@@ -14,7 +14,8 @@ class Profile extends Component {
 			user: undefined,
 			bio: "",
 			planet: "Mercury",
-			showEdit: false
+			showEdit: false,
+			switchedUser: false
 		};
 	}
 
@@ -27,6 +28,19 @@ class Profile extends Component {
 				planet: user.planet
 			});
 		});
+	}
+
+	componentDidUpdate() {
+		if (!this.state.switchedUser && !this.props.location.state.myUserId) {
+			get(`/api/user`, { userid: this.props.userId }).then((user) => {
+				this.setState({
+					user: user,
+					bio: user.bio,
+					planet: user.planet,
+					switchedUser: true
+				});
+			});
+		}
 	}
 
 	clickedEdit = (event) => {
@@ -81,6 +95,7 @@ class Profile extends Component {
 	}
 
 	render () {
+		const myUserId = this.props.location.state.myUserId ? this.props.location.state.myUserId : this.props.userId;
 		const userName = this.state.user ? this.state.user.name : "user.name";
 		const points = this.state.user ? this.state.user.points : "user.points";
 		const img = "../images/" + this.state.planet + ".png";
@@ -89,7 +104,7 @@ class Profile extends Component {
 				<Navbar 
 					handleLogin={this.props.handleLogin}
 					handleLogout={this.props.handleLogout}
-					userId={this.state.user ? this.state.user._id : undefined}
+					userId={myUserId}
 					title={userName}
 					handleClickHome={this.props.handleClickHome}
 				/>
@@ -120,9 +135,11 @@ class Profile extends Component {
 					<div className="bio">
 						{this.state.bio}
 					</div>
-					<div className="modalButtons">
-						<input type="submit" value="Edit" onClick={this.clickedEdit} className="editButton" />
+					{this.props.location.state.editable && (
+						<div className="modalButtons">
+							<input type="submit" value="Edit" onClick={this.clickedEdit} className="editButton" />
 					</div>
+					)}
 					<EditProfile 
 						show={this.state.showEdit}
 						user={this.state.user}

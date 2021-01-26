@@ -8,6 +8,7 @@ import Sidebar from "../modules/Sidebar.js";
 import SidebarButton from "../modules/SidebarButton.js";
 import NewTask from "../modules/NewTask.js";
 import EditTask from "../modules/EditTask.js";
+import User from "../modules/User.js";
 
 import "./Board.css";
 
@@ -228,6 +229,14 @@ class Board extends Component {
           <input type="submit" value="LEAVE BOARD" onClick={this.leaveBoard}/>
           <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} className="secondButton"/>
           <input type="submit" value="ADD TASK" onClick={this.newTask} className="secondButton" />
+        </div>
+        <div >
+          {this.state.board ? this.state.board.users.map((user) => {
+            return (<User 
+              userId={user}
+              myUserId={this.props.userId}
+            />)
+          }) : <div/>}
         </div>
         <div className="columnContainer">
           {this.state.columns.map((column) => {
