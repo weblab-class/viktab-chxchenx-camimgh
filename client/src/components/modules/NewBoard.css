@@ -2,16 +2,16 @@
     visibility: visible;
     border: 1px solid white;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     left: 0;
     top: 0;
     width: 50vw;
-    height: 30vh;
+    height: 35vh;
     padding: 5vh 2.5vw;
     margin: auto;
     margin-top: 27vh;
     margin-left: 22.5vw;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 1);
     color: black;
 }
 

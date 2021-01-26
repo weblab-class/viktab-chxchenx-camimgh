@@ -1,5 +1,5 @@
 .template:hover {
-    background-color: gray;
+    background-color: rgba(175, 175, 175, 1);
 }
 
 .template:active {
@@ -10,4 +10,15 @@
     font-size: 9pt;
     padding: 1vh 1vw;
     letter-spacing: 0.5px;
+}
+
+.template-selected:active {
+    font-weight: bold;
+}
+
+.template-selected {
+    font-size: 9pt;
+    padding: 1vh 1vw;
+    letter-spacing: 0.5px;
+    background-color: gray;
 }

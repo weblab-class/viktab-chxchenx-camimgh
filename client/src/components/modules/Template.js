@@ -7,10 +7,11 @@ class Template extends Component {
   }
 
   render() {
+    const className = this.props.selected ? "template-selected" : "template";
     return (
-      <span onClick = {()=> {this.props.selectedTemplate(this.props.columns)}} >
-          <div className="template">
-            {this.props.name} ({this.props.columns})
+      <span onClick = {()=> {this.props.selectedTemplate(this.props.name, this.props.columns)}} >
+          <div className={className}>
+            {this.props.name} ({this.props.columns.join(", ")})
           </div>
       </span>
     );
