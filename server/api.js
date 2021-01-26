@@ -101,6 +101,13 @@ router.post("/removeboard", (req, res) => {
   });
 });
 
+router.post("/unassigntask", (req, res) => {
+  Task.findOneAndUpdate({_id: req.body.task}, { $pull: {assignees: req.body.user} }).then(() => {
+    console.log("removed user from task");
+    res.send({});
+  });
+})
+
 router.get("/column", (req, res) => {
   Column.findById(req.query.columnid).then((column) => {
     res.send(column);
