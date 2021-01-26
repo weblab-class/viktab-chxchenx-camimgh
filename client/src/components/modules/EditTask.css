@@ -25,7 +25,7 @@
   background: transparent;
   border-bottom: 1px solid black;
   font-family: Poppins;
-  width: 10vw;
+  width: 20vw;
 }
 
 .dateField {
@@ -34,7 +34,7 @@
   background: transparent;
   border-bottom: 1px solid black;
   font-family: Poppins;
-  width: 10vw;
+  width: 20vw;
   letter-spacing: 1px;
 }
 
