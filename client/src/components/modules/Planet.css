@@ -5,3 +5,13 @@
 .Planet-locked {
   filter: grayscale(100%);
 }
+
+.planetContainer {
+  padding: 0 1vw;
+}
+
+.planetName {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 9pt;
+}
