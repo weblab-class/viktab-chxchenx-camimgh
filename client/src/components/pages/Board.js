@@ -9,6 +9,7 @@ import SidebarButton from "../modules/SidebarButton.js";
 import NewTask from "../modules/NewTask.js";
 import EditTask from "../modules/EditTask.js";
 import User from "../modules/User.js";
+import Github from "../modules/Github.js";
 
 import "./Board.css";
 
@@ -295,6 +296,7 @@ class Board extends Component {
           deleteTask={this.deleteTask}
           clickedCancel={this.clickedCancelNew}
         />
+        <Github/>
       </div>
     );
   }

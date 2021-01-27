@@ -3,6 +3,8 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { navigate } from "@reach/router";
 import { post } from "../../utilities";
 
+import Github from "../modules/Github.js";
+
 import "../../utilities.css";
 import "./Invite.css";
 
@@ -53,6 +55,7 @@ class Invite extends Component {
           />
         )}
       </>
+      <Github/>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { get, post } from "../../utilities";
 
 import Navbar from "../modules/Navbar.js";
 import EditProfile from "../modules/EditProfile.js";
+import Github from "../modules/Github.js";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -150,6 +151,7 @@ class Profile extends Component {
 						changePlanet={this.changePlanet}
 					/>
 				</div>
+				<Github/>
 			</div>
 		)
 	}

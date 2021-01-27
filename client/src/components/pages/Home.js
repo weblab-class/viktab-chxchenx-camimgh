@@ -5,6 +5,7 @@ import Navbar from "../modules/Navbar.js";
 import TasksBlock from "../modules/TasksBlock.js";
 import Sidebar from "../modules/Sidebar.js";
 import SidebarButton from "../modules/SidebarButton.js";
+import Github from "../modules/Github.js";
 
 import "./Home.css";
 
@@ -106,6 +107,7 @@ class Home extends Component {
           show={this.props.showBoards}
           clicked={this.props.handleShowBoards}
         />
+        <Github/>
       </div>
     );
   }
