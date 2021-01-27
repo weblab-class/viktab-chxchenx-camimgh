@@ -25,6 +25,7 @@
   
 .NavBar-link:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
   
 .NavBar-link.NavBar-login {
