@@ -243,7 +243,7 @@ class Board extends Component {
             <div className="inviteLink">
               <span className="inviteMessage">INVITE YOUR FRIENDS TO JOIN THIS BOARD:</span>
               <br />
-              {`singularity-app.herokuapp.com/invite/${this.props.boardId}`}
+              {`https://singularity-app.herokuapp.com/invite/${this.props.boardId}`}
             </div>
             <input type="submit" value="LEAVE BOARD" onClick={this.leaveBoard} /><br />
             <input type="submit" value="DELETE BOARD" onClick={this.removeBoard} /><br />
