@@ -25,10 +25,10 @@ class Planet extends Component {
     const className = this.props.unlocked ? "Planet-unlocked" : "Planet-locked";
     const planet = (<img className = {className} src={url}></img>)
     return (
-      <span onClick={this.clicked}>
-        {planet}
-        {this.props.planet}
-      </span>
+      <div onClick={this.clicked} className="planetContainer">
+        {planet}<br />
+        <span className="planetName">{this.props.planet}</span>
+      </div>
     )
   }
 }

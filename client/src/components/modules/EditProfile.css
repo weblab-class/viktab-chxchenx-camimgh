@@ -45,6 +45,7 @@
 .planetBuy {
   height: 20vh;
   overflow: auto;
+  display: flex;
 }
 
 .editButtons input {
