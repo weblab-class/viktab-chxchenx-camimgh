@@ -108,8 +108,26 @@ class Board extends Component {
         oldColumn = col;
       }
     }
-    const column = oldColumn._id === updates.column ? undefined : updates.column;
+    let column = oldColumn._id === updates.column ? undefined : updates.column;
     const unassign = (!updates.assigned && task.assignees.indexOf(this.state.user._id) > -1);
+
+    // move task to assigned if the user just assigned themselves
+    if (updates.assigned && oldColumn.name != "Assigned" && oldColumn._id === updates.column) {
+      for (const col of this.state.columns) {
+        if (col.name === "Assigned") {
+          column = col;
+        }
+      }
+    }
+
+    // move task to unassigned if the user just unassigned themselves and no one else is assigned
+    if (unassign && oldColumn.name != "Unassigned" && oldColumn._id === updates.column && task.assignees.length == 1) {
+      for (const col of this.state.columns) {
+        if (col.name === "Unassigned") {
+          column = col;
+        }
+      }
+    }
 
     const body = {
       task: task._id,
