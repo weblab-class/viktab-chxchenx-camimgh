@@ -81,7 +81,6 @@ router.post("/leaveboard", (req, res) => {
   let promises = [];
   promises.push(Board.findOneAndUpdate({_id: req.body.board}, { $pull: {users: req.body.user}}));
   promises.push(User.findOneAndUpdate({_id: req.body.user}, { $pull: {boards: req.body.board}}));
-  // TODO: remove user from all tasks too
   Promise.all(promises).then(() => {
     console.log("left board");
     res.send({});
@@ -92,9 +91,11 @@ router.post("/removeboard", (req, res) => {
   let promises = [];
   for (const user of req.body.users) {
     promises.push(User.findOneAndUpdate({_id: user}, { $pull: {boards: req.body.board}}));
+    for (const task of req.body.tasks) {
+      promises.push(User.findOneAndUpdate({_id: user}, { $pull: {tasks: task}}));
+    }
   }
   promises.push(Board.findByIdAndRemove({_id: req.body.board}));
-  // TODO: remove this board's tasks for all users
   Promise.all(promises).then(() => {
     console.log("removed board");
     res.send({});
@@ -103,8 +104,10 @@ router.post("/removeboard", (req, res) => {
 
 router.post("/unassigntask", (req, res) => {
   Task.findOneAndUpdate({_id: req.body.task}, { $pull: {assignees: req.body.user} }).then(() => {
-    console.log("removed user from task");
-    res.send({});
+    User.findOneAndUpdate({_id: req.body.user}, { $pull: {tasks: req.body.task} }).then(() => {
+      console.log("removed user from task");
+      res.send({});
+    })
   });
 })
 

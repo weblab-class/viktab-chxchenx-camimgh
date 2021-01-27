@@ -220,7 +220,7 @@ class Board extends Component {
   removeBoard = () => {
     if (window.confirm("Are you sure you want to remove this board?")) {
       const users = this.state.board.users;
-      post("/api/removeboard", {board: this.state.board._id, users: users}).then(() => {
+      post("/api/removeboard", {board: this.state.board._id, users: users, tasks: this.state.board.tasks}).then(() => {
         for (const task of this.state.tasks) {
           post("/api/unassigntask", {user: this.state.user._id, task: task._id});
         }
